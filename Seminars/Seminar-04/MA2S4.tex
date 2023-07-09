@@ -1,0 +1,534 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1\times #2}}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 4}
+\section*{Интегрирование рациональных функций}
+
+В прошлый раз мы рассмотрели многочлены вида:
+$$
+	\deg{P} < n, \, \dfrac{P(x)}{(x - z_1)(x - z_2)\dotsc(x - z_n)} = \dfrac{P(z_1)}{Q'(z_1)}{\cdot}\dfrac{1}{x - z_1} + \dotsc + \dfrac{P(z_n)}{Q'(z_n)}{\cdot}\dfrac{1}{x - z_n}
+$$
+где $Q(x) = (x - z_1)(x - z_2)\dotsc(x - z_n)$ и все корни различны. Также, возник вопрос, умеем ли мы интегрировать функции вида:
+$$
+	\dfrac{1}{x - z_j}, \, z_j \in \MC
+$$
+Это можно сделать. Попробуем понять принцип:
+$$
+	\dint \dfrac{1}{x}dx = \ln{|x|} + C, \, \dint \dfrac{1}{x - a}dx = \ln{|x - a|} + C, \, \dint\dfrac{1}{x - ai}dx = ? = \ln{|x - ai|} + C
+$$
+Что такое модуль: $|x - ai| = \sqrt{x^2 + a^2}$. Рассмотрим логарифм этого модуля:
+$$
+	\left(\ln{\left(\sqrt{x^2 + a^2}\right)}\right)' = \left(\dfrac{1}{2}\ln{\left(x^2 + a^2\right)}\right)' = \dfrac{1}{2}{\cdot}\dfrac{2x}{x^2 + a^2} = \dfrac{x}{x^2 + a^2} \neq \dfrac{1}{x - ai} = \dfrac{x + ai}{x^2 + a^2}
+$$
+$$
+	\dfrac{ai}{x^2 + a^2} = i{\cdot}\left(\arctg{\left(\dfrac{x}{a}\right)}\right)' = i{\cdot}\dfrac{1}{a}{\cdot}\dfrac{1}{1 + \frac{x^2}{a^2}} = \dfrac{ai}{x^2 + a^2}
+$$
+$$
+	\dint \dfrac{1}{x - ai}dx = \ln{|x - ai|} + i{\cdot}\arctg{\left(\dfrac{x}{a}\right)} + C
+$$
+\begin{rem}
+	Логарифм для комплексных переменных это многозначная функция, она принимает сразу бесконечно много разных значений. Поэтому мы будем ими пользоваться, только если нам это будет выгодно.
+\end{rem}
+
+\begin{problem}(\textbf{Д1884})
+	$$
+		\dint \dfrac{dx}{x^4 + 1}
+	$$
+\end{problem}
+\begin{proof}
+	У этого многочлена нет действительных корней. Попробуем разложить этот многочлен используя формулу суммы квадратов:
+	$$
+		a^2 + b^2 = a^2 + b^2 +2ab - 2ab =(a + b)^2 - 2ab = (a + b + \sqrt{2ab})(a + b - \sqrt{2ab}), \, ab > 0
+	$$
+	$$
+		x^4 + 1 = (x^2 + 1 + \sqrt{2x^2})(x^2 + 1 - \sqrt{2x^2})  = 
+	$$
+	$$
+		= (x^2 + 1 + \sqrt{2}|x|)(x^2 + 1 - \sqrt{2}|x|) = (x^2 + 1 + x\sqrt{2})(x^2 + 1 - x\sqrt{2})
+	$$
+	Поскольку при раскрытии модуля, слагаемые просто поменяются местами в случае $x <0$. Попробуем проинтегрировать методом неопределенных коэффициентов:
+	$$
+		\dfrac{1}{(x^2 + \sqrt{2}x + 1)(x^2 - \sqrt{2}x + 1)} = \dfrac{Ax + B}{x^2 + \sqrt{2}x + 1} + \dfrac{Cx + D}{x^2 - \sqrt{2}x + 1}
+	$$
+	$$
+		(Ax + B)(x^2 - \sqrt{2}x + 1) + (Cx + D)(x^2 + \sqrt{2}x + 1) = 1
+	$$
+	Рассмотрим коэффициенты по степеням:
+	$$
+		\left\{
+			\begin{matrix}
+				x^3 \colon& &&&&A &+& C &=& 0\\
+				x^2 \colon& B &+& D &-& \sqrt{2}A &+& \sqrt{2}C &=& 0\\
+				x \colon &A &-& B\sqrt{2} &+& C &+& D\sqrt{2} &=& 0\\
+				1 \colon &  &&&&B &+& D &=& 1
+			\end{matrix}
+		\right. \Rightarrow
+		\left\{
+			\begin{matrix}
+				A &+& C &=& 0 \\
+				\sqrt{2}C &-& \sqrt{2}A &=& -1\\
+				&&D &=& B\\
+				B &+& D &=& 1 
+			\end{matrix}
+		\right. \Rightarrow
+		\left\{
+		\begin{matrix}
+			A &=& \tfrac{1}{2\sqrt{2}}\\[5pt]
+			C &=& -\tfrac{1}{2\sqrt{2}}\\[5pt]
+			B &=& \tfrac{1}{2}\\[5pt]
+			D &=& \tfrac{1}{2}
+		\end{matrix}
+		\right.
+	$$
+	$$
+		\dint \dfrac{\frac{1}{2\sqrt{2}}x + \frac{1}{2}}{x^2 + \sqrt{2}x + 1}dx + \dint \dfrac{-\frac{1}{2\sqrt{2}}x + \frac{1}{2}}{ x^2 - \sqrt{2}x + 1}dx
+	$$
+	Как считать такие интегралы? Очень легко, если пользоваться следующей схемой:
+	$$
+		\dint \dfrac{2ax + b}{ax^2 + bx + c}dx = \dint \dfrac{f'(x)}{f(x)}dx = \ln{|f(x)|} + C
+	$$
+	Отношение под интегралом называется \uwave{логарифмической производной}. Рассмотрим наши функции:
+	$$
+		(x^2 \pm \sqrt{x} + 1)' = 2x \pm \sqrt{2} \Rightarrow \dfrac{1}{2\sqrt{2}}x + \dfrac{1}{2} = \dfrac{1}{4\sqrt{2}}(2x + \sqrt{2}) + \dfrac{1}{4}
+	$$
+	Поскольку наше соотношение не является логарифмической производной, то мы хотим их разложить на отношения вида:
+	$$
+		\dfrac{af'(x) + b}{f(x)} \Rightarrow \dint \dfrac{\frac{1}{2\sqrt{2}}x + \frac{1}{2}}{x^2 + \sqrt{2}x + 1}dx = \dfrac{1}{4\sqrt{2}}\dint \dfrac{2x + \sqrt{2}}{x^2 + \sqrt{2}x + 1}dx + \dfrac{1}{4}\dint\dfrac{1}{x^2 + \sqrt{2}x + 1}dx =
+	$$
+	$$
+		= \dfrac{1}{4\sqrt{2}}	\ln{(x^2 +\sqrt{2}x + 1)} + \dfrac{1}{4}\dint \dfrac{1}{\left(x + \frac{\sqrt{2}}{2}\right)^2+ \frac{1}{2}}dx =  \dfrac{1}{4\sqrt{2}}\ln{(x^2 +\sqrt{2}x + 1)} + \dfrac{\sqrt{2}}{4}\arctg{\left(\sqrt{2}x + 1\right)} + C
+	$$
+	где в логарифме не нужен модуль, поскольку квадратный трехчлен всегда положителен. Со вторым интегралом всё аналогично:
+	$$
+		T(x) = \dfrac{\frac{1}{2\sqrt{2}}x + \frac{1}{2}}{x^2 + \sqrt{2}x + 1} \Rightarrow T(-x) = \dfrac{-\frac{1}{2\sqrt{2}}x + \frac{1}{2}}{x^2 - \sqrt{2}x + 1}, \, F'(x) = T(x) \Rightarrow T(-x) = -F'(-x)
+	$$
+	Тогда мы просто перепишем ответ:
+	$$
+		\dint \dfrac{-\frac{1}{2\sqrt{2}}x + \frac{1}{2}}{x^2 - \sqrt{2}x + 1} dx = - \dfrac{1}{4\sqrt{2}}\ln{(x^2 -\sqrt{2}x + 1)} - \dfrac{\sqrt{2}}{4}\arctg{\left(-\sqrt{2}x + 1\right)} + C
+	$$
+\end{proof}
+
+\begin{exrc}(\textbf{Задача из теории чисел}) 
+	Доказать, что число $4^p + p^4$ - составное, где $p$ - простое число.
+\end{exrc}
+\begin{proof}
+	Необходимо использовать формулу суммы квадратов.
+\end{proof}
+
+\newpage
+Что будет, если степень числителя больше степени знаменателя?
+\begin{problem}(\textbf{Д1868})
+	$$
+		\dint \dfrac{x^{10} dx}{x^2 + x -2}
+	$$
+\end{problem}
+\begin{proof}
+	Поскольку $\deg{x^{10}} > \deg{x^2 + x - 2}$, то сначала надо поделить многочлен в числителе на многочлен в знаменателе с остатком. Можно это сделать двумя способами, первый из них - в столбик:
+	$$
+		{\cdot}x^8 \colon x^{10} - x^{10} - x^9 + 2x^8 = -x^9 + 2x^8
+	$$
+	$$
+		{\cdot}(-x^7) \colon -x^9 + 2x^8 + x^9 + x^8 - 2x^7 = 3x^8 - 2x^7
+	$$
+	И так далее. Попробуем сделать это по-другому. Трехчлен в знаменателе легко раскладывается на множители:
+	$$
+		x^2 + x - 2 = (x - 1)(x + 2)
+	$$
+	На линейные множители делить гораздо проще. Воспользуемся схемой Горнера (первая ячейка умножается на ячейку степени и складываются с пониженной степенью выше):
+	$$
+		\begin{matrix}[c|c|c|c|c|c|c|c|c|c|c|c|]
+			 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0\\\hline
+			 & 1  & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+			1& 1  & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1  \\ \hline
+		\end{matrix}
+	$$
+	Таким образом, мы получаем:
+	$$
+		(x^9 + x^8 + x^7 + x^6 + x^5 + x^4 + x^3 + x^2 + x + 1)(x-1) + 1 = x^{10}
+	$$
+	Это по сути частный случай формулы сокращенного умножения:
+	$$
+		x^n - 1 = (x- 1)(x^{n-1} + x^{n-2} + \dotsc + x + 1 )
+	$$
+	Поделим полученный многочлен на $(x + 2)$:
+	$$
+		\begin{matrix}[c|c|c|c|c|c|c|c|c|c|c|c|]
+			& 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0\\\hline
+			& 1  & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ \hline
+			-2& 1  & -1 & 3 & -6 + 1 = -5 & 10 + 1 & -22 + 1 & 43 & -85 & 171 & -341  \\ \hline
+		\end{matrix}
+	$$
+	Тогда:
+	$$
+		x^{10} = 1 + (x- 1)((x+2)(x^8 - x^7 + 3x^6 - 5x^5 + 11x^4 - 21 x^3 + 43x^2 -85 x + 171 ) - 341)
+	$$
+	Поделим полученный многочлен в нашей дроби:
+	$$
+		\dfrac{x^{10}}{x^2 + x -2 } = \dfrac{1}{(x - 1)(x+2)} + x^8 - x^7 + 3x^6 - 5x^5 + 11x^4 - 21 x^3 + 43x^2 -85 x + 171 - \dfrac{341}{x+2}
+	$$
+	Отсюда, каждое слагаемое в отдельности легко интегрируется:
+	$$
+		\dfrac{1}{(x- 1)(x+2)} = \dfrac{1}{3}\dfrac{1}{x - 1} - \dfrac{1}{3}\dfrac{1}{x + 2} \Rightarrow  \dint \dfrac{x^{10} dx}{x^2 + x -2} = \dfrac{1}{3}\ln{|x-1|} - \dfrac{1}{3}\ln{|x +2|} + 
+	$$
+	$$
+		+ \dfrac{1}{9}x^9 - \dfrac{1}{8}x^8 + \dfrac{3}{7}x^7 - \dfrac{5}{6}x^6 + \dfrac{11}{5}x^5 - \dfrac{21}{4}x^4 + \dfrac{43}{3}x^3 - \dfrac{85}{2}x^2 + 171x - 341\ln{|x + 2|} + C
+	$$
+\end{proof}
+\newpage
+\section*{Метод Остроградского}
+Он применяется тогда, когда у знаменателя рациональной дроби есть кратные корни. Пусть мы хотим посчитать интеграл:
+$$
+	\dint \dfrac{P(x)}{Q(x)}dx, \, Q(x) = \prod\limits_{j}(x - a_j)^{k_j}{\cdot}\prod\limits_{m}(x^2 + p_m x + q_m)^{l_m}
+$$
+Пусть у $Q(x)$ есть рациональные корни, построим вспомогательные многочлены:
+$$
+	Q_1(x) = \prod\limits_{j}(x - a_j){\cdot}\prod\limits_{m}(x^2 + p_m x + q_m), \, Q_2(x) = \prod\limits_{j}(x - a_j)^{k_j-1}{\cdot}\prod\limits_{m}(x^2 + p_m x + q_m)^{l_m-1}
+$$
+$$
+	Q(x) = Q_1(x){\cdot}Q_2(x)
+$$
+Тогда найдутся многочлены $P_1(x)$ и $P_2(x)$ такие, что:
+$$
+	\dint \dfrac{P(x)}{Q(x)}dx = \dfrac{P_2(x)}{Q_2(x)} + \dint \dfrac{P_1(x)}{Q_1(x)}dx, \, \deg{P_2} < \deg{Q_2}, \, \deg{P_1} < \deg{Q_1}
+$$
+\begin{theorem}(\textbf{метод Остроградского})
+	Существуют $P_1(x), P_2(x)$ такие, что верно равенство:
+	$$
+		\dint \dfrac{P(x)}{Q(x)}dx = \dfrac{P_2(x)}{Q_2(x)} + \dint \dfrac{P_1(x)}{Q_1(x)}dx, \, \deg{P_2} < \deg{Q_2}, \, \deg{P_1} < \deg{Q_1}
+	$$
+\end{theorem}
+
+Возьмем производные от обеих частей:
+$$
+	\dfrac{P(x)}{Q(x)} = \dfrac{P'_2(x)Q_2(x) - P_2(x)Q'_2(x)}{Q_2^2(x)} + \dfrac{P_1(x)}{Q_1(x)} 
+$$
+Умножим левую и правую части на $Q_1{\cdot}Q_2^2$, тогда мы получим:
+$$
+	\dfrac{P(x){\cdot}Q_1(x){\cdot}Q_2^2(x)}{Q_1(x){\cdot}Q_2(x)} = Q_1(x){\cdot}Q_2^2(x){\cdot}\left( \dfrac{P'_2(x)Q_2(x) - P_2(x)Q'_2(x)}{Q_2^2(x)} + \dfrac{P_1(x)}{Q_1(x)} \right) \Rightarrow
+$$
+$$
+	\Rightarrow P(x){\cdot}Q_2(x) = P'_2(x){\cdot}Q(x) - P_2(x){\cdot}Q'_2(x){\cdot}Q_1(x) + P_1(x){\cdot}Q_2^2(x)
+$$
+Оказывается, что из этого равенства всегда можно восстановить многочлены $P_1(x)$ и $P_2(x)$.
+
+
+\begin{problem}(\textbf{Д1891})
+	$$
+		\dint \dfrac{xdx}{(x-1)^2(x + 1)^3}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		Q(x) = (x-1)^2(x+1)^3, \, Q_1(x) = (x-1)(x + 1), \, Q_2(x) = (x-1)(x+1)^2
+	$$
+	$$
+		Q'_2(x) = (x+1)^2 + 2(x+1)(x - 1) = (x + 1)(3x -1 )
+	$$
+	$$
+		\dint \dfrac{xdx}{(x-1)^2(x + 1)^3} = \dfrac{Ax^2 + Bx + C}{(x-1)(x+1)^2} + \dint \dfrac{Dx + E}{(x-1)(x+1)}dx
+	$$
+	Запишем формулу выше для нашего случая:
+	$$
+		x(x-1)(x+1)^2 = (2Ax + B)(x-1)^2(x+1)^3 - (Ax^2 + Bx + C)(x+1)^2(3x-1)(x-1) +
+	$$
+	$$
+		+ (Dx + E)(x-1)^2(x+1)^4 \Rightarrow /(x-1)(x+1)^2 \Rightarrow
+	$$
+	$$	
+		\Rightarrow x = (2Ax + B)(x-1)(x+1) - (Ax^2 + Bx + C)(3x -1) + (Dx + E)(x-1)(x+1)^2
+	$$
+	Иногда удобнее находить коэффициенты, подставив в левую/правую части $1$:
+	$$
+		x = 1 \Rightarrow 1 = -(A +B +C)2, \, x = -1 \Rightarrow -1 = -(A - B + C)(-4)
+	$$
+	$$
+		x = 0 \Rightarrow 0 = -B +C -E
+	$$
+	Не хватает ещё двух уравнений $\Rightarrow$ возьмем их из старших степеней:
+	$$
+		x^4 \colon 0= D, \, x^3 \colon 0 = 2A -3A +E
+	$$
+	Таким образом, мы получаем систему:
+	$$
+		\left\{
+			\begin{matrix}
+				A &+& B &+& C &=& -\tfrac{1}{2}\\[5pt]
+				A &-& B &+& C &=& -\tfrac{1}{4}\\[5pt]
+				-B &+& C &-& E &=& 0\\[5pt]
+				&&&&E &=& A
+			\end{matrix}
+		\right. \Rightarrow
+		\left\{
+			\begin{matrix}
+				&&B & = & -\tfrac{1}{8}\\[5pt]
+				A &+& C &=& -\tfrac{3}{8}\\[5pt]
+				C &-& A &=& -\tfrac{1}{8}\\[5pt]
+				&&A &=& E
+			\end{matrix}
+		\right. \Rightarrow
+		\left\{
+			\begin{matrix}
+				A & = & -\tfrac{1}{8}\\[5pt]
+				B &=& -\tfrac{1}{8}\\[5pt]
+				C &=& -\tfrac{1}{4}\\[5pt]
+				E &=& -\tfrac{1}{8}
+			\end{matrix}
+		\right.
+	$$
+	$$
+		\dint \dfrac{xdx}{(x-1)^2(x + 1)^3} = \dfrac{-\frac{1}{8}x^2  - \frac{1}{8}x - \frac{1}{4}}{(x-1)(x+1)^2} + \dint \dfrac{-\frac{1}{8}}{(x-1)(x+1)}dx
+	$$
+	$$
+		\dfrac{-\frac{1}{8}}{(x-1)(x+1)} = -\dfrac{1}{8}{\cdot}\left(\dfrac{1}{2}\left(\dfrac{1}{x-1} - \dfrac{1}{x+1}\right)\right) \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{xdx}{(x-1)^2(x + 1)^3} = -\dfrac{1}{8}\dfrac{x^2  + x + 2}{(x-1)(x+1)^2} - \dfrac{1}{16} \ln{\left|\dfrac{x-1}{x + 1}\right|} +C
+	$$
+\end{proof}
+
+Отметим, что в методе Остроградского:
+$$
+	\dint \dfrac{P(x)}{Q(x)}dx = \dfrac{P_2(x)}{Q_2(x)} + \dint \dfrac{P_1(x)}{Q_1(x)}dx, \, \deg{P_2} < \deg{Q_2}, \, \deg{P_1} < \deg{Q_1}
+$$
+Часть $\frac{P_2(x)}{Q_2(x)}$ называется \uwave{алгебраической}, а часть $\int \frac{P_1(x)}{Q_1(x)}dx$ называется \uwave{трансцендентной}. Интегрирование трансцендентной части обычно дает сумму логарифмов и арктангенсов: логарифмы - если есть линейные множители в знаменателе $Q_1$, арктангенсы - если есть квадратичные множители.
+\begin{rem}
+	Иногда можно найти алгебраическую часть, не разбирая трансцендентную, поскольку на бесконечности трансцендентная часть, состоящая из логарифмов и арктангенсов это $o$-малое от алгебраической части.
+\end{rem}
+
+\begin{problem}(\textbf{Д1892})
+	$$
+		\dint \dfrac{dx}{(x^3 + 1)^2 }
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		Q(x) = (x^3 + 1)^2
+	$$
+	Заметим, что у $x^3 + 1$ нет кратных корней, это обычно можно понять так:
+	$$
+		G(x) = (x- x_1)^k\dotsc \Rightarrow G'(x) = n(x - x_1)^{k-1}\dotsc
+	$$
+	то есть надо посмотреть, есть ли у многочлена и его производной общие корни, поскольку кратные корни понижаются в степени, но остаются. В нашем случае:
+	$$
+		G(x) = x^3 + 1 = 0, \, G'(x) = 3x^2 = 0
+	$$
+	То есть система не имеет решений $\Rightarrow$ кратных корней нет. Тогда:
+	$$
+		Q_1(x) = x^3 + 1, \, Q_2(x) = x^3 + 1
+	$$
+	$$
+		\dint \dfrac{dx}{(x^3 + 1)^2 } = \dfrac{Ax^2 + Bx + C}{x^3 +1} + \dint\dfrac{Dx^2 + Ex + F}{x^3 + 1}dx
+	$$
+	$$
+		1(x^3 + 1) = (2Ax + B)(x^3 + 1)^2 - (Ax^2 + Bx + C)3x^2(x^3 + 1) + (Dx^2 + Ex + F)(x^3 +1)^2 \Rightarrow
+	$$
+	$$
+		\Rightarrow 1 = (2Ax + B) (x^3+1) - (Ax^2 + Bx +C)3x^2 +(Dx^2 + Ex +F)(x^3 +1)
+	$$
+	Как можно быстро получить коэффициенты в левой и правой частях? Рассмотрим ещё один метод:
+	$$
+		z \in \MC \colon z^3 + 1 = 0 \Rightarrow z_1 = -1, \, z_2 = e^{\frac{\pi i}{3}}, \, z_3 = e^{-\frac{\pi i}{3}} \Rightarrow
+	$$
+	$$
+		\Rightarrow 1 = -(Az^2 + Bz + C)3z^2 = 3Az + 3B - 3Cz^2 = 0
+	$$
+	Многочлен степени не выше $2$ в трёх точках равен $1 \Rightarrow$ этот многочлен $\equiv 1$, тогда:
+	$$
+		A = 0, \, C = 0, \, B = \dfrac{1}{3} 
+	$$
+	Таким образом, мы посчитали алгебраическую часть не считая трансцендентную. Можем досчитать остальные коэффициенты и найти исходный интеграл.
+\end{proof}
+
+\textbf{ДЗ}: решить методом Остроградского: $1873, 1892, 1894, 1898$ (только нужно алгебраическую часть); без метода Остроградского: $1883$.
+
+\end{document}

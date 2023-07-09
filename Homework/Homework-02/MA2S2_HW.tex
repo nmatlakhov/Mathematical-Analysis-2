@@ -1,0 +1,355 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1\times #2}}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 2: ДЗ}
+\section*{Неопределенный интеграл}
+\subsection*{Замена переменных и интегрирование по частям}
+\textbf{ДЗ}: $1690, \, 1695, \, 1703$ (перейти к половинному углу: $\sin{x} = 2\sin{\frac{x}{2}}\cos{\frac{x}{2}}$, замена $t= \tg{\frac{x}{2}}$). 
+
+\textbf{ДЗ}: подстановки: $1777, \, 1780, \, 1785, \, 1790, \, 1829$.
+
+\begin{problem}(\textbf{Д1690})
+	$$
+		\dint\dfrac{e^x dx}{2 + e^x}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint\dfrac{e^x dx}{2 + e^x} = \dint \dfrac{du}{u} = \ln{u} + C = \ln{(2 + e^x)} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д1695})
+	$$
+		\dint \sin^5{x}\cos{x}dx 
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sin^5{x}\cos{x}dx  = \dint u^5 du = \dfrac{u^6}{6} + C = \dfrac{\sin^6{x}}{6} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д1703})
+	$$
+		\dint \dfrac{dx}{\sin{x}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{dx}{\sin{x}} = \dint \dfrac{dx}{2\sin{\frac{x}{2}}\cos{\frac{x}{2}}} = \dint \dfrac{du}{\sin{u}\cos{u}} = \dint\dfrac{du}{\tg{u}\cos^2{u}} = \dint\dfrac{d(\tg{u})}{\tg{u}} = \ln{\left|\tg{u}\right|} + C = \ln{\left|\tg{\frac{x}{2}}\right|} + C 
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д1777})
+	$$
+		\dint\dfrac{\arctg{\sqrt{x}}}{\sqrt{x}}{\cdot}\dfrac{dx}{1+x}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint\dfrac{\arctg{\sqrt{x}}}{\sqrt{x}}{\cdot}\dfrac{dx}{1+x} = \dint \arctg{\sqrt{x}}{\cdot}\dfrac{2d(\sqrt{x})}{1 + x} = 2\dint \arctg{u} \dfrac{du}{1 + u^2} = 2 \dint w dw = w^2 + C = (\arctg{\sqrt{x}})^2 + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д1780})
+	$$
+		\dint\sqrt{1 - x^2}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint\sqrt{1 - x^2}dx = |x  = \sin{t}| = \dint \sqrt{\cos^2{t}}\cos{t}dt
+	$$
+	Пусть $t \in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$, тогда $|\cos{t}| = \cos{t}$ и $\sin{t} \in [-1,1]$. Следовательно мы получим:
+	$$
+		\dint \sqrt{\cos^2{t}}\cos{t}dt = \dint \cos^2{t}dt = \dint \left(\dfrac{ 1 + \cos{(2t)}}{2}\right)dt = \dfrac{t}{2} + \dfrac{1}{4}\dint \cos{u}du =
+	$$
+	$$
+		= \dfrac{t}{2}	+ \dfrac{\sin{(2t)}}{4} + C= \dfrac{\arcsin{x}}{2} + \dfrac{2\sin{t}\cos{t}}{4} + C =  \dfrac{\arcsin{x}}{2} + \sqrt{1 -x^2}{\cdot}\dfrac{x}{2} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д1785})
+	$$
+		\dint\sqrt{(x-a)(b-x)}dx
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену: $x - a = (b - a){\cdot}\sin^2{t}$.
+	$$
+		b - x = (b - a) - (x - a) = (b - a) - (b - a){\cdot}\sin^2{t} = (b-a){\cdot}\cos^2{t}
+	$$
+	Без потери общности будем считать, что $a < b$. Поскольку наш трехчлен имеет вид: $(x - a)(b - x)$, то он положителен только на интервале $(a,b) \Rightarrow $ подразумевается, что мы работаем на этом интервале. 
+	Выберем значения $t \in \left(0,\frac{\pi}{2}\right)$, тогда: 
+	$$
+		t \in \left(0,\frac{\pi}{2}\right) \Rightarrow \sin^2{t} \in (0,1) \Rightarrow (b-a)\sin^2{t} \in (0, b-a) \Rightarrow x = a + (b-a)\sin^2{t} \in (a,b)
+	$$
+	Таким образом, из замены мы получим:
+	$$
+		x - a = (b - a){\cdot}\sin^2{t} \Rightarrow t = \arcsin{\left(\sqrt{\dfrac{x- a}{b-a}}\right)}, \quad dx = 2(b-a)\sin{t}\cos{t}dt
+	$$
+	$$
+		\dint \sqrt{(x-a)(b-x)}dx = \dint (b-a){\cdot}\sin{t}{\cdot}\cos{t} {\cdot}2(b-a){\cdot}\sin{t}{\cdot}\cos{t}dt = 2(b-a)^2\dint \sin^2{t}\cos^2{t}dt=
+	$$
+	$$
+		=\dfrac{(b-a)^2}{2}\dint \sin^{2}(2t)dt = \dfrac{(b-a)^2}{2}\dint \dfrac{1 - \cos{(4t)}}{2}dt = \dfrac{(b-a)^2}{4}t - \dfrac{(b-a)^2}{4{\cdot}4}\sin{(4t)} +C 
+	$$
+	Поскольку $t \in (0,\frac{\pi}{2})$, то $\cos{t} > 0$ и будет верно равенство:
+	$$
+		\sin{(4t)} = 2\sin{(2t)}{\cdot}\cos{(2t)} = 2\sin{(2t)}{\cdot}(1 - 2\sin^2{t}) = 4\sin{t}{\cdot}\cos{t}{\cdot}(1 - 2\sin^2{t}) =
+	$$
+	$$
+		= 4\sqrt{\dfrac{x -a}{b-a}}{\cdot}\sqrt{1 - \dfrac{x -a}{b-a}}{\cdot}\left(\dfrac{b-a - 2x + 2a}{b-a}\right) = 4 \sqrt{(x-a)(b-x)}{\cdot}\dfrac{(a + b) - 2x}{(b-a)^2}
+	$$
+
+	$$
+		\dint\sqrt{(x-a)(b-x)}dx = \dfrac{(b-a)^2}{4}\arcsin{\left(\sqrt{\dfrac{x- a}{b-a}}\right)} + \dfrac{2x - (a+ b)}{4}{\cdot}\sqrt{(x-a)(b-x)} + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д1790})
+	$$
+		\dint \sqrt{(x+a)(x+b)}dx,\quad x + a = (b-a)\sh^2{t}
+	$$
+\end{problem}
+\begin{proof}
+	Под корнем у нас находится квадратный трехчлен с корнями $-a$ и $-b$, чтобы корень выражения был определен нам необходимо верность неравенства: $(x+a)(x+b) \geq  0$. Без ограничения общности, пусть $-a < -b \Rightarrow x \in (-\infty,-a)\cup (-b, + \infty)$. 	
+	Сделаем замену: 
+	$$
+		x+ a = (b-a)\sh^2{t} \Rightarrow \sh^2{t} = \dfrac{x + a}{b-a} \Rightarrow t =\sh^{-1}\left(\sqrt{\dfrac{x+a}{b-a}}\right) = \ln{\left(\sqrt{\dfrac{x+a}{b-a}} + \sqrt{\dfrac{x+b}{b-a}}\right)}
+	$$ 
+	Будем выбирать $t \geq 0 \Rightarrow \sh{t} > 0, \, \ch{t} > 0$. Мы уже знаем, что $-a < -b \Rightarrow a >  b \Rightarrow x + a < 0$, тогда выражение под корнем будет положительным. На промежутке $(-b,+\infty)$ надо просто поменять $b$ и $a$ местами. Заметим, что:
+	$$
+		x + b = x + a + (b - a) = (b-a)\sh^2{t} + (b-a) = (b-a){\cdot}(\sh^2{t} + 1) = (b-a){\cdot}\ch^2{t} \Rightarrow
+	$$
+	$$
+		\Rightarrow \sqrt{(x+a)(x+b)} = \sqrt{(b-a)^2\sh^2{t}\sh^2{t}} = -(b-a)\sh{t}\ch{t}, \quad dx = d(x + a) = (b-a)2\sh{t}\ch{t}dt \Rightarrow
+	$$
+	$$
+		\Rightarrow  \dint \sqrt{(x+a)(x+b)}dx = -2\dint (b-a)^2 \sh^2{t}\ch^2{t}dt
+	$$
+	Воспользуемся здесь формулой: $\sh{(2t)} = 2\sh{t}\ch{t}$, тогда:
+	$$
+		-2\dint (b-a)^2 \sh^2{t}\ch^2{t}dt = -\dfrac{(b-a)^2}{2}\dint \sh^2{(2t)}dt 
+	$$
+	$$
+		\ch{(4t)} = \dfrac{e^{4t} + e^{-4t}}{2}, \, \sh{(2t)} = \dfrac{e^{2t} - e^{-2t}}{2} \Rightarrow \sh^2{(2t)} = \dfrac{e^{4t} -2 + e^{-4t}}{4} = \dfrac{\ch{(4t)} - 1}{2} \Rightarrow
+	$$
+	$$
+		\Rightarrow -\dfrac{(b-a)^2}{2}\dint \sh^2{(2t)}dt = -\dfrac{(b-a)^2}{4}\dint \ch{(4t)} - 1 dt = -\dfrac{(b-a)^2}{4}{\cdot}\left(\dfrac{1}{4}\sh{(4t)} - t\right) + C =
+	$$
+	$$
+		=	\dfrac{(b-a)^2}{4}{\cdot}\left(-\dfrac{1}{2}\sh{(2t)}\ch{(2t)} + t\right) + C = \dfrac{(b-a)^2}{4}{\cdot}\left(-\sh{t}\ch{t}\ch{(2t)} + t\right) + C
+	$$
+	$$
+		\ch{(2t)} = \dfrac{e^{2t} + e^{-2t}}{2} = 2\sh^2{t} + 1  \Rightarrow
+	$$
+	$$
+		\dfrac{(b-a)^2}{4}{\cdot}\left(-\sh{t}\ch{t}{\cdot}\ch{(2t)} + t\right) + C =	\dfrac{(b-a)^2}{4}\left(-\sqrt{\dfrac{x+a}{b-a}}{\cdot}\sqrt{\dfrac{x + b}{b-a}}{\cdot}\left( 2{\cdot}\dfrac{x+a}{b-a} + 1\right) +t \right) +C = 
+	$$
+	$$
+		=	\dfrac{\sqrt{(x+a)(x+b)}}{4}{\cdot}(2x + a + b) + \dfrac{(b-a)^2}{4}\ln{\left(\sqrt{\dfrac{x+a}{b-a}} + \sqrt{\dfrac{x+b}{b-a}}\right)} +C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д1829})
+	$$
+		\dint e^{a x}\sin{(bx)}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\MI = \dint e^{a x}\sin{(bx)}dx = \dfrac{1}{a}e^{a x}\sin{(bx)} - \dfrac{b}{a}\dint e^{a x} \cos{(bx)}dx = 
+	$$
+	$$	
+		= \dfrac{1}{a}e^{a x}\sin{(bx)} - \dfrac{b}{a^2}e^{a x} \cos{(bx)} - \dfrac{b^2}{a^2}\dint e^{a x}\sin{(bx)}dx \Rightarrow
+	$$
+	$$
+		\Rightarrow \left(1 + \dfrac{b^2}{a^2}\right)\MI = \dfrac{1}{a}e^{\alpha x}\sin{(bx)} - \dfrac{b}{a^2}e^{a x} \cos{(bx)} +C \Rightarrow \MI = \dfrac{a}{a^2 + b^2}e^{a x}\sin{(bx)} - \dfrac{b}{a^2 + b^2}e^{a x}\cos{(bx)} + C
+	$$
+\end{proof}
+		
+\end{document}

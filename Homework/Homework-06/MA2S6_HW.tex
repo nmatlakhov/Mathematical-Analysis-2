@@ -1,0 +1,383 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 6: ДЗ}
+
+\textbf{ДЗ}: $1966$ (замена второго типа), $1996$, $2011$ а) и посчитать $\dint \sin^6{x}dx$, $2025$ (тангенс половинного угла), $2029$ (обычный тангенс), $2043$, $2046$.
+
+\section*{Подстановки Эйлера}
+
+\begin{problem}(\textbf{Д1966})
+	$$
+		\dint \dfrac{dx}{x + \sqrt{x^2 + x + 1 }}
+	$$
+\end{problem}
+\begin{proof}
+	См. в семинаре 6.
+\end{proof}
+\section*{Интегрирование тригонометрических функций}
+\subsection*{Использование формул понижения степени}
+\begin{problem}(\textbf{Д1996})
+	$$
+		\dint \sin^5{x}\cos^5{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sin^5{x}\cos^5{x}dx = \dint \sin^5{x}\cos^4{x}d(\sin{x}) = \dint t^5(1-t^2)^2dt = \dfrac{t^6}{6} -2\dfrac{t^8}{8} + \dfrac{t^{10}}{10} + C =
+	$$
+	$$
+		= \sin^6{x}{\cdot}\left(\dfrac{1}{6} - \dfrac{1}{4}\sin^2{x} + \dfrac{1}{10}\sin^4{x}\right) + C
+	$$
+	Либо можно решить через формулы понижения:
+	$$
+		2\sin{x}\cos{x} = \sin{2x} \Rightarrow \dint \sin^5{x}\cos^5{x}dx = \dfrac{1}{2^5}\dint \sin^5{2x}dx = \dfrac{1}{32}\dint (1 - \cos^2{2x})^2\sin{2x}dx=
+	$$
+	$$
+		= -\dfrac{1}{64}\dint(1 - \cos^2{2x})^2d(\cos{2x}) = -\dfrac{1}{64}\left(\dint dy - 2\dint y^2 dy + \dint y^4 dy\right) =  
+	$$
+	$$
+		=	-\dfrac{\cos{2x}}{64} + \dfrac{\cos^3{2x}}{96} - \dfrac{\cos^5{2x}}{320} + C 
+	$$
+\end{proof}
+
+\subsection*{Интегрирование по частям}
+\begin{problem}(\textbf{Д2011 а)})
+	Вывести формулу понижения для интеграла:
+	$$
+		\MI_n = \dint \sin^n{x}dx
+	$$
+	и с помощью формулы вычислить:
+	$$
+		\dint \sin^6{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sin^n{x}dx =  - \dint \sin^{n-1}{x}d(\cos{x}) = -\sin^{n-1}{x}\cos{x} + (n-1){\cdot}\dint \sin^{n-2}{x}\cos^2{x}dx =
+	$$
+	$$
+		=-\sin^{n-1}{x}\cos{x} + (n-1)(\MI_{n-2} - \MI_{n}) \Rightarrow n\MI_n = -\sin^{n-1}{x}\cos{x} + (n-1)\MI_{n-2}  \Rightarrow
+	$$
+	$$
+		\Rightarrow \MI_n = -\dfrac{1}{n}\sin^{n-1}{x}\cos{x} + \dfrac{(n-1)}{n}\MI_{n-2}
+	$$
+	Посчитаем конкретный пример при $n = 6$:
+	$$
+		\MI_6 = -\dfrac{1}{6}\sin^{5}{x}\cos{x} + \dfrac{5}{6}{\cdot}\left(-\dfrac{1}{4}\sin^{3}{x}\cos{x} + \dfrac{3}{4}{\cdot}\dint\sin^2{x}dx\right)
+	$$
+	$$
+		\dint \sin^2{x}dx = \dfrac{1}{2}\dint (1 - \cos{2x})dx = \dfrac{x}{2} - \dfrac{1}{4}\sin{2x} + C
+	$$
+\end{proof}
+
+\subsection*{Интегрирование рациональных тригонометрических функций}
+\begin{problem}(\textbf{Д2025})
+	$$
+		\dint \dfrac{dx}{2 \sin{x} - \cos{x} + 5}
+	$$
+\end{problem}
+\begin{proof}
+	Ни один из описанных случаев нам не подходит, поэтому воспользуемся заменой тангенса половинного угла:
+	$$
+		t = \tg{\tfrac{x}{2}} \Rightarrow \sin{x} = \dfrac{2t}{1 + t^2}, \, \cos{x} = \dfrac{1 -t^2}{1 + t^2}, \, dx = \dfrac{2dt}{1 + t^2}
+	$$
+	Это верно, поскольку:
+	$$
+		\sin{x} = 2\sin{\tfrac{x}{2}}\cos{\tfrac{x}{2}} = 2 \tg{\tfrac{x}{2}}\cos^2{\tfrac{x}{2}} = 2 \tg{\tfrac{x}{2}}\dfrac{1}{1 + \tg^2{\tfrac{x}{2}}} = \dfrac{2t}{1 + t^2}
+	$$
+	$$
+		\cos{x} = 2\cos^2{\tfrac{x}{2}} - 1 = 2 \dfrac{1}{1 + \tg^2{\tfrac{x}{2}}} - 1 = \dfrac{1 - t^2}{1 + t^2}
+	$$
+	$$
+		t = \tg{\tfrac{x}{2}} \Rightarrow x = 2\arctg{t} \Rightarrow dx = \dfrac{2dt}{1 + t^2}
+	$$
+	Таким образом:
+	$$
+		\dint \dfrac{dx}{2 \sin{x} - \cos{x} + 5} = \dint \dfrac{2dt}{1 + t^2}{\cdot}\dfrac{1}{\tfrac{4t}{1 + t^2} - \tfrac{1 - t^2}{1+ t^2} + 5} = \dint \dfrac{2dt}{4t - 1 + t^2 + 5 + 5t^2} = 
+	$$
+	$$
+		=	\dint \dfrac{2dt}{6t^2  + 4t + 4} = \dint \dfrac{dt}{3t^2 + 2t + 2} = 
+		\dfrac{1}{3}\dint\dfrac{dt}{t^2 + \tfrac{2}{3}t + \tfrac{1}{9} + \tfrac{5}{9}} = \dfrac{1}{3}\dint \dfrac{d\left(t + \tfrac{1}{3}\right)}{\left(t + \tfrac{1}{3}\right)^2 + \tfrac{5}{9}} =
+	$$
+	$$
+		= \dfrac{1}{\sqrt{5}}\arctg{\left(\dfrac{3t + 1}{\sqrt{5}}\right)} + C = \dfrac{1}{\sqrt{5}}\arctg{\left(\dfrac{3\tg{\tfrac{x}{2}} + 1}{\sqrt{5}}\right)} + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д2029})
+	$$
+		\dint \dfrac{\sin^2{x}}{1 + \sin^2{x}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Здесь подходят замены второго типа: $t = \tg{x}$, тогда:
+	$$
+		x = \arctg{t}, \, dx = \dfrac{1}{1 + t^2}dt, \, \sin^2{x} = \dfrac{t^2}{1 +t^2} \Rightarrow \dint \dfrac{\sin^2{x}}{1 + \sin^2{x}}dx= \dint dx - \dint \dfrac{dx}{1 + \sin^2{x}} =
+	$$
+	$$
+		= x - \dint \dfrac{dt}{(1 + t^2){\cdot}\left(1 + \tfrac{t^2}{1+t^2}\right)} = x - \dint\dfrac{dt}{1 + 2t^2} = x - \dfrac{1}{2}\dint\dfrac{dt}{t^2 + \tfrac{1}{2}} = x - \dfrac{1}{2}{\cdot}\sqrt{2}{\cdot}\arctg{\left(\sqrt{2}t\right)} + C =
+	$$
+	$$
+		= x -\dfrac{1}{\sqrt{2}}\arctg{\left(\sqrt{2}\tg{x}\right)} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2043})
+	$$
+		\dint \dfrac{\sin{x} - \cos{x}}{\sin{x} + 2\cos{x}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Применим формулу из задачи $2042$:
+	$$
+		\dint \dfrac{a_1 \sin{x} + b_1 \cos{x}}{a \sin{x} + b\cos{x}}dx = \dint \dfrac{pf(x) + qf'(x)}{f(x)}dx = px  + q\ln{|f(x)|} + C
+	$$
+	$$
+		f(x) = 1{\cdot}\sin{x} + 2{\cdot}\cos{x}, \, f'(x) = 1{\cdot}\cos{x} - 2{\cdot}\sin{x} \Rightarrow 
+	$$
+	$$
+		\Rightarrow p\sin{x} + 2p\cos{x} + q\cos{x} - 2q\sin{x} = \sin{x} - \cos{x} \Rightarrow p -2q = 1, \, 2p + q = -1 \Rightarrow 
+	$$	
+	$$	
+		\Rightarrow p = -\dfrac{1}{5}, \, q = -\dfrac{3}{5} \Rightarrow
+		\dint \dfrac{\sin{x} - \cos{x}}{\sin{x} + 2\cos{x}}dx = -\dfrac{x}{5} - \dfrac{3}{5}\ln{|\sin{x} + 2\cos{x}|} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2046})
+	Доказать, что:
+	$$
+		\dint \dfrac{a_1 \sin{x} + b_1 \cos{x} + c_1}{a\sin{x} + b\cos{x} + c}dx = Ax + B\ln{|a\sin{x} + b\cos{x} + c}| + C\dint\dfrac{dx}{a\sin{x} + b\cos{x} + c}
+	$$
+	где $A, B,C$ - некоторые постоянные коэффициенты
+\end{problem}
+\begin{proof}
+	По аналогии с задачей $2042$, введём обозначения:
+	$$
+		f(x) = a\sin{x} + b\cos{x} + c, \, f'(x) = -b\sin{x} + a\cos{x}
+	$$
+	Векторы $f(x), f'(x)$ и $1 \in \MR$ - линейно независимы и образуют базис:
+	$$
+		\begin{vmatrix}
+			a & b & 0 \\
+			-b & a & 0 \\
+			0 & 0 & 1
+		\end{vmatrix} = a^2 + 0 + 0 - 0 - (-b)b - 0 = a^2 + b^2\Rightarrow a \neq 0 \vee b \neq 0 \Rightarrow a^2 + b^2 > 0
+	$$
+	Тогда, вектор написанный сверху можно выразить через $f(x), f'(x)$ и $1$ с некоторыми коэффициентами:
+	$$
+		\dint \dfrac{a_1 \sin{x} + b_1 \cos{x} + c_1}{a\sin{x} + b\cos{x} + c}dx = \dint \dfrac{A{\cdot}f(x) + B{\cdot}f'(x) + C{\cdot}1}{f(x)}dx = A\dint dx + B\dint \dfrac{d(f(x))}{f(x)} + C\dint\dfrac{dx}{f(x)} = 
+	$$
+	$$
+		= Ax + B\ln{|f(x)|} + C\dint{dx}{f(x)} = Ax + B\ln{|a\sin{x} + b\cos{x} + c|} + C \dint \dfrac{dx}{a\sin{x} + b\cos{x} + c}
+	$$
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,400 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools}
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+%Скалярное произведение
+\DeclarePairedDelimiterX{\inner}[2]{\langle}{\rangle}{#1, #2}
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Шапошников С.В.}
+\rhead{Лекция - 9}
+\section*{Компакты в нормированном пространстве}
+\begin{theorem}
+	Если в нормированном пространстве, замкнутый шар (положительного радиуса) является компактом, то это пространство конечномерно.
+\end{theorem}
+\uline{\textbf{Идея}}: Пусть у нас есть интервал длины $2$, сколько нужно интервалов длины $1$, чтобы закрыть его полностью? Точно $\geq 2$.
+
+Аналогичный вопрос про шары в плоскости. Чтобы покрыть шар радиуса $2$ шарами радиуса $1$ понадобится $\geq 4$ шаров (площадь $4\pi$ нужно покрыть шарами площадью $\pi$).
+
+Аналогичный вопрос про шары в пространстве. Чтобы покрыть шар радиуса $2$ шарами радиуса $1$ понадобится $\geq 8$ шаров. Таким образом видно, что с увеличением размерности пространства увеличивается число шаров радиуса $1$, чтобы закрыть шар радиуса $2$.
+
+В конечномером случае, шар это компакт и его всегда можно закрыть конечным числом единичных шаров. Но чем больше размерность, тем больше шаров требуется. Увеличивая размерность до бесконечности, шаров не должно хватать, чтобы закрыть шар радиуса $2$.
+\begin{proof}
+	Рассмотрим шар $\overline{B}(0,2)$ - компакт $\Rightarrow$ рассмотрим покрытие $\textstyle \bigcup\limits_{a \in \overline{B}(0,2)} B(a,1)$, очевидно, что 
+	$$
+		\overline{B}(0,2) \subset \textstyle \bigcup\limits_{a \in \overline{B}(0,2)} B(a,1)
+	$$
+	Поскольку это компакт, то можно выбрать конечное подпокрытие, которое покрывает $\overline{B}(0,2)$: 
+	$$
+		B(a_1,1), \dotsc, B(a_N,1) \colon \overline{B}(0,2) \subset \textstyle \bigcup\limits_{j = 1}^{N}B(a_j,1)
+	$$ 
+	Рассмотрим пространство $L = \langle a_1, \dotsc, a_N\rangle$ - линейная оболочка центров этих шаров. Докажем, что линейная оболочка $L$ - это все пространство $\Rightarrow$ оно конечномерно. Будем доказывать в несколько этапов:
+	\begin{enumerate}[label ={\arabic*)}]
+		\item До любой точки пространства можно дотянутся элементом пространства $L$, причем расстояние потребуется не больше $1$. 
+		
+		Пусть $B(0,r) \subset  \textstyle \bigcup\limits_{a \in L}B(a,1)$, тогда $B(0,2r) \subset  \textstyle \bigcup\limits_{a \in L}B(a,1)$. 
+		\begin{proof}
+			Пусть $x \in B(0,2r)$, тогда: 
+			$$ 
+				\|x\| < 2r \Rightarrow \Big\|\dfrac{x}{2}\Big\| <r \Rightarrow \dfrac{x}{2} \in B(0,r) \subset \bigcup\limits_{a \in L}B(a,1) \Rightarrow \exists \, a \in L \colon \Big\|\dfrac{x}{2} - a\Big\| < 1 \Rightarrow \|x - 2a\| < 2
+			$$
+			Получаем, что $x \in B(2a,2)$, $2a \in L$, так как $L$ - это линейное пространство. Сдвинем этот шар: 
+			$$
+				B(2a,2) - 2a = B(0,2) \subset \textstyle \bigcup\limits_{c \in L}B(c,1)
+			$$
+			где последнее верно по построению $L$. Тогда:
+			$$
+				B(2a,2) \subset \textstyle \bigcup\limits_{c\in L}B(\underbrace{c + 2a}_{\smallin L},1) \Rightarrow B(2a,2) \subset \textstyle \bigcup\limits_{b\in L}B(b,1)
+			$$
+			где $\forall c, a \in L \Rightarrow c + 2a \in L$, так как $L$ - линейное пространство. Таким образом 
+			$$
+				\forall x \in B(0,2r) \Rightarrow x \in \textstyle \bigcup\limits_{a\in L}B(a,1) \Rightarrow B(0,2r) \subset \textstyle \bigcup\limits_{a\in L}B(a,1)
+			$$
+		\end{proof}
+		Если закрыт шар радиуса $2$, то из утверждения выше следует, что закрыт шар радиуса $4$:
+		$$ 
+			B(0,2) \subset \textstyle \bigcup\limits_{a \in L} B(a,1) \Rightarrow B(0,4) \subset \textstyle \bigcup\limits_{a \in L} B(a,1) \Rightarrow  B(0,8) \subset \textstyle \bigcup\limits_{a \in L} B(a,1) \Rightarrow \dotsc
+		$$
+		Получаем, что 
+		$$
+			\forall n \in \MN, \, B(0, 2^n) \subset \textstyle \bigcup\limits_{a \in L} B(a,1) \Rightarrow X \subset \textstyle \bigcup\limits_{a \in L} B(a,1)
+		$$
+		так как любая точка пространства $X$ лежит в каком-то шаре $B(0,2^n)$. Итого получаем:
+		$$
+			\forall x \in X, \, \exists \, a \in L \colon \|x - a\| < 1
+		$$
+		\item Покажем, что из $1)$ следует, что $X = L$.
+		\begin{proof}
+			(От противного): Пусть $X \neq L \Rightarrow L$ - замкнутое подмножество в $X$ (так как мы доказывали, что конечномерные подпространства являются замкнутым множеством), тогда существует точка, в дополнении к $L$ вместе с некоторой своей окрестностью:
+			$$
+				\exists \, b \in (X \setminus L) \wedge \delta >0 \colon B(b, \delta) \cap L  = \VN
+			$$
+			Пустое пересечение открытого шар $B(b, \delta)$ с подмножеством $L$ означает, что:
+			$$
+				\forall a \in L, \, \|b-a\| \geq \delta \Leftrightarrow \forall a \in L, \,  \bigg\|\dfrac{2b}{\delta} - \dfrac{2a}{\delta} \bigg\| \geq 2
+			$$
+			Поскольку $L$ - линейное пространство, то $\forall a \in L \Leftrightarrow \forall \tfrac{2a}{\delta} \in L$ - произвольный элемент $L \Rightarrow$ 
+			$$
+				\exists \, \dfrac{2b}{\delta} \in X, \, \forall a \in L \colon \bigg\|\dfrac{2b}{\delta} - a \bigg\| \geq 2 
+			$$  
+			получили противоречие с тем, что $\forall x \in X, \, \exists \, a \in L \colon \|x - a\| < 1$.
+		\end{proof}
+	\end{enumerate}
+	Получили, что $X = L$, пространство $L$ - конечномерно (размерность пространства $\dim{L} = N$) $\Rightarrow$ пространство $X$ - конечномерно.
+\end{proof}
+
+\newpage
+\section*{Предел функций}
+Пусть $(X,\rho_X)$ и $(Y,\rho_Y)$ - метрические пространства, точка $a \in X$ - предельная точка $X$.\\
+Пусть $f \colon X \setminus \{a\} \to Y$.
+\begin{defn}
+	\textbf{(Гейне)}: Элемент $b \in Y$ называется \uwave{пределом функции} $f$ при $x \to a$, если 
+	$$
+		\forall \{x_n\} \in X \colon x_n \neq a \wedge x_n \to a \Rightarrow f(x_n) \to b
+	$$
+	где $x_n \to a \Leftrightarrow \rho_X(x_n,a) \to 0$ и $f(x_n) \to b \Leftrightarrow \rho_Y(f(x_n),b) \to 0$. Обозначение: $\lim\limits_{x \to a}f(x) = b$.
+\end{defn}
+\begin{theorem}
+	Предел определен единственным образом.
+\end{theorem}
+\begin{proof}
+	Пусть $\lim\limits_{x \to a}f(x) = b$ и $\lim\limits_{x \to a}f(x) = c$. Возьмем последовательность точек $\{x_n\} \colon x_n \neq a \wedge x_n \to a \Rightarrow$ одновременно $f(x_n) \to b, \, f(x_n) \to c \Rightarrow b = c$  по единственности предела последовательности.
+\end{proof}
+
+\begin{theorem}
+	\textbf{(Арифметика пределов)}: Пусть $f,g\colon X \setminus \{a\} \to Y, \, \alpha \colon X \setminus \{a\} \to \MR$ и $(Y, \rho_Y)$ - нормированное пространство, где $\rho_Y(u,v) = \|u - v\|$. Если $\lim\limits_{x \to a}f(x) = b, \, \lim\limits_{x \to a}g(x) = c$ и $\lim\limits_{x \to a}\alpha(x) = \alpha_0$, то
+	\begin{enumerate}[label ={(\arabic*)}]
+		\item $\lim\limits_{x \to a}f(x) + \lim\limits_{x \to a}g(x) = b + c$;
+		\item $\lim\limits_{x \to a}\alpha(x){\cdot}f(x) = \alpha_0{\cdot}b$;
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Пусть $x_n \to a \wedge x_n \neq a \Rightarrow f(x_n) \to b, \, g(x_n) \to c, \, \alpha(x_n) \to \alpha_0$. По свойствам предела последовательности в нормированном пространстве получим, что
+	\begin{enumerate}[label ={(\arabic*)}]
+		\item $f(x_n) + g(x_n) \to b + c$;
+		\item $\alpha(x_n){\cdot}f(x_n) \to \alpha_0{\cdot}b$;
+	\end{enumerate}
+\end{proof}
+\begin{theorem}
+	\textbf{(Предел композиций)} Пусть $X,Y,Z$ - метрические пространства (каждый со своей метрикой). Пусть $a \in X$ - предельная точка $X$, $b \in Y$ - предельная точка $Y$. Пусть
+	$$
+		f \colon X \setminus \{a\} \to Y \setminus \{b\} \wedge g \colon Y \setminus \{b\} \to Z
+	$$
+	$$
+		\lim\limits_{x \to a} f(x) = b \wedge \lim\limits_{y \to b} g(y) = c
+	$$
+	Тогда предел композиции функций равен $\lim\limits_{x \to a}g \big(f(x)\big) = c$.
+\end{theorem}
+\begin{proof}
+	Пусть $x_n \to a \wedge x_n \neq a \Rightarrow f(x_n) \to b$ и по условию $f(x_n) \neq b \Rightarrow g\big(f(x_n)\big) \to c$.
+\end{proof}
+
+\begin{defn}
+	\textbf{(Коши)}: Число $b$ называется \uwave{пределом функции} $f$ при $x \to a$, если
+	$$
+		\forall \VE>0, \, \exists\, \delta > 0 \colon \forall x \in X \setminus \{a\},\, 0 < \rho_X(x,a) < \delta \Rightarrow \rho_Y(f(x), b) < \VE
+	$$
+\end{defn}
+\begin{theorem}
+	Определения Гейне и Коши - равносильны.
+\end{theorem}
+\begin{proof}\hfill\\
+	(K) $\Rightarrow$ (Г): Пусть $x_n \to a \wedge x_n \neq a$, по определению Коши:
+	$$
+		\forall \VE>0, \, \exists\, \delta > 0 \colon 0 < \rho_X(x,a) < \delta \Rightarrow \rho_Y(f(x), b) < \VE
+	$$
+	Поскольку $x_n \to a \Rightarrow \exists \, N \colon \forall n > N, \, 0 <\rho_X(x_n,a) < \delta$, где $\rho_X(x_n,a) > 0$, так как $x_n \neq a$, тогда получим, что  $\rho_Y(f(x_n),b) < \VE$:
+	$$
+		\forall \VE > 0, \, \exists \, N \colon \forall n> N , \, \rho_Y(f(x_n),b) < \VE \Rightarrow f(x_n) \to b
+	$$
+	
+	(Г) $\Rightarrow$ (К): (От противного): Предположим, что определение по Гейне выполняется, а определение по Коши не выполняется, тогда 
+	$$
+		\exists \, \VE > 0, \, \forall \delta > 0,\, \exists \, x \colon 0 < \rho_X(x,a) < \delta \wedge \rho_Y(f(x),b) \geq \VE
+	$$ 
+	Возьмем $\delta = \tfrac{1}{n}$ и построим последовательность $x_n \colon 0 < \rho_X(x_n,a) < \tfrac{1}{n}$, то есть $x_n \to a \wedge x_n \neq a$. Но по предположению получаем, что $\rho_Y(f(x_n), b) \geq \VE$ - противоречие, поскольку по определению Гейне, справедливо следующее: 
+	$$
+		x_n \to a\wedge x_n \neq a \Leftrightarrow \rho_X(x_n,a) \to 0 \wedge \rho_X(x_n,a) > 0\Rightarrow f(x_n) \to b \Leftrightarrow \rho_Y(f(x_n),b) \to 0
+	$$
+\end{proof}
+\begin{theorem}
+	\textbf{(Об ограниченности)}: Пусть  $\lim\limits_{x \to a}f(x) = b$, тогда 
+	$$
+		\exists\, B(a,\delta), B(b,\VE) \colon f(x) \in B(b,\VE), \, \forall x \in B(a,\delta)\setminus \{a\}
+	$$
+\end{theorem}
+\begin{proof}
+	В определении Коши задаем $\VE > 0$, получаем $\delta >0$ и приходим к требуемому результату.
+\end{proof}
+
+\begin{theorem}
+	\textbf{(Об отделимости)}: Пусть  $\lim\limits_{x \to a}f(x) = b$, $c \neq b$ и $r = \rho_Y(c,b)$, тогда 
+	$$
+		\exists\, B(a,\delta) \colon \forall x \in B(a,\delta)\setminus \{a\}, \, f(x) \notin B(c,\tfrac{r}{2})
+	$$
+\end{theorem}
+\begin{proof}
+	В определении Коши задаем $\VE = \tfrac{r}{2}$. Тогда $\forall x \in B(a,\delta)\setminus \{a\}$:
+	$$
+		r = \rho_Y(c,b) \leq \rho_Y(c,f(x)) + \rho_Y(f(x),b) < \rho_Y(c,f(x)) + \dfrac{r}{2} \Rightarrow \dfrac{r}{2} < \rho_Y(c,f(x)) \Rightarrow f(x) \notin B(c,\tfrac{r}{2})
+	$$
+\end{proof}
+
+\begin{theorem}
+	\textbf{(Критерий Коши)}: Пусть $(X,\rho_X)$ - метрическое пространство, $a$ - предельная точка $X$, $(Y,\rho_Y)$ - полное метрическое пространство и $f \colon X \setminus \{a\} \to Y$. Тогда $\exists \, \lim\limits_{x \to a}f(x) \Leftrightarrow$ для $f$ выполнено условие Коши:
+	$$
+		\forall \VE > 0, \, \exists \, \delta > 0 \colon 0 < \rho_X(x_1,a) < \delta \wedge  0 < \rho_X(x_2,a) < \delta \Rightarrow \rho_Y(f(x_1), f(x_2)) < \VE
+	$$
+\end{theorem}
+\begin{proof}\hfill\\
+	$(\Rightarrow)$ Пусть предел $\lim\limits_{x \to a}f(x) = b$ существует, тогда по определению Коши верно следующее:
+	$$
+		\forall \VE>0, \, \exists\, \delta > 0 \colon 0 < \rho_X(x,a) < \delta \Rightarrow \rho_Y(f(x), b) < \VE
+	$$ 
+	Возьмем $\dfrac{\VE}{2}$ и найдем $\delta > 0 \colon 0 < \rho_X(x_1,a) < \delta \wedge  0 < \rho_X(x_2,a) < \delta$, тогда:
+	$$
+		\rho_Y(f(x_1), b) < \dfrac{\VE}{2} \wedge \rho_Y(f(x_2), b) < \dfrac{\VE}{2} \Rightarrow \rho_Y(f(x_1),f(x_2)) \leq \rho_Y(f(x_1), b) + \rho_Y(b,f(x_2)) =
+	$$
+	$$
+	 	= \rho_Y(f(x_1), b) + \rho_Y(f(x_2),b) < \dfrac{\VE}{2} + \dfrac{\VE}{2} = \VE \Rightarrow \rho_Y(f(x_1),f(x_2)) < \VE
+	$$ 	
+	
+	$(\Leftarrow)$ Проверяем определение Гейне. Пусть $\VE > 0$ и выполняется условие Коши  с $\delta > 0$:
+	$$
+		0 < \rho_X(x_1,a) < \delta \wedge 0 <  \rho_X(x_2,a) < \delta \Rightarrow \rho_Y(f(x_1), f(x_2)) < \VE
+	$$
+	Пусть $x_n \to a \wedge x_n \neq a$, тогда $\exists \, N \colon \forall n > N, \, 0 < \rho_X(x_n,a) < \delta$. По условию Коши это означает, что 
+	$$
+		\forall n,m > N, \, \rho_Y(f(x_n),f(x_m)) < \VE
+	$$ 
+	Это означает, что последовательность $\{f(x_n)\}$ - фундаментальна. Так как $Y$ - полное, то $f(x_n) \to b$. Получилось, что какую последовательность $x_n$ ни возьми (которая $x_n \to a \wedge x_n \neq a$), $f(x_n)$ будет сходится к некоторому $b$. 
+	
+	Проверим единственность $b$. Пусть $y_n \to a \wedge y_n \neq a$, рассмотрим новую последовательность 
+	$$
+		z_n \colon x_1, y_1, x_2, y_2, \dotsc
+	$$
+	ясно, что $z_n \to a\wedge z_n \neq a \Rightarrow f(z_n)$ имеет предел. Предел подпоследовательности совпадает с пределом последовательности $\Rightarrow \lim f(x_n) = \lim f(y_n) = \lim f(z_n)$.
+\end{proof}
+\newpage
+\section*{Повторные пределы}
+Данная секция была добавлена отдельно от курса лекций, ради логичности повествования.
+\begin{defn}
+	Пределы вида: $\lim\limits_{x \to a}\Big(\lim\limits_{y\to b} f(x,y)\Big)$ или $\lim\limits_{y \to b}\Big(\lim\limits_{x\to a} f(x,y)\Big)$ называют \uwave{повторными}.
+\end{defn}
+Повторные пределы обычно не связаны друг с другом и не связаны с двойными (тройными и так далее) пределами, в общем случае.
+
+\textbf{Пример}: $f(x,y) = \dfrac{x -y}{x+y}$, тогда повторные пределы не совпадают:
+$$
+	\lim\limits_{x \to 0}\Big(\lim\limits_{y\to 0} f(x,y)\Big) = \lim\limits_{x \to 0}\dfrac{x}{x} = 1 \neq -1 = \lim\limits_{y \to 0} \dfrac{-y}{y} = \lim\limits_{y \to 0}\Big(\lim\limits_{x\to 0} f(x,y)\Big)
+$$
+Двойного предела не существует.
+
+\textbf{Пример}: $f(x,y) = x \sin{\dfrac{1}{y}}$, тогда существует один повторный предел, но не существует второй:
+$$
+	\nexists \, \lim\limits_{y \to 0} f(x,y) \Rightarrow \nexists \, \lim\limits_{x \to 0}\Big(\lim\limits_{y\to 0} f(x,y)\Big), \, \lim\limits_{y \to 0}\Big(\lim\limits_{x\to 0} f(x,y)\Big) = \lim\limits_{y \to 0} 0 = 0
+$$
+Двойной предел существует, так как: $\left|x \sin{\dfrac{1}{y}}\right| \leq |x|$.
+
+Конечно, интересны случаи, когда повторные пределы совпадают между собой и одновременно совпадают с двойным пределом. На этот вопрос отвечает следующая теорема:
+\begin{theorem}
+	Если существует двойной предел: $\lim\limits_{\substack{x \to a \\ y \to b}}f(x,y) = S$ и одновременно с этим $\forall y  \in Y$ существует предел по $x$: $
+	\forall y \in Y, \, \exists \, \varphi(y) = \lim\limits_{x \to a} f(x,y)$, то существует повторный предел и он равен двойному:
+	$$
+		\lim\limits_{y \to b} \varphi(y) = \lim\limits_{y \to b}\lim\limits_{x \to a}f(x,y) = \lim\limits_{\substack{x \to a \\ y \to b}}f(x,y) = S
+	$$
+	Если же ещё $\forall x \in X$ существует простой предел по $y$, то существут другой повторный предел, который будет равен двойному пределу и первому повторному:
+	$$
+		\lim\limits_{x \to a}\lim\limits_{y \to b}f(x,y) = \lim\limits_{y \to b}\lim\limits_{x \to a}f(x,y) = \lim\limits_{\substack{x \to a \\ y \to b}}f(x,y)
+	$$
+\end{theorem}
+\begin{proof}
+	Пусть $a,b, S < \infty$. По определению:
+	$$
+		\forall \VE > 0,\, \exists \, \delta > 0 \colon \forall x \in X, \, y \in Y, \, 0 < |x - a| < \delta \wedge 0 < |y - b| < \delta \Rightarrow |f(x,y) - S| < \VE
+	$$
+	Зафиксируем $y$ и перейдем в неравенстве к пределу по $x$, тогда получим:
+	$$
+		\forall \VE > 0,\, \exists \, \delta > 0 \colon\forall y \in Y, \, 0 < |y - b| < \delta \Rightarrow|\varphi(y) - S| \leq \VE
+	$$
+	Это есть ничто иное, как:
+	$$
+		S = \lim\limits_{y \to b}\varphi(y) = \lim\limits_{y \to b}\lim\limits_{x \to a}f(x,y)
+	$$
+	Аналогичное равенство получаем, при существовании повторного предела по $x$. В этом случае двойной и два повторных предела будут совпадать.
+\end{proof}
+
+
+\newpage
+\section*{Непрерывность функций}
+Пусть $(X,\rho_X)$ и $(Y,\rho_Y)$ - метрические пространства, $a \in X$. Пусть $f\colon X \to Y$.
+\begin{defn}
+	Функция $f$ \uwave{непрерывна в точке} $a$, если
+	$$
+		\forall \VE > 0, \, \exists \, \delta > 0 \colon \rho_X(x,a) < \delta \Rightarrow \rho_Y(f(x),f(a)) < \VE
+	$$
+\end{defn}
+\begin{theorem}
+	Следующие утверждения равносильны:
+	\begin{enumerate}[label ={(\arabic*)}]
+		\item $f$ - непрерывна в точке $a$;
+		\item $\forall \{x_n\} \in X,\,  x_n \to a \Rightarrow f(x_n) \to f(a)$;
+		\item $a$ - это изолированная точка или $a$ - это предельная точка $X$ и $\lim\limits_{x \to a} f(x) = f(a)$;
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\hfill\\
+	$(1) \Rightarrow (2)$: $\forall \varepsilon > 0,\, \rho_X(x,a) < \delta \Rightarrow \rho_Y(f(x),f(a)) < \varepsilon$. Пусть $x_n \to a \Rightarrow$ по определению предела $\exists \, N \colon \forall n > N, \, \rho_X(x_n,a) < \delta \Rightarrow \rho_Y(f(x_n),f(a)) < \varepsilon \Rightarrow f(x_n) \to f(a)$. 
+	
+	$(2) \Rightarrow (3)$: $a$ - изолированная точка $\Rightarrow$ ничего доказывать не нужно (см. замечание в первом семестре). Если $a$ - предельная точка, то надо показать, что $\lim\limits_{x \to a} f(x) = f(a) \Rightarrow$ распишем определение по Гейне:
+	$$ 
+		\forall x_n \colon x_n \to a \wedge x_n \neq a \Rightarrow f(x_n) \to f(a) 
+	$$
+	но во втором пункте дано больше, чем нужно доказать:
+	$$ 
+		\forall x_n \colon x_n \to a \Rightarrow f(x_n) \to f(a) 
+	$$
+	следовательно $(3)$ - верно.
+	
+	$(3) \Rightarrow (1)$: Если $a$ - изолированная точка, то $f$ - непрерывна в ней. Пусть $a$ - предельная точка, тогда по определению Коши: 
+	$$
+		\forall \varepsilon >0, \exists \, \delta > 0 \colon 0 <\rho_X(x,a) < \delta \Rightarrow \rho_Y(f(x),f(a)) < \varepsilon
+	$$ 
+	Хотим доказать, что  
+	$$
+		\forall \varepsilon >0, \exists \, \delta > 0 \colon \rho_X(x,a) < \delta \Rightarrow \rho_Y(f(x),f(a)) < \VE
+	$$ 
+	Если $x = a \Rightarrow \rho_Y(f(x),f(a)) = 0 < \varepsilon$.
+\end{proof}
+
+
+\end{document}

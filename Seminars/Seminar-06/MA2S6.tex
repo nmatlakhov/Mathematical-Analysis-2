@@ -1,0 +1,686 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1\times #2}}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 6}
+\section*{Интегрирование некоторых иррациональных функций}
+
+\begin{problem}(\textbf{Д1935})
+	$$
+		\dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}}
+	$$
+\end{problem}
+\begin{proof}
+	Предложим следующую замену (пусть $u > 0$):
+	$$
+		x = \left(\dfrac{u^2 - 1}{2u}\right)^2 \Rightarrow \sqrt{x} = \dfrac{u^2 - 1}{2u}, \, \sqrt{x+1} = \sqrt{\dfrac{u^4 - 2u^2 + 1}{4u^2} + 1 } = \sqrt{\dfrac{(u^2 + 1)^2}{4u^2}} = \dfrac{u^2 + 1}{2u} \Rightarrow
+	$$
+	$$
+		dx = 2{\cdot}\dfrac{u^2 -1}{2u}{\cdot}\dfrac{2u2u - 2(u^2 -1)}{4u^2}du= \left(\dfrac{u^2 -1}{u}\right){\cdot}\dfrac{2u^2 +2}{4u^2}du = \dfrac{u^4 -1}{2u^3}du \Rightarrow
+	$$
+	$$
+		\dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}} = \dint \dfrac{u^4 -1 }{2u^3}{\cdot}\dfrac{2u}{2u + u^2 -1  + u^2 + 1}du = \dint \dfrac{u^4 - 1}{2u^3{\cdot}(u + 1)}du = \dint \dfrac{(u-1)(u^2 +1)}{2u^3}du =
+	$$
+	$$
+		=  \dint\dfrac{u^3 - u^2 + u -1}{2u^3}du = \dint \dfrac{1}{2} - \dfrac{1}{2u} + \dfrac{1}{2u^2} - \dfrac{1}{2u^3}du = \dfrac{1}{2}{\cdot}\left(u - \ln{u} - \dfrac{1}{u} + \dfrac{1}{2u^2}\right) + C
+	$$
+	Найдем выражение $u$ через $x$:
+	$$
+		u^2 - 2\sqrt{x}u - 1 = 0 \Rightarrow D = 4x + 4 =4(x+ 1),\, u_{1,2} = \dfrac{2\sqrt{x} \pm 2\sqrt{x + 1}}{2}
+	$$
+	$$
+		u > 0 \Rightarrow u = \sqrt{x} + \sqrt{x+ 1} \Rightarrow \dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}}  = -\dfrac{1}{2}\ln{( \sqrt{x} + \sqrt{x+ 1})} +
+	$$
+	$$
+		 + \dfrac{ \sqrt{x} + \sqrt{x+ 1}}{2} - \dfrac{1}{2 \sqrt{x} + 2\sqrt{x+ 1}} + \dfrac{1}{4\left( \sqrt{x} + \sqrt{x+ 1}\right)^2} + C
+	$$
+	$$
+		- \dfrac{1}{2 \sqrt{x} + 2\sqrt{x+ 1}}= - \dfrac{\sqrt{x} - \sqrt{x + 1}}{2(x - x - 1)} = \dfrac{\sqrt{x} - \sqrt{x+1}}{2}
+	$$
+	$$
+		\dfrac{1}{4\left( \sqrt{x} + \sqrt{x+ 1}\right)^2}  = \dfrac{(\sqrt{x} - \sqrt{x+1})^2}{4} = \dfrac{x -2\sqrt{x(1 +x)} + 1 + x}{4} = \dfrac{x}{2} - \dfrac{\sqrt{x(1+x)}}{2} + \dfrac{1}{2} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}} = -\dfrac{1}{2}\ln{( \sqrt{x} + \sqrt{x+ 1})}  + \dfrac{x}{2} - \dfrac{\sqrt{x(1+x)}}{2} + \sqrt{x} + C
+	$$
+\end{proof}
+
+\begin{rem}
+	Заметим, что если у нас выражения вида $\sqrt{x + a}$ и $\sqrt{x + b}$, то заменой можно свести к похожей по типу задаче с радикалами: $\sqrt{t}$ и $\sqrt{t + (b-a)}$ и далее подобрать замену аналогичную задаче $1935$ просто с другими коэффициентами. Даже можно сделать замену $u = \tfrac{t}{b-a}$, чтобы задача была максимально идентичной и всё превратилось в рациональную функцию.
+\end{rem}
+
+Также задачу можно было решать гиперболической заменой: $x = \sh^2{t}, \, x + 1 = \ch^2{t}$, тогда бы выразилось всё через экспоненту $\Rightarrow$ обозначим её за новую переменную и получим рациональную функцию.
+\newpage
+\begin{problem}(\textbf{Д1949})
+	$$
+		\dint \dfrac{1}{(x-1)^3\sqrt{x^2 + 3x + 1}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Воспользуемся модификацией метода Остроградского и сделаем замену:
+	$$
+		x - 1 = \dfrac{1}{t}, \, x = \dfrac{t + 1}{t}, \, dx = \dfrac{t - t - 1}{t^2}dt = -\dfrac{1}{t^2}dt, \, (x-1)^3 = \dfrac{1}{t^3}
+	$$
+	$$
+		x^2 + 3x + 1 = \dfrac{t^2 + 2t + 1}{t^2} + 3\dfrac{t+1}{t} + 1 = \dfrac{t^2 + 2t + 1 + 3t^2 + 3t + t^2}{t^2} = \dfrac{5t^2 + 5t + 1}{t^2}
+	$$
+	$$
+		\dint \dfrac{1}{(x-1)^3\sqrt{x^2 + 3x + 1}}dx = \dint \dfrac{t^3{\cdot}t}{\sqrt{5t^2 + 5t + 1}}{\cdot}\left(-\dfrac{1}{t^2}\right)dt = -\dint \dfrac{t^2}{\sqrt{5t^2 + 5t + 1}}dt 	
+	$$
+	$$
+		y = \sqrt{5t^2 + 5t + 1}, \, \dint \dfrac{P_2(t)}{y}dt = Q_{1}(t){\cdot}y + \lambda{\cdot}\dint\dfrac{dt}{y} 
+	$$
+	$$	
+		\deg{P_2} = 2,\, \deg{Q_{1}} \leq 1, \, \lambda \in \MR \Rightarrow Q_1(t) = At +B
+	$$
+	$$
+		-\dint \dfrac{t^2}{\sqrt{5t^2 + 5t + 1}}dt 	= (At + B)\sqrt{5t^2 + 5t + 1} + \lambda \dint\dfrac{dt}{\sqrt{5t^2 + 5t + 1}}
+	$$
+	Продифференцируем и умножим на $y$:
+	$$
+		-t^2 = A(5t^2 + 5t + 1) + (At + B){\cdot}\left(5t + \dfrac{5}{2}\right) + \lambda
+	$$
+	$$
+		\left\{
+			\begin{matrix}
+				t^2 \colon & -1 &=& 5A + 5A \\[10pt]
+				t \colon & 0 & = & 5A + \dfrac{5}{2}A + 5B \\[10pt]
+				1 \colon & 0 & = & A+ \dfrac{5}{2}B + \lambda
+			\end{matrix}
+		\right. \Rightarrow
+		\left\{
+			\begin{matrix}
+				A &=& -\dfrac{1}{10}&\\[10pt]
+				B& = & \dfrac{3}{20} &\\[10pt]
+				\lambda & = & \dfrac{1}{10} & - \dfrac{15}{40} = -\dfrac{11}{40}
+			\end{matrix}
+		\right.
+	$$
+	$$
+		\dint\dfrac{dt}{\sqrt{5t^2 + 5t + 1}} = \dint \dfrac{dt}{\sqrt{5\left(t + \tfrac{1}{2}\right)^2 - \tfrac{1}{4}}} \Rightarrow 5\left(t + \dfrac{1}{2}\right)^2 - \dfrac{1}{4}= \dfrac{1}{4}{\cdot}\left(20\left(t + \dfrac{1}{2}\right)^2 - 1\right)
+	$$
+	$$
+		2\sqrt{5}\left(t + \dfrac{1}{2}\right) = \ch{u} \Rightarrow 20\left(t + \dfrac{1}{2}\right)^2 - 1 = \sh^2{u}, \, dt  = \dfrac{1}{2\sqrt{5}}\sh{u}du
+	$$
+	$$
+		 \dint \dfrac{dt}{\sqrt{5\left(t + \tfrac{1}{2}\right)^2 - \tfrac{3}{2}}} = \dint \dfrac{1}{2\sqrt{5}}\dfrac{\sh{u}du}{\tfrac{1}{2}\sh{u}} = \dfrac{1}{\sqrt{5}}u + C = \dfrac{1}{\sqrt{5}}\ln{\left(2\sqrt{5}\left(t + \dfrac{1}{2}\right) + \sqrt{20\left(t + \dfrac{1}{2}\right)^2 - 1}\right)}
+	$$
+	$$
+		2\sqrt{5}\left(t + \dfrac{1}{2}\right) + \sqrt{20\left(t + \dfrac{1}{2}\right)^2 - 1} = 2\sqrt{5}\dfrac{x +1}{2(x-1)} + \sqrt{\dfrac{5(x^2 + 2x + 1)}{(x-1)^2} - 1} = 
+	$$
+	$$
+		= \sqrt{5}\dfrac{x +1}{x-1} + \sqrt{\dfrac{5(x^2 + 2x + 1) - x^2 + 2x -1}{(x-1)^2}} = \sqrt{5}\dfrac{x + 1}{x-1} + \dfrac{2}{x-1}\sqrt{x^2 + 3x + 1}
+	$$
+	$$
+		\sqrt{5t^2 + 5t + 1} =\dfrac{\sqrt{x^2 + 3x + 1}}{(x-1)} \Rightarrow (At + B)\sqrt{5t^2 + 5t + 1} =  \left(-\dfrac{1}{10(x-1)} + \dfrac{3}{20}\right){\cdot} \dfrac{\sqrt{x^2 + 3x + 1}}{(x-1)} = 
+	$$
+	$$
+		=	\dfrac{3x - 3 - 2}{20(x-1)^2}{\cdot}\sqrt{x^2 + 3x + 1} = \dfrac{3x - 5}{20(x-1)^2}{\cdot}\sqrt{x^2 + 3x + 1}
+	$$
+	Следовательно:
+	$$
+		\dint \dfrac{1}{(x-1)^3\sqrt{x^2 + 3x + 1}}dx = \dfrac{3x - 5}{20(x-1)^2}{\cdot}\sqrt{x^2 + 3x + 1} - \dfrac{11}{40\sqrt{5}}\ln{\left| \dfrac{\sqrt{5}(x+ 1) + 2\sqrt{x^2 + 3x +1}}{x-1}\right|} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д1980})
+	Доказать, что если есть интеграл вида:
+	$$
+		\dint R\left(x, \sqrt{ax + b}, \sqrt{cx + d}\right)dx
+	$$
+	то его всегда можно свести к интегрированию рациональной функции. Где под $R$ понимаются функции для которых разрешены операции: $+, -, \cdot, \div$ над аргументами.
+\end{problem}
+\begin{proof}
+	Ключевые задачи: $1785$ и $1790$ в этих задачах рассказывалось как сделать замену с помощью тригонометрической подстановки или гиперболической подстановки, чтобы либо в паре $\sqrt{x +a}, \, \sqrt{x +b}$, либо в паре $\sqrt{x -a}, \, \sqrt{b-x}$ корни одновременно исчезали. Если знаки одинаковые: $\sgn{a} = \sgn{c}$, то поможет гиперболическая замена, в противном случае - тригонометрическая. Таким образом мы получим рациональные выражение с тригонометрическими или гиперболическими функциями. Как с ними разбираться - разбираем дальше.
+\end{proof}
+
+\section*{Подстановки Эйлера}
+Подстановки Эйлера - это классические подстановки, позволяющие избавиться от корня квадратного трехчлена:
+$$
+	P(x) = \sqrt{ax^2 + bx + c}
+$$
+\begin{enumerate}[label=(\arabic*)]
+	\item Если $a > 0$, то выберем новую переменную $z \colon P(x) = \pm \sqrt{a}x + z$;
+	\item Если $c > 0$, то выберем новую переменную $z \colon P(x) = xz \pm \sqrt{c}$;
+	\item Если $P(x) = \sqrt{a(x-x_1)(x - x_2)}$, то выберем новую переменную $z \colon P(x) = z(x- x_1)$;
+\end{enumerate}
+\begin{rem}
+	Может быть пересечение случаев и тогда каждая подстановка может быть применима.
+\end{rem}
+\begin{rem}
+	Заметим, что помимо подстановок Эйлера есть подстановки Абеля, а также заметим, что эти подстановки не всегда оптимальны для нахождения неопределенного интеграла. При этом, с помощью таких подстановок мы всегда будем получать рациональную функцию.
+\end{rem}
+Если $a < 0$, $c < 0$ и нет корней, то этот квадратный трехчлен будет отрицательным всюду и нигде не будет определен $\Rightarrow$ нет смысла считать интеграл. 
+\begin{problem}(\textbf{Д1966})
+	$$
+		\dint \dfrac{dx}{x + \sqrt{x^2 + x + 1 }}
+	$$
+\end{problem}
+\begin{proof}
+	$a > 0 \wedge c > 0 \Rightarrow$ возможны обе подстановки. Рассмотрим каждую из них.
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\sqrt{x^2 + x + 1 } = \pm x + z$, выразим $x$ через $z$:
+		$$
+			x^2 + x + 1 = x^2 \pm 2xz  + z^2 \Rightarrow x(1 \mp 2z) = z^2 - 1 \Rightarrow x = \dfrac{z^2 -1}{1 \mp 2z}
+		$$
+		$$	
+			dx = \dfrac{2z(1 \mp2z) - (z^2 - 1){\cdot}(\mp 2)}{(1\mp2z)^2}dz = \dfrac{2z \mp 4z^2 \pm 2z^2 \mp 2}{(1 \mp 2z)^2}dz = \dfrac{2z \mp 2z^2  \mp 2}{(1 \mp 2z)^2}dz
+		$$
+		Выберем нижний знак в подстановке:
+		$$
+			\dint \dfrac{dx}{x + \sqrt{x^2 + x + 1 }} = \dint \dfrac{1}{z}{\cdot}\dfrac{2z^2 + 2z + 2}{(2z+1)^2}dz = 2\dint \dfrac{z^2 + z + 1}{z(2z+1)^2}dz
+		$$
+		$$
+			\dfrac{z^2 + z + 1}{z(2z+1)^2} = \dfrac{A}{z} + \dfrac{B}{2z + 1} + \dfrac{C}{(2z + 1)^2} \Rightarrow z^2 + z + 1 = A(2z + 1)^2 + Bz(2z + 1) + Cz \Rightarrow
+		$$
+		$$
+			\Rightarrow z^2 + z + 1 = A(4z^2 + 4z + 1) + B(2z^2 + z) + Cz \Rightarrow
+		$$
+		$$
+			\Rightarrow \left\{
+				\begin{matrix}
+					z^2, & 1 &= & 4A + 2B\\
+					z, & 1 &=& 4A + B  + C\\
+					1, & 1 &=& A 
+				\end{matrix}
+			\right. \Rightarrow
+			\left\{
+				\begin{matrix}
+					A & =& 1 \\[6pt]
+					B & =& -\tfrac{3}{2}\\[6pt]
+					C & =& -\tfrac{3}{2}
+				\end{matrix}
+			\right. \Rightarrow
+		$$
+		$$
+			2\dint \dfrac{z^2 + z + 1}{z(2z+1)^2}dz = 2 \ln{|z|} - \dfrac{3}{2}\ln{|2z + 1|} -\dfrac{3}{2}\dint \dfrac{d(2z + 1)}{(2z+ 1)^2} = \dfrac{1}{2}\ln{\left(\dfrac{z^4}{|2z + 1|^3}\right)}  + \dfrac{3}{2(2z + 1)} +C
+		$$
+		\item $\sqrt{x^2 + x + 1} = xz \pm \sqrt{1}$, выразим $x$ через $z$:
+		$$
+			x^2 + x + 1 = (xz)^2 \pm 2xz + 1 \Rightarrow x(x + 1) = xz(xz \pm 2) \Rightarrow x + 1 = xz^2  \pm 2z, \, z \neq 0 \Rightarrow 
+		$$
+		$$
+			\Rightarrow x(1 -z^2) = \pm 2z - 1 \Rightarrow x = \dfrac{\pm 2z - 1}{1 - z^2} \Rightarrow dx = \dfrac{\pm2(1-z^2) +2z(\pm 2z -1)}{(1-z^2)^2}dz
+		$$
+		Выберем верхний знак в подстановке:
+		$$
+			x = \dfrac{2z - 1}{1-z^2},\, dx = \dfrac{2- 2z^2 + 4z^2 - 2z}{(1-z^2)^2}dz = 2\dfrac{z^2 -z + 1}{(1-z^2)^2}dz \Rightarrow \dint \dfrac{dx}{x + \sqrt{x^2 + x + 1 }} =  
+		$$	
+		$$
+			=\dint \dfrac{2\tfrac{z^2 -z + 1}{(1-z^2)^2}dz}{\tfrac{2z - 1}{1-z^2} + \tfrac{2z^2 - z}{1-z^2} + 1} = 2\dint \dfrac{z^2 -z + 1}{(1-z^2)(2z - 1 + 2z^2 - z + 1 - z^2)}dz = 2\dint \dfrac{z^2 -z + 1}{(1-z^2)z(z + 1)}dz 
+		$$
+		Далее уравнение решается обычным способом. Разница между решениями будет находится в $C$.
+	\end{enumerate}
+\end{proof}
+
+
+\textbf{ДЗ}: доделать $1966$ и попробовать одну из других замен.
+\newpage
+
+\section*{Интегрирование тригонометрических функций}
+В данном направлении также есть несколько разных подходов, которые зависят от того, какой у вас будет вид тригонометрической функции, которую вы хотите проинтегрировать. 
+
+\subsection*{Использование формул понижения степени}
+Рассмотрим простую ситуацию, которую можно разобрать без специальных методов.
+
+\begin{problem}(\textbf{Д1994})
+	$$
+		\dint \sin^2{x} \cos^4{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	Заметим, что если можно понизить степень под интегралом, то лучше всегда это делать, поскольку поделить на коэффициент в аргументе - всегда просто, тогда как работать со степенью гораздо сложнее. Вспомним формулы понижения:
+	$$
+		\cos{(2x)} = 2\cos^2{x} -1 \Rightarrow \sin^2{x} =  \dfrac{1 - \cos{(2x)}}{2}, \quad \cos^2{x} = \dfrac{1 + \cos{(2x)}}{2}
+	$$
+	Тогда понизим степень под интегралом:
+	$$
+		\dint \sin^2{x} \cos^4{x}dx = \dint \left(\dfrac{1 - \cos{(2x)}}{2}\right) \left(\dfrac{1 + \cos{(2x)}}{2}\right)^2 dx = \dfrac{1}{8}\dint (1 - \cos^2{(2x)}){\cdot}(1 + \cos{(2x)})dx
+	$$
+	$$
+		\sin^2{(2x)}{\cdot}(1 + \cos{(2x)}) = \dfrac{1}{2}(1 - \cos{(4x)}) + \sin^2{(2x)}{\cdot}\cos{(2x)}
+	$$
+	$$
+		\dfrac{1}{8}\dint \sin^2{(2x)}{\cdot}(1 + \cos{(2x)})dx = \dfrac{x}{16} - \dfrac{1}{64}\sin{(4x)} + \dfrac{1}{8}\dint \sin^2{(2x)}{\cdot}\cos{(2x)} dx
+	$$
+	$$
+		\dint \sin^2{(2x)}{\cdot}\cos{(2x)} dx =|y = \sin{(2x)}, \, dy = 2\cos{(2x)}dx| = \dfrac{1}{2}\dint y^2 dy = \dfrac{y^3}{6} + C = \dfrac{\sin^3{(2x)}}{6} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \sin^2{x} \cos^4{x}dx = \dfrac{x}{16} - \dfrac{1}{64}\sin{(4x)} - \dfrac{\sin^3{(2x)}}{48} + C
+	$$
+\end{proof}
+
+\subsection*{Интегрирование по частям}
+В более общем виде, придется интегрировать по частям.
+
+\begin{problem}(\textbf{Д2011 б)})
+	$$
+		K_n = \dint \cos^n{(x)}, \, n > 2
+	$$
+\end{problem}
+\begin{proof}
+	Получим реккурентное соотношение, чтобы сводить задачу к такой же, но с меньшей степенью. Воспользуемся интегрированием по частям:
+	$$
+		\dint \cos^n{(x)} = \dint \cos^{n-1}{x}{\cdot}\underbrace{\cos{x}}_{\sin'{x}}dx = \cos^{n-1}{x}{\cdot}\sin{x} + (n-1){\cdot}\dint \cos^{n-2}{x}{\cdot}\sin^2{x}dx \Rightarrow
+	$$
+	$$
+		\Rightarrow \sin^2{x} = 1- \cos^2{x} \Rightarrow \dint \cos^{n-2}{x}{\cdot}\sin^2{x}dx  = \dint \cos^{n-2}{x}dx - \dint \cos^n{x}dx = K_{n-2} - K_n \Rightarrow
+	$$
+	$$	
+		\Rightarrow K_n = \cos^{n-1}{x}{\cdot}\sin{x} + (n-1){\cdot}(K_{n-2} - K_n)
+	$$
+	Заметим, что это соотношение на множества функций. Всякий элемент множества $\{K_n\}$ представляется в указанном выше виде и наоборот. Выразим $K_n$:
+	$$
+		K_n = \dfrac{1}{n}\cos^{n-1}{x}{\cdot}\sin{x} + \dfrac{n-1}{n}K_{n-2}
+	$$
+	Посчитаем конкретный пример, при $n = 8$:
+	$$
+		\dint \cos^8{(x)} = \dfrac{1}{8}\cos^7{x}{\cdot}\sin{x} + \dfrac{7}{8}\left(\dfrac{1}{6}\cos^5{x}{\cdot}\sin{x} + \dfrac{5}{6}\left(\dfrac{1}{4}\cos^3{x}{\cdot}\sin{x} 
+		+\dfrac{3}{4}K_2
+		\right)\right)
+	$$
+	$$
+		K_2 = \dint \cos^2{x}dx = \dint \dfrac{1 + \cos{(2x)}}{2}dx = \dfrac{x}{2} + \dfrac{1}{4}\sin{(2x)} + C
+	$$
+	$$
+		\dint \cos^8{(x)} = \dfrac{1}{8}\cos^7{x}{\cdot}\sin{x} + \dfrac{7}{8}\left(\dfrac{1}{6}\cos^5{x}{\cdot}\sin{x} + \dfrac{5}{6}\left(\dfrac{1}{4}\cos^3{x}{\cdot}\sin{x} 
+		+\dfrac{3}{4} \left(\dfrac{x}{2} + \dfrac{1}{4}\sin{(2x)}\right)
+		\right)\right) + C
+	$$
+\end{proof}
+
+\subsection*{Интегрирование рациональных тригонометрических функций}
+Рассмотрим рациональное выражение вида:
+$$
+	R(\sin{x},\cos{x})
+$$
+где под $R$ понимаются функции для которых разрешены операции: $+, -, \cdot, \div$ над аргументами. Обычно с такими выражениями работает ряд подстановок:
+\begin{enumerate}[label=(\arabic*)]
+	\item \uwave{Универсальная тригонометрическая замена}: $t = \tg{(\frac{x}{2})}$. Такая подстановка всегда поможет. но её желательно избегать, потому что идёт переход к тангенсу половинного угла $\Rightarrow$ будет удваиваться степень выражения;
+	\item Если $R(-\sin{x},\cos{x}) = - R(\sin{x},\cos{x})$ или $R(\sin{x},-\cos{x}) = - R(\sin{x},\cos{x})$, то тогда помогут замены $t = \cos{x}$ или $t = \sin{x}$ соответственно;
+	\item Если $R(-\sin{x}, -\cos{x}) = R(\sin{x},\cos{x})$, то тогда помогут замены $t = \tg{x}$ и $t = \ctg{x}$;
+\end{enumerate}
+Рассмотрим применение этого подхода на задачах.
+
+\begin{problem}(\textbf{Д2026})
+	$$
+		\dint\dfrac{dx}{(2x  + \cos{x}){\cdot}\sin{x}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		(2x + \cos{x})(-\sin{x}) = - (2x + \cos{x})\sin{x} \Rightarrow t = \cos{x}, \, dt = -\sin{x}dx
+	$$
+	$$
+		\dint\dfrac{dx}{(2x  + \cos{x}){\cdot}\sin{x}} = \dint \dfrac{-\sin{x}dx}{(2 + \cos{x})(1 - \cos^2{x})} = - \dint \dfrac{dt}{(2 + t)(1- t^2)} = 
+	$$
+	$$
+		=	\dint\dfrac{dt}{(t - 1)(t + 1)(t + 2)} =  \dint \dfrac{1}{t - 1}{\cdot}\dfrac{1}{(1 + 1)(1 + 2)} dt + \dint \dfrac{1}{t + 1}{\cdot}\dfrac{1}{(-1-1)(-1+2)}dt + 
+	$$
+	$$
+		+ \dint \dfrac{1}{t + 2}{\cdot}\dfrac{1}{(-2-1)(-2+1)}dt = \dfrac{1}{6}\ln{|t-1|} - \dfrac{1}{2}\ln{|t + 1|}  + \dfrac{1}{3}\ln{|t + 2|} + C= \ln{\dfrac{(1 -t)(2 + t)^2}{(1+t)^3}} +C
+	$$
+	где последнее равенство верно, поскольку выражение имеет смысл при $\sin{x} \neq 0 \Rightarrow \cos{x} \in (-1,1)$, тогда:
+	$$
+		\dint\dfrac{dx}{(2x  + \cos{x}){\cdot}\sin{x}} = \ln{\dfrac{(1 - \cos{x})(2 + \cos{x})^2}{(1+\cos{x})^3}} +C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2028})
+	$$
+		\dint\dfrac{dx}{1 + \VE \cos{x}}
+	$$
+\end{problem}
+\begin{proof}
+	Если мы будем здесь менять по пунктам $(2), (3)$, то ничего не получим $\Rightarrow$ воспользуемся тангенсом половинного угла $t = \tg{\tfrac{x}{2}}$:
+	$$
+		\sin{x} = 2\sin{\tfrac{x}{2}}\cos{\tfrac{x}{2}} = 2\tg{\tfrac{x}{2}}{\cdot}\cos^2{\tfrac{x}{2}} = 2\tg{\tfrac{x}{2}}{\cdot}\dfrac{1}{1 + \tg^2{\tfrac{x}{2}}} = \dfrac{2t}{1 + t^2}
+	$$
+	$$
+		\cos{x} = 2\cos^2{\tfrac{x}{2}} - 1 = 2{\cdot}\dfrac{1}{1 + \tg^2{\tfrac{x}{2}}} - 1 = \dfrac{1 - t^2}{1 + t^2}
+	$$
+	$$
+		t = \tg{\tfrac{x}{2}}, \, x = 2 \arctg{t}, \, dx = \dfrac{2dt}{1 + t^2}
+	$$
+	$$
+		\dint\dfrac{dx}{1 + \VE \cos{x}} = \dint \dfrac{1}{1 + \VE{\cdot}\tfrac{ 1- t^2}{1 +t^2}}{\cdot}\dfrac{2dt}{1 + t^2} = 2\dint  \dfrac{dt}{1 + t^2 + \VE{\cdot}(1 - t^2)} = 2\dint\dfrac{dt}{(1 + \VE) + (1 - \VE)t^2}
+	$$
+	Рассмотрим разные случаи для разных $\VE$:
+	$$
+		\VE = 1 \Rightarrow 2\dint\dfrac{dt}{(1 + \VE) + (1 - \VE)t^2} = t + C = \tg{\tfrac{x}{2}} + C
+	$$
+	$$
+		0 < \VE < 1 \Rightarrow  2\dint\dfrac{dt}{(1 + \VE) + (1 - \VE)t^2}  = \dfrac{2}{1 -\VE}\dint\dfrac{dt}{t^2 + \tfrac{1 + \VE}{1 -\VE}} = \dfrac{2}{1 -\VE}{\cdot}\sqrt{\dfrac{1-\VE}{1 + \VE}}{\cdot}\arctg{\left(t{\cdot}\sqrt{\dfrac{1 - \VE}{1+\VE}}\right)} + C =
+	$$
+	$$
+		=	\dfrac{2}{\sqrt{1 - \VE^2}}{\cdot}\arctg{
+			\left(
+				\tg{\tfrac{x}{2}}{\cdot}
+				\sqrt{
+						\dfrac{1 - \VE}{1+\VE}
+					}
+			\right)} + C
+	$$
+	$$
+		\VE > 1 \Rightarrow  2\dint\dfrac{dt}{(1 + \VE) + (1 - \VE)t^2} = 2\dint\dfrac{dt}{(1 + \VE) - (\VE - 1)t^2} = 2\dfrac{1}{\VE - 1}\dint\dfrac{dt}{\tfrac{\VE+1}{\VE - 1} - t^2} =
+	$$
+	$$
+		= 2\dfrac{1}{\VE - 1}{\cdot}\dfrac{1}{2 \sqrt{\tfrac{\VE+1}{\VE - 1}}}\ln{\left| \dfrac{\sqrt{\tfrac{\VE+1}{\VE - 1}}  + t}{\sqrt{\tfrac{\VE+1}{\VE - 1}} - t}\right|} + C = \dfrac{1}{\sqrt{\VE^2 -1}}{\cdot}\ln{\left| \dfrac{\sqrt{\VE + 1} +t\sqrt{\VE - 1}}{\sqrt{\VE + 1} - t\sqrt{\VE -1}}\right|} +C
+	$$
+	$$
+		\dfrac{\sqrt{\VE + 1} +t\sqrt{\VE - 1}}{\sqrt{\VE + 1} - t\sqrt{\VE -1}} = \dfrac{(\sqrt{\VE + 1} +t\sqrt{\VE - 1})^2}{\VE + 1 -t^2(\VE -1)} = \dfrac{\VE + 1 + 2t\sqrt{\VE^2 -1} + t^2(\VE - 1)}{\VE(1 -t^2) + 1 + t^2} =
+	$$
+	$$
+		=	\dfrac{\VE(1 + t^2) + 1 -t^2 + 2t\sqrt{\VE^2 -1}}{\VE{\cdot}\tfrac{1-t^2}{1+t^2} + 1}{\cdot}\dfrac{1}{1+t^2} = \dfrac{1 + \tfrac{1 -t^2}{1+t^2} + \tfrac{2t}{1+t^2}\sqrt{\VE^2-1}}{\VE{\cdot}\tfrac{1-t^2}{1+t^2} + 1} = \dfrac{\VE + \cos{x} + \sin{x}\sqrt{\VE^2-1}}{\VE \cos{x} + 1} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint\dfrac{dx}{1 + \VE \cos{x}} = \dfrac{1}{\sqrt{\VE^2 -1}}{\cdot}\ln{\left| \dfrac{\VE + \cos{x} + \sin{x}\sqrt{\VE^2-1}}{\VE \cos{x} + 1}\right|} +C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2035})
+	$$
+		\dint\dfrac{dx}{\sin^4{x} + \cos^4{x}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		R(\sin{x},\cos{x}) = \dfrac{dx}{\sin^4{x} + \cos^4{x}} \Rightarrow R(-\sin{x}, -\cos{x}) = R(\sin{x},\cos{x})
+	$$
+	Поскольку $R(-\sin{x}, -\cos{x}) = R(\sin{x},\cos{x})$, то будем делать замену $t = \tg{x}$:
+	$$
+		x = \arctg{t}, \, dt = \dfrac{1}{\cos^2{x}}dx \Rightarrow \dint\dfrac{dx}{\sin^4{x} + \cos^4{x}} = \dint\dfrac{\tfrac{dx}{\cos^2{x}}}{\tfrac{\sin^2{x}}{\cos^2{x}}{\cdot}\sin^2{x} + \cos^2{x}} 
+	$$
+	$$
+		\cos^2{x} = \dfrac{1}{1 + \tg^2{x}} = \dfrac{1}{1 + t^2}, \, \sin^2{x} = 1 - \dfrac{1}{1 + t^2} = \dfrac{t^2}{1 + t^2}
+	$$
+	$$
+		\dint\dfrac{\tfrac{dx}{\cos^2{x}}}{\tfrac{\sin^2{x}}{\cos^2{x}}{\cdot}\sin^2{x} + \cos^2{x}}  = \dint \dfrac{dt}{t^2{\cdot}\tfrac{t^2}{1 +t^2} + \tfrac{1}{1 + t^2}} = \dint \dfrac{t^2 + 1}{t^4 + 1}dt = \dint \dfrac{t^2  + 1}{(t^4 +  2t^2 + 1)  - 2t^2}dt =  
+	$$
+	$$
+		=	\dint \dfrac{t^2 + 1}{(t^2 + 1 - \sqrt{2}t){\cdot}(t^2 + 1 + \sqrt{2}t)} = \dint \dfrac{At + B}{t^2 + \sqrt{2}t + 1} + \dfrac{Ct + D}{t^2 - \sqrt{2}t +1} dt
+	$$
+	Опять же заметим, что раскрыли корень без учета знака, поскольку в обоих случаях получится та же самая формула. Также, можно заметить симметрию в исходной дроби:
+	$$
+		\dfrac{t^2 + 1}{t^4 + 1} = \dfrac{(-t)^2 + 1}{(-t)^4 + 1} \Rightarrow \dfrac{At + B}{t^2 + \sqrt{2}t + 1} + \dfrac{Ct + D}{t^2 - \sqrt{2}t +1} = \dfrac{-At + B}{t^2 - \sqrt{2}t + 1} + \dfrac{-Ct + D}{t^2 + \sqrt{2}t +1} \Rightarrow 
+		\begin{cases}
+			C = -A \\
+			B = D
+		\end{cases}
+	$$
+	$$
+		(At + B)(t^2 - \sqrt{2}t + 1) +(Ct + D)(t^2 + \sqrt{2}t + 1) = t^2 + 1 \Rightarrow 
+		\begin{cases}
+			B + D = 1 \Rightarrow B = D = \dfrac{1}{2} \\ 
+			B - \sqrt{2}A + D + \sqrt{2}C = 1 \Rightarrow  A = C
+		\end{cases}
+	$$
+	$$
+		A = C = -C = 0 \Rightarrow  \dfrac{At + B}{t^2 + \sqrt{2}t + 1} + \dfrac{Ct + D}{t^2 - \sqrt{2}t +1} = \dfrac{1}{2}\left(\dfrac{1}{t^2 + \sqrt{2}t + 1} + \dfrac{1}{t^2 - \sqrt{2}t +1}\right)
+	$$
+	$$
+		\dint \dfrac{1}{t^2 \pm \sqrt{2}t + 1}dt = \dint \dfrac{1}{\left(t \pm \tfrac{1}{\sqrt{2}} \right)^2 + \left(\tfrac{1}{\sqrt{2}}\right)^2}dt = \sqrt{2}\arctg{ \left(\sqrt{2}t \pm 1 \right)} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint\dfrac{dx}{\sin^4{x} + \cos^4{x}} = \dfrac{\sqrt{2}}{2}\left(\arctg{\left(\sqrt{2}\tg{x} + 1\right)} + \arctg{\left(\sqrt{2}\tg{x} - 1\right)}\right) + C =
+	$$
+	$$
+		=\dfrac{1}{\sqrt{2}}{\cdot}\arctg{
+			\left(
+				\dfrac{\sqrt{2}\tg{x}}{2( 1 + \tg^2{x})}
+			\right)
+		} + C = \dfrac{1}{\sqrt{2}}{\cdot}\arctg{\left(
+			\dfrac{\tg{(2x)} }{\sqrt{2}} 
+		\right)}+ C
+	$$
+\end{proof}
+
+Похожим образом работают замены и с гиперболическими функциями.
+\begin{problem}(\textbf{Д2123})
+	$$
+		\dint\dfrac{dx}{\sh{x}  + 2\ch{x}}
+	$$
+\end{problem}
+\begin{proof}
+	Задачу можно решить выделив экспоненту, но ради демонстрации единообразия подходов, сделаем замену на тангенс половинного угла:
+	$$
+		t = \th{\tfrac{x}{2}} = \dfrac{\sh{\tfrac{x}{2}}}{\ch{\tfrac{x}{2}}} \Rightarrow 
+		1 - \th^2{ \tfrac{x}{2}} = 1 - \dfrac{\sh^2 \tfrac{x}{2}}{ \ch^2 \tfrac{x}{2}} = \dfrac{1}{\ch^2 \tfrac{x}{2}}
+	$$
+	$$
+		\sh{x} = 2\sh \tfrac{x}{2} \ch \tfrac{x}{2} = 2 \th \tfrac{x}{2} {\cdot} \ch^2 \tfrac{x}{2} = \dfrac{2t}{1 - t^2}
+	$$
+	$$
+		\ch{x} = 2\ch^2 \tfrac{x}{2} - 1 = \dfrac{2}{1 - t^2} - 1 = \dfrac{1 + t^2}{1 - t^2}
+	$$
+	$$
+		dt = \dfrac{\tfrac{1}{2}\ch^2 \tfrac{x}{2} - \tfrac{1}{2}\sh^2 \tfrac{x}{2} }{\ch^2 \tfrac{x}{2}} dx =  \dfrac{1}{2}\th^2 \tfrac{x}{2} dx \Rightarrow dx = \dfrac{2dt}{1 - t^2 }
+	$$
+	$$
+		\dint\dfrac{dx}{\sh{x}  + 2\ch{x}} = \dint\dfrac{1}{\tfrac{2t}{1 - t^2} + 2\tfrac{1 + t^2}{1-t^2}}{\cdot}\dfrac{2}{1 -t^2}dt = \dint\dfrac{dt}{t^2 + t + 1}
+	$$
+	Далее интеграл решается, как обычный.
+	$$
+		\dint \dfrac{dt}{t^2 + t + \tfrac{1}{4} + \tfrac{3}{4}} = \dint \dfrac{dt}{\left(t + \tfrac{1}{2}\right)^2 + \tfrac{3}{4}} = \dfrac{2}{\sqrt{3}}\arctg{\left(\dfrac{2(t + \tfrac{1}{2})}{\sqrt{3}}\right)} + C = \dfrac{2}{\sqrt{3}}\arctg{\left(\dfrac{2 \th \tfrac{x}{2} + 1}{\sqrt{3}}\right)} + C
+	$$
+\end{proof}
+\begin{rem}
+	Опять же заметим, что эту задачу можно было решить и переходя к экспонентам.
+\end{rem}
+
+Для тригонометрических интегралов есть аналог метода неопределенных коэффициентов. Рассмотрим следующую задачу.
+
+\begin{problem}(\textbf{Д2042})
+	$$
+		\dint\dfrac{a_1 \sin{x} + b_1 \cos{x}}{a \sin{x} + b\cos{x}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Эту задачу можно решить с помощью формул половинного угла, но есть более простой способ.
+	$$
+		f(x) = a \sin{x} + b\cos{x} \Rightarrow f'(x) = -b \sin{x} + a\cos{x}
+	$$
+	Таким образом, $f(x)$ и $f'(x)$ можно воспринимать как элементы одного и того же векторного пространства, где $\sin{x}$ и $\cos{x}$ - векторы этого пространства (линейное двумерное пространство). Более того, векторы $f(x)$ и $f'(x)$ линейно независимы, поэтому образуют базис:
+	$$
+		\begin{vmatrix}
+			a & b \\
+			-b& a
+		\end{vmatrix} = a^2 + b^2, \, a \neq 0 \vee b \neq 0 \Rightarrow a^2 + b^2 > 0
+	$$
+	Тогда, вектор написанный сверху можно выразить через векторы $f(x)$ и $f'(x)$ с некоторыми коэффициентами:
+	$$
+		\dint\dfrac{a_1 \sin{x} + b_1 \cos{x}}{a \sin{x} + b\cos{x}}dx =  \dint \dfrac{p{\cdot}f(x) + q{\cdot}f'(x)}{f(x)}dx = px + q\ln{|f(x)|} + C
+	$$
+\end{proof}
+
+\textbf{ДЗ}: $1966$ (замена второго типа), $1996$, $2011$ а) и посчитать $\dint \sin^6{x}dx$, $2025$ (тангенс половинного угла), $2029$ (обычный тангенс), $2043$, $2046$.
+\end{document}

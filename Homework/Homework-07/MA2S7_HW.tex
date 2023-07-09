@@ -1,0 +1,1560 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 7: ДЗ}
+
+Это ДЗ без спецификации задач.
+\section*{Интегрирование трансцендентных функций}
+
+\begin{problem}(\textbf{Д2067}) (только одна часть)
+	$$
+		\dint P(x) \sin{(ax)} dx
+	$$
+\end{problem}
+\begin{proof}
+	Снова будем интегрировать по частям:
+	$$
+		\dint P(x) \sin{(ax)} dx = -\cos{(ax)}{\cdot} \dfrac{P(x)}{a} + \dfrac{1}{a}\dint P'(x) {\cdot}\cos{(ax)}dx 
+	$$
+	Проинтегрируем по частям ещё раз:
+	$$	
+		-\cos{(ax)}{\cdot} \dfrac{P(x)}{a} + \dfrac{1}{a}\dint P'(x) {\cdot}\cos{(ax)}dx  = -\cos{(ax)}{\cdot} \dfrac{P(x)}{a} + \sin{(ax)}{\cdot}\dfrac{P'(x)}{a^2} - \dfrac{1}{a^2}\dint P''(x)\sin{(ax)} dx
+	$$
+	Таким образом, мы получили шаг индукции и формула итоговая будет выглядеть так:
+	$$
+		\dint P(x) \sin{(ax)} dx = -\dfrac{\cos{(ax)}}{a}{\cdot}\left( P(x) - \dfrac{P''(x)}{a^2} + \dfrac{P^{(4)}(x)}{a^4} - \dotsc + (-1)^k \dfrac{P^{(2k)}(x)}{a^{2k} }\right) + 
+	$$
+	$$
+		+ \dfrac{\sin{(ax)}}{a^2}\left(P'(x) - \dfrac{P'''(x)}{a^2} + \dotsc + \dfrac{(-1)^m P^{(2m+1)}(x)}{a^{2m}}\right) + C
+	$$
+	где $k = \left[\tfrac{n}{2}\right]$ и $m = \left[\tfrac{n-1}{2}\right]$ - такое, чтобы $2m +1 < n$. Также заметим, что:
+	$$
+		\dint P(x) \sin{(ax)} dx = \IM\left(\dint P(x) e^{iax}dx \right)
+	$$
+	поскольку синус можно связать с комплексными экспонентами следующим образом:
+	$$
+		\sin{(ax)} = \IM(e^{iax}) \vee \sin{(ax)} = \dfrac{1}{2i}(e^{iax} - e^{-iax})
+	$$
+	Таким образом, можно взять разложение экспоненты и взять действительную часть:
+	$$
+		\dint P(x)e^{iax}dx = e^{iax}{\cdot}\left(\dfrac{P(x)}{ia} + \dfrac{P'(x)}{a^2} - \dfrac{P''(x)}{ia^3} - \dotsc + \dfrac{(-1)^n P^{(n)}(x)}{(ia)^{n+1}}\right) + C = 
+	$$
+	$$
+		=(\cos{(ax)} + i \sin{(ax)}){\cdot}\left(\dfrac{P(x)}{ia} + \dfrac{P'(x)}{a^2} 	- \dfrac{P''(x)}{ia^3} - \dotsc + \dfrac{(-1)^n P^{(n)}(x)}{(ia)^{n+1}}\right)  + C
+	$$
+	Тогда:
+	$$
+		a = -ib, \, b \in \MR \Rightarrow \dint P(x)e^{bx}dx = e^{bx}{\cdot}\left(\dfrac{P(x)}{b} - \dfrac{P'(x)}{b^2} + \dfrac{P''(x)}{b^3} - \dotsc + \dfrac{(-1)^n P^{(n)}(x)}{b^{n+1}}\right) + C
+	$$
+\end{proof}
+\newpage
+
+\begin{problem}(\textbf{Д2069})
+	$$
+		\dint (x^2 - 2x + 2)e^{-x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint (x^2 - 2x + 2)e^{-x}dx = e^{-x}\left(-x^2 + 2x -2 - 2x + 2 +2\right) = e^{-x}(-x^2 + 4x - 2) + C = e^{-x}(x^2 + 2) + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2070})
+	$$
+		\dint x^5\sin{5x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x^5\sin{5x}dx = -\dfrac{\cos{5x}}{5}\left(x^5 -\dfrac{20x^3}{25} + \dfrac{120x}{625}\right) + \dfrac{\sin{5x}}{25}\left(5x^4 - \dfrac{60x^2}{25} + \dfrac{120}{625}\right) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2071})
+	$$
+		\dint (1 + 2x^2 + x^4)\cos{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint (1 + 2x^2 + x^4)\cos{x}dx = \sin{x} + 2\dint x^2 \cos{x} dx + \dint x^4 \cos{x} dx
+	$$
+	$$
+		\dint x^2 \cos{x} dx = \sin{x}{\cdot}(x^2 - 2) + 2x{\cdot}\cos{x} + C
+	$$
+	$$
+		\dint x^4 \cos{x} dx = \sin{x}(x^4 - 12x^2 + 24) + \cos{x}(4x^3 - 24x) + C
+	$$
+	$$
+		\dint (1 + 2x^2 + x^4)\cos{x}dx = \sin{x}{\cdot}(1 +2x^2 - 4 + x^4 -12x^2 + 24) + \cos{x}{\cdot}(4x + 4x^3 - 24x) + C = 
+	$$
+	$$
+		=	(21 -10x^2 + x^4)\sin{x} - (20x -4x^4)\cos{x} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2072})
+	$$
+		\dint x^7e^{-x^2}dx
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену:
+	$$
+		t = x^2 \Rightarrow dt = 2xdx \Rightarrow \dint x^7e^{-x^2}dx = \dfrac{1}{2}\dint x^6e^{-x^2}d(x^2) = \dfrac{1}{2}\dint t^3 e^{-t}dt =
+	$$
+	$$	
+		= \dfrac{1}{2}e^{-t}(-t^3 - 3t^2 - 6t - 6) + C = -\dfrac{1}{2}e^{-x^2}(x^6 + 3x^4 + 6x^2 + 6) +C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2074})
+	$$
+		\dint e^{ax}\cos^2{bx}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\cos{bx} = \dfrac{e^{ibx} + e^{-ibx}}{2} \Rightarrow \cos^2{bx} = \dfrac{e^{2ibx} + 2 + e^{-2ibx}}{4} \Rightarrow 
+	$$
+	$$
+		\dint e^{ax}\cos^2{bx}dx = \dfrac{1}{2}\dint e^{ax}dx + \dfrac{1}{4}\left(\dint e^{(a + 2ib)x} + e^{(a - 2ib)x}\right)dx =
+	$$
+	$$	
+		= \dfrac{1}{2a}e^{ax} + \dfrac{1}{4(a + 2ib)}e^{(a + 2ib)x} + \dfrac{1}{4(a - 2ib)}e^{(a -2ib)x} + C= \dfrac{e^{ax}}{2a} + e^{ax}{\cdot}\dfrac{e^{2ibx}(a-2ib) + e^{-2ibx}(a + 2ib)}{4(a + 2ib)(a-2ib)} + C= 
+	$$
+	$$
+		= e^{ax}{\cdot}\left(\dfrac{1}{2a} + \dfrac{a\cos{2bx}}{2(a^2 +4b^2)} - \dfrac{2ib(e^{2ibx} - e^{-2ibx})}{4(a^2 + 4b^2)}\right) + C = e^{ax}{\cdot}\left(\dfrac{1}{2a} + \dfrac{a\cos{2bx} + 2b\sin{2bx}}{2(a^2 + 4b^2)}\right) + C
+	$$
+	
+\end{proof}
+
+\begin{problem}(\textbf{Д2075})
+	$$
+		\dint e^{ax}\sin^3{bx}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint e^{ax}\sin^3{bx}dx = \dint e^{ax}\sin{bx}{\cdot}\dfrac{1 - \cos{2bx}}{2}dx = \dfrac{1}{2}\dint e^{ax}\sin{bx}dx + \dfrac{1}{4}\dint e^{ax}(\sin{bx} - \sin{3bx})dx
+	$$
+	$$
+		\dint e^{ax}\sin{bx} dx = \dint e^{ax}\dfrac{e^{ibx} - e^{-ibx}}{2i}dx = \dfrac{1}{2i}\dint e^{(a + ib)x} - e^{(a - ib)x}dx = \dfrac{1}{2i}{\cdot}\left(\dfrac{1}{a + ib}e^{(a + ib)x} - \dfrac{1}{a -ib}e^{(a-ib)x}\right) + C = 
+	$$
+	$$
+		=\dfrac{e^{ax}}{2i}\left(\dfrac{(a - ib)e^{ibx} - (a + ib)e^{-ibx}}{ a^2 + b^2} \right) + C = \dfrac{e^{ax}}{a^2+b^2}\left(a\dfrac{e^{ibx} - e^{-ibx}}{2i} - b\dfrac{e^{ibx} + e^{-ibx}}{2}\right) + C= 
+	$$
+	$$
+		= \dfrac{e^{ax}}{a^2+b^2}(a\sin{bx} - b\cos{bx}) + C \Rightarrow
+	$$
+	$$
+		\dint e^{ax}\sin^3{bx}dx = \dfrac{3e^{ax}}{4(a^2+b^2)}(a\sin{bx} - b\cos{bx}) - \dfrac{e^{ax}}{4(a^2 + 9b^2)}(a\sin{3bx} - 3b\cos{3bx}) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2077})
+	$$
+		\dint x^2 e^x \cos{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x^2 e^x \cos{x}dx = \dfrac{1}{2}\dint x^2 \left(e^{(1 +i)x} + e^{(1 -i)x}\right)dx
+	$$
+	$$
+		\dint x^2 e^{(1+i)x}dx = e^{(1+i)x}\left(\dfrac{x^2}{1 + i} - \dfrac{2x}{(1 + i)^2} + \dfrac{2}{(1 + i)^3}\right) + C
+	$$
+	$$
+		\dint x^2 e^{(1-i)x}dx = e^{(1-i)x}\left(\dfrac{x^2}{1 - i} - \dfrac{2x}{(1 - i)^2} + \dfrac{2}{(1 - i)^3}\right) + C
+	$$
+	$$
+		\dfrac{e^{ix}(1-i ) + e^{-ix}(1 + i)}{1 + 1} = \dfrac{e^{ix} + e^{-ix}}{2} - \dfrac{i(e^{ix} - e^{-ix})}{2} = \cos{x} + \sin{x}
+	$$
+	$$
+		\dfrac{e^{ix}(1 -i)^2 + e^{-ix}(1 + i)^2}{4} = \dfrac{e^{ix} - 2ie^{ix} -e^{ix} + e^{-ix} + 2ie^{-ix} - e^{-ix}}{4} = \sin{x}
+	$$
+	$$
+		\dfrac{e^{ix}(1 -i)^3 + e^{-ix}(1 + i)^3}{8} = \dfrac{e^{ix} - 3ie^{ix} -3e^{ix} +ie^{ix} + e^{-ix} + 3ie^{-ix} -3e^{-ix} -ie^{-ix}}{8}  =
+	$$
+	$$
+		= \dfrac{-e^{ix} -ie^{ix} +ie^{-ix} -e^{-ix}}{4}=- \dfrac{1}{2}\cos{x} +\dfrac{1}{2}\sin{x} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint x^2 e^x \cos{x}dx = \dfrac{e^{x}}{2}x^2 (\cos{x} + \sin{x}) -xe^x\sin{x} + \dfrac{e^x}{2}(\sin{x} - \cos{x}) + C
+	$$
+	Можно решить эту задачу немного по-другому:
+	$$
+		\dint x^2 e^x\cos{x}dx = \RE{\left(\dint x^2 e^{(1 + i)x}dx\right)} = \RE{\left(e^{(1+i)x}\left( \dfrac{x^2}{1+i} - \dfrac{2x}{(1 + i)^2} + \dfrac{2}{(1 + i)^3} \right)\right)} + C =
+	$$
+	$$
+		=	\RE{\left( e^{x}(\cos{x} + i\sin{x})\left( \dfrac{1}{2}x^2(1-i) - \dfrac{1}{2} x(1-i)^2 + \dfrac{1}{4}(1-i)^3  \right) \right)} + C= 
+	$$
+	$$
+		=	\RE{\left( e^{x}(\cos{x} + i\sin{x})\left( \dfrac{1}{2}x^2(1-i) - xi - \dfrac{1}{2}(1+i)  \right) \right)} + C = 
+	$$
+	$$
+		= e^x \dfrac{1}{2}x^2\cos{x}   - \dfrac{1}{2}e^x\cos{x} + e^x\dfrac{1}{2}x^2 \sin{x} + e^x x\sin{x} + e^x \dfrac{1}{2}\sin{x} + C = 
+	$$
+	$$
+		= \dfrac{e^x}{2}(x^2(\cos{x} +\sin{x}) + x\sin{x} + \sin{x} - \cos{x}) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2078})
+	$$
+		\dint xe^x \sin^2{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint xe^x \sin^2{x}dx = \dfrac{1}{2}\dint xe^x(1 - \cos{2x})dx = \dfrac{1}{2}\dint xe^xdx - \dfrac{1}{2}\dint xe^x \cos{2x}dx
+	$$
+	$$
+		\dfrac{1}{2}\dint xe^xdx = \dfrac{1}{2}e^x(x - 1) + C
+	$$
+	$$
+		\dint xe^x \cos{2x}dx = \dint x e^{x}\dfrac{e^{2ix} + e^{-2ix}}{2}dx = \dfrac{1}{2}\dint x e^{(1 + 2i)x}dx + \dfrac{1}{2}\dint xe^{(1 - 2i)x}dx
+	$$
+	$$
+		\dint x e^{(1 + 2i)x}dx = e^{(1 + 2i)x}{\cdot}\left(\dfrac{x}{1+2i} - \dfrac{1}{(1 + 2i)^2}\right) + C = e^x{\cdot}\left(\dfrac{xe^{2ix}}{1 + 2i} - \dfrac{e^{2ix}}{(1 + 2i)^2}\right) + C
+	$$
+	$$
+		\dint x e^{(1 - 2i)x}dx = e^{(1 - 2i)x}{\cdot}\left(\dfrac{x}{1-2i} - \dfrac{1}{(1 - 2i)^2}\right) + C = e^x{\cdot}\left(\dfrac{xe^{-2ix}}{1 - 2i} - \dfrac{e^{-2ix}}{(1 - 2i)^2}\right) + C
+	$$
+	$$
+		\dint xe^x \cos{2x}dx  = \dfrac{1}{2}e^x{\cdot}\left(x{\cdot}\dfrac{e^{2ix}(1-2i) +(1 + 2i)e^{-2ix}}{1 +4} - \dfrac{e^{2ix}(1 -2i)^2  + e^{-2ix}(1 + 2i)^2 }{25}\right) + C =
+	$$
+	$$
+		=\dfrac{e^x}{2}{\cdot}\left(x\dfrac{e^{2ix} + e^{-2ix} -2i(e^{2ix} -e^{-2ix})}{5} - \dfrac{e^{2ix}(-3 -4i) + e^{-2ix}(-3 + 4i)}{25}\right) + C =
+	$$
+	$$
+		=	\dfrac{e^xx}{5}(\cos{2x} + 2 \sin{2x}) + \dfrac{3e^{x}}{25}\cos{2x} - \dfrac{4e^x}{25}\sin{2x} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint xe^x \sin^2{x}dx = e^x \left(\dfrac{x-1}{2}  -\dfrac{x}{10}(\cos{2x} + 2\sin{2x}) - \dfrac{3}{50}\cos{2x} + \dfrac{2}{25}\sin{2x}\right) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2079})
+	$$
+		\dint (x - \sin{x})^3 dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint (x - \sin{x})^3 dx = \dint (x^3 - 3x^2 \sin{x} + 3x \sin^2{x} - \sin^3{x})dx = 
+	$$
+	$$
+		= \dfrac{x^4}{4} - 3\dint x^2 \sin{x}dx + 3\dint x \sin^2{x}dx -\dint \sin^3{x}dx
+	$$
+	$$
+		\dint \sin^3{x}dx = -\dint (1 -\cos^2{x})d(\cos{x}) = -\cos{x} +\dfrac{\cos^3{x}}{3} + C
+	$$
+	$$
+		\dint x^2 \sin{x}dx = -\cos{x}(x^2 -2) + 2x\sin{x} + C
+	$$
+	$$
+		\dint x \sin^2{x}dx = \dfrac{1}{2}\dint x  - x \cos{2x}dx = \dfrac{x^2}{4} - \dfrac{1}{2}\dint x\cos{2x}dx = \dfrac{x^2}{4} - \dfrac{x\sin{2x}}{4} + \dfrac{1}{4}\dint \sin{2x}dx =
+	$$
+	$$
+		=	\dfrac{x^2}{4} -\dfrac{x\sin{2x}}{4} - \dfrac{1}{8}\cos{2x} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint (x - \sin{x})^3 dx = \dfrac{x^4}{4} + 3\cos{x}(x^2 - 2) -6x \sin{x} + \dfrac{3x^2}{4} - \dfrac{3x\sin{2x}}{4}  -\dfrac{3}{8}\cos{2x} + \cos{x} - \dfrac{\cos^3{x}}{3} + C =
+	$$
+	$$
+		=\dfrac{x^4}{4} + \dfrac{3x^2}{4} + 3x^2\cos{x} - x{\cdot}\left(6\sin{x} +\dfrac{3}{4}\sin{2x}\right) - \left(5\cos{x} +\dfrac{3}{8}\cos{2x}\right) - \dfrac{\cos^3{x}}{3} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2080})
+	$$
+		\dint \cos^2{\sqrt{x}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену $t = \sqrt{x} \Rightarrow dt = \dfrac{1}{2\sqrt{x}}dx \Rightarrow 2tdt = dx$:
+	$$
+		\dint \cos^2{\sqrt{x}}dx = \dint 2t \cos^2{t}dt = \dint t(1 + \cos{2t})dt = \dfrac{t^2}{2} + \dint t\cos{2t}dt =
+	$$
+	$$
+		=	\dfrac{x}{2} + t\dfrac{\sin{2t}}{2} + \dfrac{\cos{2t}}{4} + C = \dfrac{x}{2} + \dfrac{\sqrt{x}}{2}\sin{2\sqrt{x}} + \dfrac{\cos{2\sqrt{x}}}{4} + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д2081})
+	Доказать, что если $R$ - рациональная функция и числа $a_1,a_2, \dotsc, a_n$ - соизмеримы, то интеграл:
+	$$
+		\dint R(e^{a_1 x}, e^{a_2 x}, \dotsc, e^{a_n x})dx
+	$$
+	есть элементарная функция.
+\end{problem}
+\begin{proof}
+	Поскольку все указанные числа соизмеримы, то они делятся на наибольший общий делитель $a$:
+	$$
+		a_1 = k_1{\cdot}a, a_2 = k_2{\cdot}a, \dotsc, a_n = k_n{\cdot}a, \, \forall i =\overline{1,n}, \, k_i \in \MZ
+	$$
+	Сделаем замену:
+	$$
+		e^{ax} = t, \, x = \dfrac{1}{a}\ln{t}, \, t > 0, \, dx = \dfrac{1}{at}dt
+	$$
+	$$
+		\dint R(e^{a_1 x}, e^{a_2 x}, \dotsc, e^{a_n x})dx = \dint R\left((e^{a x})^{k_1}, (e^{a x})^{k_2}, \dotsc, (e^{a x})^{k_n} \right)dx = \dint R(t^{k_1},t^{k_2},\dotsc, t^{k_n})\dfrac{dt}{at} = \dint R'(t)dt
+	$$
+	Таким образом, мы получили интеграл от рациональной функции $R'(t)$, которую мы умеем интегрировать и интеграл от которой есть элементарная функция.
+\end{proof}
+
+\begin{problem}(\textbf{Д2083})
+	$$
+		\dint \dfrac{e^{2x}}{1 + e^x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{e^{2x}}{1 + e^x}dx = |e^x = t, \, dt = e^xdx| = \dint \dfrac{t}{1 + t}dt = e^x - \ln{(1 + e^x)} + C 
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2084})
+	$$
+		\dint \dfrac{dx}{e^{2x} + e^x - 2}
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену:
+	$$
+		t = e^x, \, dt = e^x dx
+	$$
+	$$
+		\dint \dfrac{dx}{e^{2x} + e^x - 2} = \dint \dfrac{dt}{t(t^2 + t  -2)} = \dint \dfrac{dt}{t(t - 1)(t + 2)} = \dint \dfrac{A}{t} + \dfrac{B}{t-1} + \dfrac{C}{t + 2}dt
+	$$
+	$$
+		A(t^2 + t -2) + B(t^2 + 2t) + C(t^2 - t) = 1 \Rightarrow A = -\dfrac{1}{2}, \, A + B + C = 0 \Rightarrow B = \dfrac{1}{2} - C \Rightarrow
+	$$
+	$$
+		\Rightarrow A + 2B - C = 0 \Rightarrow  2B = \dfrac{1}{2} + C \Rightarrow B = \dfrac{1}{3}, \, C = \dfrac{1}{6} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{A}{t} + \dfrac{B}{t-1} + \dfrac{C}{t + 2}dt = -\dfrac{1}{2}\ln{e^x} + \dfrac{1}{3}\ln{|e^x - 1|} + \dfrac{1}{6}\ln{(e^x + 2)} + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д2085})
+	$$
+		\dint \dfrac{dx}{1 + e^{x/2} + e^{x/3} + e^{x/6}}
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену:
+	$$
+		e^{x/6} = t, \, dt  = \dfrac{1}{6}e^{x/6}dx
+	$$
+	$$
+		\dint \dfrac{dx}{1 + e^{x/2} + e^{x/3} + e^{x/6}} = \dint \dfrac{6dt}{t(1 + t^3 + t^2 + t)} = \dint \dfrac{6dt}{t(t+1)(t^2 + 1)} = \dint \dfrac{A}{t} + \dfrac{B}{t+1} + \dfrac{Ct + D}{t^2 + 1}dt
+	$$
+	$$
+		A(t^3 + t^2 + t + 1) + B(t^3 + t) + (Ct^3 + Dt^2 + Ct^2 + Dt) = 6
+	$$	
+	$$
+		A = 6, \, 6 + B +C = 0, \, 6 + D + C = 0, \, 6 + B + D = 0 \Rightarrow C = D \Rightarrow C = D = -3, \, B = -3
+	$$
+	$$
+		\dint \dfrac{A}{t} + \dfrac{B}{t+1} + \dfrac{Ct + D}{t^2 + 1}dt = 6\ln{t} - 3\ln{(t+1)}  - 3 \dint\dfrac{t + 1}{t^2+1}dt
+	$$
+	$$
+		\dint\dfrac{t + 1}{t^2+1}dt = \dfrac{1}{2}\dint \dfrac{d(t^2)}{t^2 + 1} + \arctg{t} + C = \dfrac{1}{2}\ln{(t^2 + 1)} + \arctg{t} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{1 + e^{x/2} + e^{x/3} + e^{x/6}} = x - 3\ln{(e^{x/6} + 1)} - \dfrac{3}{2}\ln{(e^{x/3} + 1)} - 3 \arctg{e^{x/6}} + C=
+	$$
+	$$
+		=	x - 3\ln{(1 + e^{x/6})\sqrt{1 + e^{x/3}}} - 3 \arctg{e^{x/6}} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2086})
+	$$
+		\dint \dfrac{1 + e^{x/2}}{(1 + e^{x/4})^2}dx
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену:
+	$$
+		t = e^{x/4}, \, dt = \dfrac{1}{4}e^{x/4}dx
+	$$
+	$$
+		\dint \dfrac{1 + e^{x/2}}{(1 + e^{x/4})^2}dx = \dint \dfrac{1 + t^2}{(1 + t)^2}\dfrac{4dt}{t} = 4\dint \dfrac{A}{t} + \dfrac{B}{1 + t} + \dfrac{C}{(1 + t)^2}dt
+	$$
+	$$
+		A(1 + t)^2 + Bt(1 + t) + Ct = 1 + t^2 \Rightarrow \left\{
+			\begin{matrix}
+				t^2, & 1 &=& A + B \\
+				t, & 0 &=& 2A +B + C\\
+				1, & 1 &=& A
+			\end{matrix}
+		\right. \Rightarrow A = 1, \, B = 0, \, C = -2
+	$$
+	$$
+		4\dint \dfrac{A}{t} + \dfrac{B}{1 + t} + \dfrac{C}{(1 + t)^2}dt = 4\dint \dfrac{1}{t}dt - 8\dint \dfrac{dt}{(1 + t)^2} = 4\ln{e^{x/4}} + 8 \dfrac{1}{1 + e^{x/4}} + C = x + \dfrac{8}{1 + e^{x/4}} + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д2088})
+	$$
+		\dint \sqrt{\dfrac{e^x  - 1}{e^x + 1}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену:
+	$$
+		t = e^x, \, dt = e^x dx
+	$$
+	$$
+		\dint \sqrt{\dfrac{e^x  - 1}{e^x + 1}}dx = \dint \sqrt{\dfrac{t - 1}{t + 1}}{\cdot}\dfrac{dt}{t} = \dint \dfrac{t-1}{t\sqrt{t^2 - 1}}dt = \dint \dfrac{1}{\sqrt{t^2 - 1}}dt - \dint\dfrac{1}{t\sqrt{t^2 - 1}}dt =
+	$$
+	$$
+		=	\ln{|t + \sqrt{t^2 -1}|} - \dint \dfrac{1}{t^2\sqrt{1 - \tfrac{1}{t^2}}}dt = 	\ln{|t + \sqrt{t^2 -1}|} + \dint \dfrac{d \left(\tfrac{1}{t}\right)}{\sqrt{1 - \tfrac{1}{t^2}}} = \ln{|t + \sqrt{t^2 -1}|} + \arcsin{\left(\dfrac{1}{t}\right)} + C =
+	$$
+	$$
+		=	\ln{|e^x + \sqrt{e^{2x} -1}|}+ \arcsin{\left(\dfrac{1}{e^x}\right)} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2089})
+	$$
+		\dint \sqrt{e^{2x} + 4e^x - 1}dx
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену:
+	$$
+		t = e^x, \, dt = e^x dx
+	$$
+	$$
+		\dint \sqrt{e^{2x} + 4e^x - 1}dx = \dint \sqrt{t^2 + 4t - 1}\dfrac{dt}{t} =\dint \dfrac{t^2 + 4t -1}{t \sqrt{t^2 + 4t -1}}dt = \dint \dfrac{t + 4}{\sqrt{t^2 + 4t -1}} - \dint \dfrac{1}{t\sqrt{t^2 + 4t -1}}dt =
+	$$
+	$$
+		= \dint \dfrac{2t + 4}{2\sqrt{t^2 + 4t - 1}}dt + 2\dint \dfrac{dt}{\sqrt{t^2 + 4t - 1}} - \dint \dfrac{1}{t\sqrt{t^2 + 4t -1}}dt =
+	$$
+	$$
+		=\sqrt{t^2 + 4t - 1} +2\dint\dfrac{dt}{\sqrt{(t+2)^2 -5}} - \dint \dfrac{dt}{t^2 \sqrt{1 + \tfrac{4}{t} - \tfrac{1}{t^2}}}		 
+	$$
+	$$
+		2\dint\dfrac{dt}{\sqrt{(t+2)^2 -5}} = 2\ln{|t + 2 + \sqrt{(t+2)^2 -5}|} + C = 2 \ln{(e^x + 2 + \sqrt{e^{2x} + 4e^x -1})} + C
+	$$
+	$$
+		-\dint \dfrac{dt}{t^2 \sqrt{1 + \tfrac{4}{t} - \tfrac{1}{t^2}}} =\left|u = \dfrac{1}{t},\, du = -\dfrac{1}{t^2}dt \right| = \dint \dfrac{du}{\sqrt{1 + 4u - u^2}} = \dint \dfrac{du}{\sqrt{5 - (u-2)^2}} = 
+	$$
+	$$
+		= \arcsin{\left(\dfrac{u-2}{\sqrt{5}}\right)} + C = \arcsin{\left(\dfrac{e^{-x} - 2}{\sqrt{5}}\right)} + C = - \arcsin{\left(\dfrac{2e^{x} - 1}{e^x \sqrt{5}}\right)} + C
+	$$
+	$$
+		\dint \sqrt{e^{2x} + 4e^x - 1}dx = \sqrt{e^{2x} + 4e^x - 1} + 2 \ln{(e^x + 2 + \sqrt{e^{2x} + 4e^x -1})} - \arcsin{\left(\dfrac{2e^{x} - 1}{e^x \sqrt{5}}\right)} + C
+	$$
+\end{proof}
+
+
+\begin{problem}(\textbf{Д2090})
+	$$
+		\dint \dfrac{dx}{\sqrt{1 + e^x} + \sqrt{1 - e^{x}}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{dx}{\sqrt{1 + e^x} + \sqrt{1 - e^{x}}} = \dint \dfrac{\sqrt{1 + e^x} - \sqrt{1-e^x}}{1 + e^{x} - 1 + e^{x}}dx = \dfrac{1}{2}\dint \dfrac{\sqrt{1 + e^x} - \sqrt{1-e^x}}{e^x}dx 
+	$$
+	Сделаем замену:
+	$$
+		t = e^{-x}, \, dt = -e^{-x}dx 
+	$$
+	$$
+		\dfrac{1}{2}\dint \dfrac{\sqrt{1 + e^x} - \sqrt{1-e^x}}{e^x}dx = \dfrac{1}{2}\dint e^{-x}(\sqrt{1 + e^x} - \sqrt{1-e^x})dx = \dfrac{1}{2}\dint t{\cdot}\dfrac{-1}{t}{\cdot}\left(\sqrt{1 + \dfrac{1}{t}} - \sqrt{1 -\dfrac{1}{t}}\right)dt
+	$$
+	$$
+		\dint \sqrt{1 + \dfrac{1}{t}}dt = t\sqrt{1 + \dfrac{1}{t}} - \dint \dfrac{t{\cdot}\tfrac{-1}{t^2}}{2\sqrt{1 + \tfrac{1}{t}}}dt = \sqrt{t(t+1)} + \dfrac{1}{2}\dint \dfrac{dt}{\sqrt{t^2 + t + \tfrac{1}{4} - \tfrac{1}{4}}} =
+	$$
+	$$
+		=	\sqrt{t(t+1)} + \dfrac{1}{2}\ln{\left|t + \dfrac{1}{2} + \sqrt{t(t+1)} \right|} + C = e^{-x}\sqrt{1 + e^x} + \dfrac{1}{2}\ln{\left(e^{-x} + \dfrac{1}{2} + e^{-x}\sqrt{1 + e^x}\right)} + C
+	$$
+	$$
+		\dint \sqrt{1 - \dfrac{1}{t}}dt = t\sqrt{1 - \dfrac{1}{t}} - \dint \dfrac{t{\cdot}\tfrac{1}{t^2}}{2\sqrt{1 - \tfrac{1}{t}}}dt = \sqrt{t(t-1)} - \dfrac{1}{2}\dint \dfrac{dt}{\sqrt{t^2 - t + \tfrac{1}{4} - \tfrac{1}{4}}} =
+	$$
+	$$
+		=	\sqrt{t(t-1)} - \dfrac{1}{2}\ln{\left|t - \dfrac{1}{2} + \sqrt{t(t-1)} \right|} + C = e^{-x}\sqrt{1 - e^x} - \dfrac{1}{2}\ln{\left(e^{-x} - \dfrac{1}{2} + e^{-x}\sqrt{1 - e^x}\right)} + C
+	$$
+	$$
+		e^{-x} - \dfrac{1}{2} + e^{-x}\sqrt{1 - e^x} = \dfrac{(1 +\sqrt{1 -e^{x}})^2}{e^x} = \dfrac{(1 +\sqrt{1 -e^{x}})(1 +\sqrt{1 -e^{x}})}{(1 +\sqrt{1 -e^{x}})(1 -\sqrt{1 -e^{x}})} = \dfrac{(1 +\sqrt{1 -e^{x}})}{(1 -\sqrt{1 -e^{x}})}
+	$$
+	$$
+		e^{-x} + \dfrac{1}{2} + e^{-x}\sqrt{1 + e^x} = \dfrac{(1 +\sqrt{1 +e^{x}})^2}{e^x} = \dfrac{(1 +\sqrt{1 +e^{x}})(1 +\sqrt{1 +e^{x}})}{(1 +\sqrt{1 +e^{x}})(\sqrt{1 +e^{x}} - 1)} = \dfrac{(1 +\sqrt{1 +e^{x}})}{( \sqrt{1 + e^{x}} - 1)}
+	$$
+	$$
+		\dfrac{1}{2}\dint\left(\sqrt{1 - \dfrac{1}{t}} - \sqrt{1 +\dfrac{1}{t}}\right)dt = \dfrac{e^{-x}}{2}(\sqrt{1 - e^{x}} - \sqrt{1 + e^x}) - \dfrac{1}{4}\ln{\dfrac{( \sqrt{1 + e^{x}} - 1)(1- \sqrt{1 - e^{x}} )}{(1 +\sqrt{1 +e^{x}})(1 +\sqrt{1 -e^{x}})} } + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2092})
+	В каком случае интеграл:
+	$$
+		\dint P\left(\dfrac{1}{x}\right)e^xdx, \, P\left(\dfrac{1}{x}\right) = a_0 + \dfrac{a_1}{x} + \dotsc + \dfrac{a_n}{x^n}
+	$$
+	где $a_0, a_1, \dotsc, a_n$ - постоянны, представляет собой элементарную функцию?
+\end{problem}
+\begin{proof}
+	$$
+		\dint P\left(\dfrac{1}{x}\right)e^xdx = \ddsum{k = 0}{n}\dfrac{a_k}{x^k}e^xdx
+	$$
+	$$
+		\dint \dfrac{a_k}{x^k}e^xdx = -\dfrac{a_k}{(k-1)x^{k-1}}{\cdot}e^x + \dfrac{a_k}{k-1}{\cdot}\dint\dfrac{e^x}{x^{k-1}}dx = \dotsc =  
+	$$
+	$$
+		= -\dfrac{a_k}{(k-1)x^{k-1}}{\cdot}e^x  -\dfrac{a_k}{(k-1)(k-2)x^{k-2}}{\cdot}e^x - \dfrac{a_k}{(k-1)!}{\cdot}\dfrac{e^x}{x} + \dfrac{a_k}{(k-1)!}\dint\dfrac{e^x}{x}dx
+	$$
+	Соответственно, чтобы получить интеграл от элементарных функций необходимо, чтобы коэффициенты при $\li(e^x)$ были равны нулю, тогда:
+	$$
+		\ddsum{k = 0}{n}\dfrac{a_k}{x^k}e^xdx = a_0 e^x -\ddsum{k = 1}{n}\ddsum{j = 1}{k-1}\dfrac{a_k}{(k-1){\cdot}\dotsc{\cdot}(k-j)} + \ddsum{k = 1}{n}\dfrac{a_k}{(k-1)!}\li(e^x), \, \dint \dfrac{e^x}{x}dx = \li(e^x) + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \ddsum{k = 1}{n}\dfrac{a_k}{(k-1)!}\li(e^x) = 0  \Leftrightarrow \ddsum{k = 1}{n}\dfrac{a_k}{(k-1)!} = 0
+	$$
+\end{proof}
+
+
+\begin{problem}(\textbf{Д2093})
+	$$
+		\dint \left(1 - \dfrac{2}{x}\right)^2 e^x dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \left(1 - \dfrac{2}{x}\right)^2 e^x dx = \dint e^x dx - \dint \dfrac{4e^x}{x}dx + \dint \dfrac{4e^x}{x^2}dx = e^x - 4\dint \dfrac{e^x}{x}dx - 4\dfrac{e^x}{x} + 4\dint \dfrac{e^x}{x}dx = e^x -\dfrac{4e^x}{x} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2094})
+	$$
+		\dint \left(1 - \dfrac{1}{x}\right) e^{-x} dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \left(1 - \dfrac{1}{x}\right) e^{-x} dx = -e^{-x} - \dint\dfrac{e^{-x}}{x}dx = -e^{-x} - \li(e^{-x}) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2095})
+	$$
+		\dint \dfrac{e^{2x}}{x^2 - 3x + 2}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{e^{2x}}{x^2 - 3x + 2}dx = \dint\dfrac{e^{2x}}{(x- 1)(x-2)}dx
+	$$
+	$$
+		\dfrac{1}{(x - 1)(x - 2)} = \dfrac{A}{x- 1} + \dfrac{B}{x- 2} = \dfrac{Ax - 2A + Bx - B}{(x-1)(x-2)} \Rightarrow A = - B, \, A = - 1, \, B = 1 \Rightarrow
+	$$
+	$$
+		\Rightarrow  \dint\dfrac{e^{2x}}{(x- 1)(x-2)}dx = \dint \dfrac{e^{2x}}{x - 2}dx - \dint \dfrac{e^{2x}}{x - 1}dx = e^4 \dint \dfrac{e^{2(x - 2)}}{x - 2}d(x-2) - e^2 \dfrac{e^{2(x - 1)}}{x - 1}d(x-1) =
+	$$
+	$$
+		= e^4\li(e^{2(x-2)}) - e^2\li(e^{2(x-1)}) + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д2096})
+	$$
+		\dint \dfrac{xe^x}{(x+1)^2}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{xe^x}{(x+1)^2}dx = \dint \dfrac{(x+1)e^x}{(x+1)^2}dx - \dint \dfrac{e^x}{(x+1)^2}dx = \dfrac{1}{e}\dint \dfrac{e^{x + 1}}{x+1}d(x +1) + \dfrac{e^x}{x +1} - \dint \dfrac{e^x}{x+1}dx=
+	$$
+	$$
+		=e^{-1}\li(e^{x+1}) + \dfrac{e^x}{x + 1} - e^{-1}\li(e^{x + 1}) + C = \dfrac{e^x}{x + 1} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2097})
+	$$
+		\dint \dfrac{x^4e^{2x}}{(x-2)^2}dx
+	$$
+\end{problem}
+\begin{proof}
+	Разделим в столбик $x^4$ на $(x-2)^2$, тогда получим:
+	$$
+		x^4 = (x^2 + 4x + 12)(x-2)^2 + 32x - 48 = (x^2 + 4x + 12)(x-2)^2 + 32(x-2) + 16 \Rightarrow
+	$$
+	$$
+		\dint \dfrac{x^4e^{2x}}{(x-2)^2}dx = \dint (x^2 + 4x + 12)e^{2x}dx + 32\dint\dfrac{e^{2x}}{x - 2}dx + 16 \dint \dfrac{e^{2x}}{(x - 2)^2}dx= 
+	$$
+	$$
+		= e^{2x}\left(\dfrac{x^2 + 4x + 12}{2} - \dfrac{2x +4}{4} + \dfrac{2}{8}\right) + 32e^{4}\li\left(e^{2x - 4}\right) + 16 \dint \dfrac{e^{2x}}{(x - 2)^2}dx= 
+	$$
+	$$
+		=e^{2x}\left(\dfrac{x^2}{2} + \dfrac{3x}{2} + \dfrac{21}{4}\right) + 32e^{4}\li\left(e^{2x - 4}\right) - 16 \dfrac{e^{2x}}{x - 2} + 32 \dint\dfrac{e^{2x}dx}{x -2} = 
+	$$
+	$$
+		= \dfrac{e^{2x}}{2}\left(x^2 + 3x + \dfrac{21}{2}\right) + 64e^{4}\li\left(e^{2x - 4}\right)- 16 \dfrac{e^{2x}}{x - 2} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2098})
+	$$
+		\dint \ln^n(x)dx 
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \ln^n(x)dx = x\ln^n(x) - n\dint \ln^{n-1}(x)dx = x\ln^n(x) - nx\ln^{n-1}(x) + n(n-1)\dint \ln^{n-2}(x)dx =
+	$$
+	$$
+		=\dotsc = x(\ln^n(x) - n\ln^{n-1}(x) + n(n-1)\ln^{n-2}(x) - \dotsc + (-1)^{n-1}n!\ln(x) + (-1)^n n!) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2099})
+	$$
+		\dint x^3\ln^3(x)dx 
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x^3\ln^3(x)dx = \dfrac{x^4}{4}\ln^3(x) - \dfrac{3}{4}\dint x^3 \ln^2(x) dx = \dfrac{x^4}{4}\ln^3(x) - \dfrac{3}{16}x^4\ln^2(x) + \dfrac{6}{16}\dint x^3 \ln(x) dx =
+	$$
+	$$
+		= \dfrac{x^4}{4}\ln^3(x) - \dfrac{3}{16}x^4\ln^2(x) + \dfrac{6}{64}x^4\ln(x) - \dfrac{6}{64}\dint x^3dx = \dfrac{x^4}{4}\left(\ln^3(x) - \dfrac{3}{4}\ln^2(x) + \dfrac{3}{8}\ln(x) -\dfrac{3}{32}\right) + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2100})
+	$$
+		\dint \left(\dfrac{\ln(x)}{x}\right)^3dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \left(\dfrac{\ln(x)}{x}\right)^3dx = -\dfrac{1}{2}\dfrac{\ln^3(x)}{x^2} + \dfrac{1}{2}\dint 3\dfrac{\ln^2(x)}{x^3}dx = -\dfrac{\ln^3(x)}{2x^2} - \dfrac{3}{4}\dfrac{\ln^2(x)}{x^2} + \dfrac{3}{2}\dint \dfrac{\ln(x)}{x^3}dx =
+	$$
+	$$
+		= -\dfrac{\ln^3(x)}{2x^2} - \dfrac{3}{4}\dfrac{\ln^2(x)}{x^2}- \dfrac{3}{4}\dfrac{\ln(x)}{x^2} + \dfrac{3}{4}\dint\dfrac{1}{x^3}dx= -\dfrac{\ln^3(x)}{2x^2} - \dfrac{3}{4}\dfrac{\ln^2(x)}{x^2}- \dfrac{3}{4}\dfrac{\ln(x)}{x^2} - \dfrac{3}{8x^2} + C
+ 	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2101})
+	$$
+		\dint \ln\left[(x+a)^{x + a}(x + b)^{x + b}\right]{\cdot}\dfrac{dx}{(x+a)(x+b)}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \ln\left[(x+a)^{x + a}(x + b)^{x + b}\right]{\cdot}\dfrac{dx}{(x+a)(x+b)} = \dint \dfrac{\ln(x+a)dx}{x + b} + \dint \dfrac{\ln(x+b)dx}{x + a}
+	$$
+	$$
+		\dint \dfrac{\ln(x+a)dx}{x + b} = \ln(x+a)\ln(x+ b) - \dint\dfrac{\ln(x+b)dx}{x + a} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \ln\left[(x+a)^{x + a}(x + b)^{x + b}\right]{\cdot}\dfrac{dx}{(x+a)(x+b)} = \ln(x+a)\ln(x+b) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2102})
+	$$
+		\dint \ln^2(x + \sqrt{1 +x^2})dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \ln^2(x + \sqrt{1 +x^2})dx = x \ln^2(x + \sqrt{1 +x^2}) - \dint 2\dfrac{x\left(1 + \tfrac{x}{\sqrt{1 + x^2}}\right)}{x + \sqrt{1 + x^2}}{\cdot}\ln(x + \sqrt{1 +x^2})dx
+	$$
+	$$
+		\dint 2\dfrac{x\left(1 + \tfrac{x}{\sqrt{1 + x^2}}\right)}{x + \sqrt{1 + x^2}}{\cdot}\ln(x + \sqrt{1 +x^2})dx = 2\dint \dfrac{x\left( \tfrac{\sqrt{1+x^2} + x}{\sqrt{1 + x^2}}\right)}{x + \sqrt{1 + x^2}}{\cdot}\ln(x + \sqrt{1 +x^2})dx = 
+	$$
+	$$
+		= 2 \dint \dfrac{x}{\sqrt{1 + x^2}}\ln(x + \sqrt{1 + x^2})dx = 2\sqrt{1 + x^2}\ln(x + \sqrt{1 + x^2}) - 2\dint \dfrac{\sqrt{1 + x^2}}{x + \sqrt{1 +x^2}}{\cdot}\dfrac{x + \sqrt{1 + x^2}}{\sqrt{1 + x^2}}dx =
+	$$
+	$$
+		=	2\sqrt{1 + x^2}\ln(x + \sqrt{1 + x^2}) - 2x + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \ln^2(x + \sqrt{1 +x^2})dx = x \ln^2(x + \sqrt{1 +x^2}) - 2\sqrt{1 + x^2}\ln(x + \sqrt{1 + x^2}) + 2x + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2103})
+	$$
+		\dint \ln(\sqrt{1-x} + \sqrt{1+x})dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \ln(\sqrt{1-x} + \sqrt{1+x})dx = x \ln(\sqrt{1-x} + \sqrt{1+x}) - \dint \dfrac{x}{\sqrt{1-x} + \sqrt{1 +x}}{\cdot}\left(-\dfrac{1}{2\sqrt{1-x}} + \dfrac{1}{2\sqrt{1+x}}\right)dx
+	$$
+	$$
+		\dint \dfrac{x}{\sqrt{1-x} + \sqrt{1 +x}}{\cdot}\left(-\dfrac{1}{2\sqrt{1-x}} + \dfrac{1}{2\sqrt{1+x}}\right)dx = \dint x\dfrac{\sqrt{1 - x} - \sqrt{1+x}}{2(\sqrt{1-x} + \sqrt{1+x})\sqrt{1-x^2}}dx =
+	$$
+	$$
+		=	\dint x\dfrac{1 - x - 2\sqrt{1 -x^2} + 1 + x}{2(1 -x - 1 -x)\sqrt{1-x^2}}dx = \dint \dfrac{2(1 - \sqrt{1-x^2})}{-4\sqrt{1-x^2}}dx = - \dfrac{1}{2}\arcsin(x) + \dfrac{1}{2}x+ C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \ln(\sqrt{1-x} + \sqrt{1+x})dx =  x \ln(\sqrt{1-x} + \sqrt{1+x})  + \dfrac{1}{2}\arcsin(x) - \dfrac{1}{2}x+ C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2104})
+	$$
+		\dint \dfrac{\ln{x}}{(1 + x^2)^{3/2}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Для начала рассмотрим интеграл:
+	$$
+		\dint \dfrac{dx}{(1 +x^2)\sqrt{1 +x^2}} \Rightarrow 1 + x^2 = \dfrac{1}{t} \Rightarrow t = \dfrac{1}{1 + x^2} \in (0,1], \, x = \sqrt{\dfrac{1}{t} - 1} \Rightarrow dx = \dfrac{-\tfrac{1}{t^2}dt}{2\sqrt{\tfrac{1}{t} - 1}} \Rightarrow
+	$$
+	$$
+		\Rightarrow 	\dint \dfrac{dx}{(1 +x^2)\sqrt{1 +x^2}} = \dint \dfrac{-t\sqrt{t}dt}{2t^2\sqrt{\tfrac{1}{t}- 1}} = \dint \dfrac{d(1-t)}{2\sqrt{1 - t}} = \sqrt{1-t} + C = \sqrt{\dfrac{x^2}{1+x^2}} + C = \dfrac{x}{\sqrt{1 + x^2}} + C
+	$$
+	Где мы возьмем $x > 0$, поскольку исходный интеграл определён при $x > 0$.
+	$$
+		\dint \dfrac{\ln{x}}{(1 + x^2)^{3/2}}dx = \dfrac{x{\cdot}\ln{x}}{\sqrt{1 + x^2}} - \dint \dfrac{1}{\sqrt{1 + x^2}}dx = \dfrac{x{\cdot}\ln{x}}{\sqrt{1 + x^2}} - \ln(x + \sqrt{x^2 + 1}) + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2105})
+	$$
+		\dint x\arctg(x+ 1)dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x\arctg(x+ 1)dx = \dfrac{x^2}{2}\arctg(1 + x) - \dint \dfrac{x^2}{2(1 + (1 + x)^2)}dx
+	$$
+	$$
+		\dint \dfrac{x^2}{2(1 + (1 + x)^2)}dx = \dint \dfrac{x^2 + 2x + 2}{2(2 + 2x + x^2)}dx  - \dfrac{1}{2}\dint\dfrac{d(x^2 + 2x + 2)}{x^2 + 2x + 2}dx = \dfrac{x}{2} - \dfrac{1}{2}\ln(x^2 + 2x + 2) + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2106})
+	$$
+		\dint \sqrt{x}\arctg{\sqrt{x}}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sqrt{x}\arctg{\sqrt{x}}dx = \dfrac{2x^{3/2}}{3}\arctg{\sqrt{x}} - \dint \dfrac{2x^{3/2}}{3}{\cdot}\dfrac{\tfrac{1}{2\sqrt{x}}}{1 + x}dx = \dfrac{2x^{3/2}}{3}\arctg{\sqrt{x}} - \dfrac{1}{3}\dint \dfrac{x}{1 + x}dx 
+	$$
+	$$
+		\dfrac{1}{3}\dint \dfrac{x}{1 + x}dx  = \dfrac{1}{3}\dint dx - \dfrac{1}{3}\dint \dfrac{1}{1 + x}dx = \dfrac{x}{3} - \dfrac{\ln(1+x)}{3} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \sqrt{x}\arctg{\sqrt{x}}dx = \dfrac{2x^{3/2}}{3}\arctg{\sqrt{x}}- \dfrac{x}{3} + \dfrac{\ln(1+x)}{3} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2107})
+	$$
+		\dint x \arcsin(1-x)dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x \arcsin(1-x)dx = \dfrac{x^2}{2}\arcsin(1-x) + \dfrac{1}{2}\dint \dfrac{x^2}{\sqrt{1 - (1-x)^2}}dx
+	$$
+	Сделаем замену $t = 1 - x$, тогда:
+	$$
+		\dint \dfrac{x^2}{\sqrt{1 - (1-x)^2}}dx  = -\dint \dfrac{1 - 2t + t^2}{\sqrt{1 - t^2}}dt = \dint \dfrac{1 - t^2}{\sqrt{1-t^2}}dt - 2\dint\dfrac{dt}{\sqrt{1 - t^2}} + 2\dint\dfrac{tdt}{\sqrt{1-t^2}} = 
+	$$
+	$$
+		= \dint \sqrt{1 - t^2}dt - 2\arcsin(t) - 2\sqrt{1-t^2}  = \dfrac{t}{2}\sqrt{1 - t^2} + \dfrac{1}{2}\arcsin(t) - 2\arcsin(t) - 2\sqrt{1-t^2} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint x \arcsin(1-x)dx = \dfrac{3 -x}{4}\sqrt{2x - x^2} + \dfrac{2x^2 - 3}{4}\arcsin(1-x) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2108})
+	$$
+		\dint \arcsin{(\sqrt{x})}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \arcsin{(\sqrt{x})}dx = x\arcsin{(\sqrt{x})} - \dint \dfrac{x}{2\sqrt{x}\sqrt{1-x}}dx 
+	$$
+	$$
+		\dint \dfrac{x}{2\sqrt{x}\sqrt{1-x}}dx  = \dint\dfrac{\sqrt{x}}{2\sqrt{1-x}}dx = |t = \sqrt{x}, \, x = t^2, \, dx = 2tdt| = \dint \dfrac{t 2tdt}{2\sqrt{1 - t^2}} = \dint \dfrac{t^2}{\sqrt{1-t^2}}dt = 
+	$$
+	$$
+		=	-\dint \dfrac{1-t^2}{\sqrt{1-t^2}}dt + \dint \dfrac{1}{\sqrt{1 - t^2}}dt = - \dfrac{1}{2}t\sqrt{1 - t^2} - \dfrac{1}{2}\arcsin(t) + \arcsin(t) + C = 
+	$$
+	$$
+		=	-\dfrac{1}{2}\sqrt{x - x^2} + \dfrac{1}{2}\arcsin(\sqrt{x}) + C \Rightarrow \dint \arcsin{(\sqrt{x})}dx = \left(x - \dfrac{1}{2}\right)\arcsin(\sqrt{x}) - \dfrac{1}{2} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2109})
+	$$
+		\dint x\arccos\dfrac{1}{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x\arccos\dfrac{1}{x}dx = \dfrac{x^2}{2}\arccos\dfrac{1}{x} - \dfrac{1}{2}\dint \dfrac{x^2 \tfrac{1}{x^2}}{\sqrt{1 - \tfrac{1}{x^2}}}dx
+	$$
+	$$
+		\dfrac{1}{2}\dint \dfrac{x^2 \tfrac{1}{x^2}}{\sqrt{1 - \tfrac{1}{x^2}}}dx = \sgn(x)\dfrac{1}{2}\dint \dfrac{xdx}{\sqrt{x^2-1}} = \sgn(x)\dfrac{1}{4}\dint \dfrac{d(x^2 - 1)}{\sqrt{x^2 - 1}} = \sgn(x)\dfrac{1}{2}\sqrt{x^2 - 1} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint x\arccos\dfrac{1}{x}dx = \dfrac{x^2}{2}\arccos\dfrac{1}{x} - \sgn(x)\dfrac{1}{2}\sqrt{x^2 - 1} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2111})
+	$$
+		\dint \dfrac{\arccos{x}}{(1 - x^2)^{3/2}}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{\arccos{x}}{(1 - x^2)^{3/2}}dx = \dfrac{x\arccos{x}}{\sqrt{1 - x^2}} + \dint \dfrac{xdx}{\sqrt{1 - x^2}\sqrt{1 - x^2}} = \dfrac{x\arccos{x}}{\sqrt{1 - x^2}}  - \dfrac{1}{2} \dint \dfrac{d(1 - x^2)}{1 -x^2}=
+	$$
+	$$
+		=	\dfrac{x\arccos{x}}{\sqrt{1 - x^2}} - \dfrac{1}{2}\ln(1 -x^2) + C = \dfrac{x\arccos{x}}{\sqrt{1 - x^2}} - \ln(\sqrt{1 - x^2}) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2112})
+	$$
+		\dint \dfrac{x\arccos{x}}{(1 - x^2)^{3/2}}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{x\arccos{x}}{(1 - x^2)^{3/2}}dx = \dfrac{\arccos{x}}{\sqrt{1 - x^2}} + \dint \dfrac{dx}{\sqrt{1 - x^2}\sqrt{1 - x^2}} = \dfrac{\arccos{x}}{\sqrt{1 - x^2}}  +  \dint \dfrac{dx}{1 -x^2} = \dfrac{\arccos{x}}{\sqrt{1 - x^2}}  + \dfrac{1}{2}\ln\dfrac{1 + x}{1-x} + C
+	$$
+
+\end{proof}
+
+\begin{problem}(\textbf{Д2114})
+	$$
+		\dint x \ln\dfrac{1 + x}{1-x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x \ln\dfrac{1 + x}{1-x}dx = \dfrac{x^2}{2}\ln\dfrac{1 + x}{1-x} - \dint \dfrac{x^2}{2}{\cdot}\dfrac{2}{1 -x^2}dx 
+	$$
+	$$
+		\dint \dfrac{x^2}{2}{\cdot}\dfrac{2}{1 -x^2}dx  =-\dint dx + \dint\dfrac{1}{1-x^2}dx = - x + \dfrac{1}{2}\ln\dfrac{1+ x}{1 - x} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint x \ln\dfrac{1 + x}{1-x}dx = \left(\dfrac{x^2}{2} - \dfrac{1}{2}\right)\ln\dfrac{1 + x}{1-x}  + x + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2115})
+	$$
+		\dint \dfrac{\ln(x + \sqrt{1 + x^2})dx}{(1 + x^2)^{3/2}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{\ln(x + \sqrt{1 + x^2})dx}{(1 + x^2)^{3/2}} = \dfrac{x\ln(x + \sqrt{1 + x^2})}{\sqrt{1+ x^2}} - \dint \dfrac{x}{\sqrt{1 + x^2}}{\cdot}\dfrac{1}{\sqrt{1 + x^2}}dx = 
+	$$
+	$$	
+		=\dfrac{x\ln(x + \sqrt{1 + x^2})}{\sqrt{1+ x^2}} - \dfrac{1}{2}\dint \dfrac{d(x^2 + 1)}{1 + x^2} = \dfrac{x\ln(x + \sqrt{1 + x^2})}{\sqrt{1+ x^2}} - \dfrac{1}{2}\ln(1 + x^2) +C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2116})
+	$$
+		\dint \sh^2(x)\ch^2(x)dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sh^2(x)\ch^2(x)dx = \dfrac{1}{8}\dint \sh^2(2x) d(2x) = \dfrac{1}{8}\dint \dfrac{e^{2u} -2 + e^{-2u}}{4}du = \dfrac{e^{2u}}{64} - \dfrac{u}{16} - \dfrac{e^{-2u}}{64} + C= 
+	$$
+	$$
+		=	\dfrac{e^{4x}}{64} - \dfrac{2x}{16} - \dfrac{e^{-4x}}{64} + C =  \dfrac{\sh(4x)}{32} - \dfrac{x}{8} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2117})
+	$$
+		\dint \ch^4{x} dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \ch^4{x} dx = \dint \dfrac{(1 + \ch(2x))^2}{4}dx = \dint \dfrac{1}{4} + \dfrac{1}{2}\ch(2x) + \dfrac{1}{4}\ch^2(2x)dx = \dfrac{1}{4}x + \dfrac{1}{4}\sh{(2x)} + \dfrac{1}{4}\dint \ch^2(2x)dx
+	$$
+	$$
+		\dint \ch^2(2x)dx = \dfrac{1}{2}\dint (1 + \ch(4x))dx = \dfrac{x}{2} + \dfrac{1}{8}\sh(4x) + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \ch^4{x} dx = \dfrac{3}{8}x + \dfrac{1}{4}\sh{(2x)} + \dfrac{1}{32}\sh(4x) + C 
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2118})
+	$$
+		\dint \sh^3{x} dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sh^3{x} dx = \dint \sh^2(x)d(\ch(x)) = \dint (\ch^2x - 1)d\ch(x) = \dfrac{\ch^3x}{3} - \ch{x} + C
+	$$
+\end{proof}
+
+
+\begin{problem}(\textbf{Д2119})
+	$$
+		\dint \sh{x}\sh{2x}\sh{3x}dx
+	$$
+\end{problem}
+\begin{proof}
+	Рассмотрим произведение $\sh{x}\sh{3x}$:
+	$$
+		\sh{x}\sh{3x} = \dfrac{e^{x} - e^{-x}}{2}{\cdot}\dfrac{e^{3x} - e^{-3x}}{2} = \dfrac{1}{4}(e^{4x} -e^{2x} - e^{-2x} + e^{-4x}) = \dfrac{1}{2}(\ch{4x} - \ch{2x})
+	$$
+	$$
+		\dint \sh{x}\sh{2x}\sh{3x}dx = \dint \dfrac{1}{2}(\ch{4x} - \ch{2x})\sh{2x}dx = \dfrac{1}{2}\dint\ch{4x}\sh{2x}dx - \dfrac{1}{2}\dint\ch{2x}\sh{2x}dx
+	$$
+	Рассмотрим произведение $\ch{4x}\sh{2x}$:
+	$$
+		\ch{4x}\sh{2x} = \dfrac{e^{4x} + e^{-4x}}{2}{\cdot}\dfrac{e^{2x} - e^{-2x}}{2} = \dfrac{1}{4}(e^{6x} - e^{2x} + e^{-2x} - e^{-6x}) = \dfrac{1}{2}(\sh{6x} - \sh{2x})
+	$$
+	$$
+		\dfrac{1}{2}\dint\ch{4x}\sh{2x}dx = \dfrac{1}{4}\dint \sh{6x} - \sh{2x}dx = \dfrac{1}{24}\ch{6x} - \dfrac{1}{8}\ch{2x}  + C
+	$$
+	$$
+		\dfrac{1}{2}\dint\ch{2x}\sh{2x}d = \dfrac{1}{4}\dint \sh{4x}dx = \dfrac{1}{16}\ch{4x} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \sh{x}\sh{2x}\sh{3x}dx = \dfrac{1}{24}\ch{6x} - \dfrac{1}{8}\ch{2x} - \dfrac{1}{16}\ch{4x} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2120})
+	$$
+		\dint \th{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \th{x}dx = \dint \dfrac{\sh{x}}{\ch{x}}dx = \dint \dfrac{d(\ch{x})}{\ch{x}} = \ln(\ch{x}) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2121})
+	$$
+		\dint \cth^2{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \cth^2{x}dx = \dint \dfrac{\ch^2{x}}{\sh^2{x}}dx= \dint \dfrac{1 + \sh^2{x}}{\sh^2{x}}dx = x + \dint\dfrac{1}{\sh^2{x}}dx = x - \cth{x} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2122})
+	$$
+		\dint \sqrt{\th{x}}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sqrt{\th{x}}dx = \dint \sqrt{\dfrac{e^{x} - e^{-x}}{e^{x} + e^{-x}}}dx = \dint \dfrac{e^{x} - e^{-x}}{\sqrt{e^{2x} - e^{-2x}}}dx = \dint \dfrac{e^{2x}dx}{\sqrt{e^{4x} - 1}} - \dint \dfrac{e^{-2x}dx}{\sqrt{1 - e^{-4x}}}
+	$$
+	$$
+		\dint \dfrac{e^{2x}dx}{\sqrt{e^{4x} - 1}} = |u = e^{2x}, \, du = 2e^{2x}dx| = \dfrac{1}{2}\dint \dfrac{du}{\sqrt{u^2 - 1}} = \dfrac{1}{2}\ln(e^{2x} + \sqrt{e^{4x} - 1}) + C
+	$$
+	$$
+		\dint \dfrac{e^{-2x}dx}{\sqrt{1 - e^{-4x}}} = |u = e^{-2x}, \, du = -2e^{-2x}dx| = -\dfrac{1}{2}\dint\dfrac{du}{\sqrt{1 - u^2}} = -\dfrac{1}{2}\arcsin(e^{-2x}) + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \sqrt{\th{x}}dx = \dfrac{1}{2}\left(\ln(e^{2x} + \sqrt{e^{4x} - 1}) + \arcsin(e^{-2x}) \right) + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2123})
+	$$
+		\dint \dfrac{dx}{\sh{x} + 2\ch{x}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{dx}{\sh{x} + 2\ch{x}} = \dint \dfrac{2dx}{e^x - e^{-x} + 2e^{x} + 2e^{-x}} = \dint \dfrac{2e^xdx}{3e^{2x} + 1} =|t = e^{x}, \, dt = e^x dx|= 
+	$$
+	$$
+		= \dint\dfrac{2dt}{3t^2 + 1} = \dfrac{2}{3} \dint \dfrac{dt}{t^2 + \tfrac{1}{3}} = \dfrac{2}{\sqrt{3}}\arctg\left(e^x\sqrt{3}\right) + C
+	$$
+	Преобразуем, чтобы получить ответ:
+	$$
+		\dfrac{2}{\sqrt{3}}\arctg\left(e^x\sqrt{3}\right) + C = \dfrac{2}{\sqrt{3}}\arctg\left(e^x\sqrt{3}\right) +  \dfrac{2}{\sqrt{3}}\arctg\left(-\dfrac{1}{\sqrt{3}}\right) + C  =
+	$$
+	$$	
+		= \dfrac{2}{\sqrt{3}}\arctg\left(\dfrac{\sqrt{3}e^x - \tfrac{1}{\sqrt{3}}}{1 - \sqrt{3}e^x\tfrac{-1}{\sqrt{3}}}\right) + C = \dfrac{2}{\sqrt{3}}\arctg\left(\dfrac{3e^x - 1}{\sqrt{3}(1 + e^x)}\right) + C = \dfrac{2}{\sqrt{3}}\arctg\left(\dfrac{1 + 2\th\tfrac{x}{2}}{\sqrt{3}}\right) + C
+	$$
+	
+	Другой способ, через замену $t = \th\tfrac{x}{2}$, смотри в семинаре $6$.
+\end{proof}
+
+\begin{problem}(\textbf{Д2123.1})
+	$$
+		\dint \dfrac{dx}{\sh^2x-4\sh{x}\ch{x} + 9\ch^2{x}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{dx}{\sh^2x-4\sh{x}\ch{x} + 9\ch^2{x}} = \dint \dfrac{dx}{(\sh{x} - 2\ch{x})^2 + 5\ch^2{x}} = \dint \dfrac{dx}{\ch^2{x}((\th{x} - 2)^2 + 5)} =
+	$$
+	$$
+		= |t = \th{x}, \, dt = \ch^{-2}{x}dx| =	\dint \dfrac{dt}{(t - 2)^2 + 5} = \dfrac{1}{\sqrt{5}}\arctg\left(\dfrac{t-2}{\sqrt{5}}\right) + C = \dfrac{1}{\sqrt{5}}\arctg\left(\dfrac{\th{x}-2}{\sqrt{5}}\right) + C 
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2123.2})
+	$$
+		\dint \dfrac{dx}{0.1 + \ch{x}}
+	$$
+\end{problem}
+\begin{proof}
+	Сделаем замену $t = \th\tfrac{x}{2}$, тогда:
+	$$
+		\sh{x} = \dfrac{2t}{1-t^2}, \, \ch{x} = \dfrac{1 + t^2}{1 - t^2}, \, dx = \dfrac{2dt}{1- t^2}
+	$$
+	$$
+		\dint \dfrac{dx}{0.1 + \ch{x}} = \dint \dfrac{2dt}{(1-t^2)0.1  + 1 + t^2} = 2\dint \dfrac{dt}{0.9t^2 + 1.1} = \dfrac{2}{0.9}\dint \dfrac{dt}{t^2 + \tfrac{1.1}{0.9}} = 
+	$$
+	$$
+		= \dfrac{20}{9}{\cdot}\dfrac{3}{\sqrt{11}}\arctg\left(\dfrac{3t}{\sqrt{11}}\right) + C = \dfrac{20}{3\sqrt{11}}\arctg\left(\dfrac{3\th\tfrac{x}{2}}{\sqrt{11}}\right) + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2123.3})
+	$$
+ 		\dint \dfrac{\ch{x}dx}{3\sh{x} - 4\ch{x}}
+	$$
+\end{problem}
+\begin{proof}
+	По аналогии с задачей $2042$, пусть $f(x) = a\sh{x} + b\ch{x} \Rightarrow f'(x) = a\ch{x} + b\sh{x}$.
+	$$
+		\begin{vmatrix}
+			a & b\\
+			b & a
+		\end{vmatrix} = a^2 - b^2
+	$$
+	Если $a^2 \neq b^2$, то $f(x)$ и $f'(x)$ будут линейно независимы. Тогда:
+	$$
+		\dint \dfrac{a_1\sh{x} + b_1\ch{x}}{a\sh{x} + b\ch{x}}dx = \dint \dfrac{pf(x) + qf'(x)}{f(x)}dx = px + q\ln|f(x)| + C
+	$$
+	В нашем случае, $a = 3, \, b = -4, \, a_1 = 0, \, b_1 = 1$, тогда:
+	$$
+		\begin{cases}
+			pa + qb = a_1\\
+			pb + qa = b_1
+		\end{cases} \Rightarrow
+		\begin{cases}
+			p3 -4q = 0\\
+			-4p + 3q = 1
+		\end{cases} \Leftrightarrow
+		\begin{cases}
+			p = \tfrac{4}{3}q\\
+			p = q - \tfrac{1}{7}
+		\end{cases} \Leftrightarrow
+		\begin{cases}
+			p = -\tfrac{4}{7}\\
+			q = -\tfrac{3}{7}
+		\end{cases} \Rightarrow 
+	$$
+	$$
+		\Rightarrow \dint \dfrac{\ch{x}dx}{3\sh{x} - 4\ch{x}} = -\dfrac{4x}{7} - \dfrac{3}{7}\ln|3\sh{x} - 4\ch{x}| + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2124})
+	$$
+		\dint \sh{ax}\sin{(bx)}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sh{ax}\sin{(bx)}dx = \dfrac{1}{2}\dint e^{ax}\sin{(bx)}dx - \dfrac{1}{2}\dint e^{-ax}\sin{(bx)}dx 
+	$$
+	Воспользуемся результатом ДЗ$2$:
+	$$
+		\dint e^{a x}\sin{(bx)}dx = \dfrac{a}{a^2 + b^2}e^{a x}\sin{(bx)} - \dfrac{b}{a^2 + b^2}e^{a x}\cos{(bx)} + C
+	$$
+	Тогда:
+	$$
+		\dfrac{1}{2}\dint e^{ax}\sin{(bx)}dx - \dfrac{1}{2}\dint e^{-ax}\sin{(bx)}dx  = 
+	$$
+	$$	
+		= \dfrac{a}{2(a^2 + b^2)}e^{a x}\sin{(bx)} - \dfrac{b}{2(a^2 + b^2)}e^{a x}\cos{(bx)} - \dfrac{-a}{2(a^2 + b^2)}e^{-a x}\sin{(bx)} + \dfrac{b}{2(a^2 + b^2)}e^{-a x}\cos{(bx)} + C =
+	$$
+	$$
+		=\dfrac{a\ch{ax}}{a^2 + b^2}\sin{(bx)} - \dfrac{b\sh{ax}}{a^2 + b^2}\cos{(bx)} + C
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д2125})
+	$$
+		\dint \sh{ax}\cos{(bx)}dx
+	$$
+\end{problem}
+\begin{proof}
+	По аналогии с предыдущей задачей:
+	$$
+		\dint \sh{ax}\cos{(bx)}dx = \dfrac{1}{2}\dint e^{ax}\cos{(bx)}dx - \dfrac{1}{2}\dint e^{-ax}\cos{(bx)}dx 
+	$$
+	Воспользуемся результатом семинара $2$:
+	$$
+		\dint e^{a x}\cos{(bx)}dx = \dfrac{a}{a^2 + b^2}e^{a x}\cos{(bx)} + \dfrac{b}{a^2 + b^2}e^{a x}\sin{(bx)} + C
+	$$
+	Тогда:
+	$$
+		\dfrac{1}{2}\dint e^{ax}\cos{(bx)}dx - \dfrac{1}{2}\dint e^{-ax}\cos{(bx)}dx  = 
+	$$
+	$$	
+		= \dfrac{a}{2(a^2 + b^2)}e^{a x}\cos{(bx)} + \dfrac{b}{2(a^2 + b^2)}e^{a x}\sin{(bx)} - \dfrac{-a}{2(a^2 + b^2)}e^{-a x}\cos{(bx)} - \dfrac{b}{2(a^2 + b^2)}e^{-a x}\sin{(bx)} + C =
+	$$
+	$$
+		=\dfrac{a\ch{ax}}{a^2 + b^2}\cos{(bx)} + \dfrac{b\sh{ax}}{a^2 + b^2}\sin{(bx)} + C
+	$$
+\end{proof}
+
+
+\begin{problem}(\textbf{Д2126})
+	$$
+		\dint \dfrac{dx}{x^6(1 +x^2)}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{dx}{x^6(1 +x^2)} = \dint \dfrac{(x^2 + 1) - x^2}{x^6(1 + x^2)}dx = \dint \dfrac{dx}{x^6} - \dint \dfrac{dx}{x^4(1 + x^2)} = -\dfrac{1}{5x^5} - \dint \dfrac{dx}{x^4} + \dint\dfrac{x^2dx}{x^4(1  + x^2)} =
+	$$
+	$$
+		= -\dfrac{1}{5x^5} + \dfrac{1}{3x^3} + \dint\dfrac{dx}{x^2(1 + x^2)} = -\dfrac{1}{5x^5} + \dfrac{1}{3x^3} + \dint\dfrac{dx}{x^2} - \dint\dfrac{dx}{ 1 + x^2} = 
+	$$
+	$$
+		= -\dfrac{1}{5x^5} + \dfrac{1}{3x^3} - \dfrac{1}{x} - \arctg(x) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2127})
+	$$
+		\dint \dfrac{x^2dx}{(1-x^2)^3}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{x^2dx}{(1-x^2)^3} = \dint \dfrac{ 1 - 1 + x^2}{(1-x^2)^3}dx = \dint \dfrac{dx}{(1 -x^2)^3} - \dint \dfrac{dx}{(1 - x^2)^2}
+	$$
+	$$
+	= -\dfrac{1}{5x^5} + \dfrac{1}{3x^3} + \dint\dfrac{dx}{x^2(1 + x^2)} = -\dfrac{1}{5x^5} + \dfrac{1}{3x^3} + \dint\dfrac{dx}{x^2} - \dint\dfrac{dx}{ 1 + x^2} = 
+	$$
+	$$
+	= -\dfrac{1}{5x^5} + \dfrac{1}{3x^3} - \dfrac{1}{x} - \arctg(x) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2128})
+	$$
+		\dint \dfrac{dx}{1 + x^4 + x^8}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		1 + x^4 + x^8 = x^8 + 2x^4 + 1 - x^4 = (x^4 + 1)^2 - x^4 = (x^4 + 1 - x^2)(x^4 + x^2 + 1)
+	$$
+	$$
+		x^4 + x^2 + 1 = x^4 + 2x^2 + 1 - x^2 = (x^2 + 1)^2 - x^2 = (x^2 - x + 1)(x^2 + x + 1)
+	$$
+	$$
+		x^4 - x^2 + 1 = x^4 + 2x^2 + 1 - 3x^2 = (x^2 + 1)^2 - 3x^2 = (x^2 - \sqrt{3}x + 1)(x^2 + \sqrt{3}x + 1)
+	$$
+	$$
+		\dfrac{1}{(x^4 + 1 - x^2)(x^4 + x^2 + 1)} = \dfrac{Ax^2 + B}{x^4 + 1 - x^2} + \dfrac{Cx^2 + D}{x^4 + 1 + x^2} \Rightarrow 
+	$$
+	$$
+		\Rightarrow 1\colon B + D = 1, \, x^2 \colon A + C - D + B = 0, \,  x^4 \colon A + B - C + D = 0, \, x^6 \colon A + C = 0  \Rightarrow
+	$$
+	$$
+		\Rightarrow B = D = \dfrac{1}{2}, \, A = - C = - \dfrac{1}{2} \Rightarrow \dfrac{1}{1 + x^4 + x^8} = -\dfrac{1}{2}\dfrac{x^2 - 1}{x^4 + 1 - x^2} +\dfrac{1}{2}\dfrac{x^2 + 1}{x^4 + 1 + x^2}
+	$$
+	$$
+		\dfrac{x^2 - 1}{x^4 + 1 - x^2} = \dfrac{Ax + B}{x^2 + \sqrt{3}x+ 1} + \dfrac{Cx + D}{x^2 - \sqrt{3}x + 1} \Rightarrow
+	$$
+	$$
+		\Rightarrow 1 \colon B + D = -1,\, x \colon A + C - \sqrt{3}B + \sqrt{3}D = 0, \, x^2 \colon -\sqrt{3}A + B + \sqrt{3}C + D = 1,\, x^3 \colon A + C = 0 \Rightarrow
+	$$
+	$$
+		\Rightarrow B = D = -\dfrac{1}{2}, \, A = - C = - \dfrac{1}{\sqrt{3}} \Rightarrow \dfrac{x^2 - 1}{x^4 + 1 - x^2} = \dfrac{-\tfrac{1}{\sqrt{3}}x - \tfrac{1}{2}}{x^2 + \sqrt{3}x+ 1} + \dfrac{\tfrac{1}{\sqrt{3}}x -\tfrac{1}{2}}{x^2 - \sqrt{3}x + 1}
+	$$
+	$$
+		\dfrac{x^2 + 1}{x^4 + 1 + x^2} = \dfrac{Ax + B}{x^2 + x + 1} + \dfrac{Cx + D}{x^2 - x + 1} \Rightarrow
+	$$
+	$$
+		\Rightarrow 1 \colon B + D = 1,\, x \colon A + C - B + D = 0, \, x^2 \colon -A + B + C + D = 1,\, x^3 \colon A + C = 0 \Rightarrow
+	$$
+	$$
+		\Rightarrow B = D = \dfrac{1}{2}, \, A = - C = C = 0\Rightarrow \dfrac{x^2 + 1}{x^4 + 1 + x^2} = \dfrac{ \tfrac{1}{2}}{x^2 + x+ 1} + \dfrac{\tfrac{1}{2}}{x^2 - x + 1}
+	$$
+	$$
+		\dint \dfrac{dx}{1 + x^4 + x^8} = \dfrac{1}{4}\dint\dfrac{dx}{x^2 + x + 1}   + \dfrac{1}{4}\dint\dfrac{dx}{x^2 - x + 1}  -\dfrac{1}{4\sqrt{3}}\dint\dfrac{2x + \sqrt{3}}{x^2 + \sqrt{3}x + 1}dx  + \dfrac{1}{4\sqrt{3}}\dint\dfrac{2x - \sqrt{3}}{x^2 - \sqrt{3}x + 1}dx
+	$$
+	$$
+		\dfrac{1}{4}\dint\dfrac{dx}{x^2 + x + 1} = \dfrac{1}{4}\dint \dfrac{dx}{(x + \tfrac{1}{2})^2 + \tfrac{3}{4}} = \dfrac{1}{2\sqrt{3}}\arctg\left(\dfrac{2x + 1}{\sqrt{3}}\right) + C
+	$$
+	$$
+		\dfrac{1}{4}\dint\dfrac{dx}{x^2 - x + 1} = \dfrac{1}{4}\dint \dfrac{dx}{(x - \tfrac{1}{2})^2 + \tfrac{3}{4}} = \dfrac{1}{2\sqrt{3}}\arctg\left(\dfrac{2x - 1}{\sqrt{3}}\right) + C \Rightarrow
+	$$
+	$$
+		\Rightarrow  \dfrac{1}{4}\dint\dfrac{dx}{x^2 + x + 1}   + \dfrac{1}{4}\dint\dfrac{dx}{x^2 - x + 1} = \dfrac{1}{2\sqrt{3}}\arctg\left(\dfrac{4x}{\sqrt{3}}{\cdot}\dfrac{1}{1-\tfrac{4x^2 -1}{3}}\right) + C  =
+	$$
+	$$
+		=\dfrac{1}{2\sqrt{3}}\arctg\left(\dfrac{4x}{\sqrt{3}}{\cdot}\dfrac{3}{4(1-x^2)}\right) + C = - \dfrac{1}{2\sqrt{3}}\arctg\left(\dfrac{1-x^2}{\sqrt{3}x}\right) + C
+	$$
+	$$
+		\dfrac{1}{4\sqrt{3}}\dint\dfrac{2x + \sqrt{3}}{x^2 + \sqrt{3}x + 1}dx = \dfrac{1}{4\sqrt{3}}\dint \dfrac{d(x^2 + \sqrt{3}x + 1)}{x^2 + \sqrt{3}x + 1} = \dfrac{1}{4\sqrt{3}}\ln|x^2 + \sqrt{3}x + 1| + C
+	$$
+	$$
+		\dfrac{1}{4\sqrt{3}}\dint\dfrac{2x - \sqrt{3}}{x^2 - \sqrt{3}x + 1}dx = \dfrac{1}{4\sqrt{3}}\dint \dfrac{d(x^2 - \sqrt{3}x + 1)}{x^2 - \sqrt{3}x + 1} = \dfrac{1}{4\sqrt{3}}\ln|x^2 - \sqrt{3}x + 1| + C
+	$$
+	Поскольку корней нет, то можно опустить модули. Тогда:
+	$$
+		\dint \dfrac{dx}{1 + x^4 + x^8} = - \dfrac{1}{2\sqrt{3}}\arctg\left(\dfrac{1-x^2}{\sqrt{3}x}\right) + \dfrac{1}{4\sqrt{3}}\ln\dfrac{x^2 + x\sqrt{3} + 1}{x^2 - x\sqrt{3} + 1} + C
+	$$
+\end{proof}
+\begin{problem}(\textbf{Д2129})
+	$$
+		\dint \dfrac{dx}{\sqrt{x} + \sqrt[3]{x}}
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{dx}{\sqrt{x} + \sqrt[3]{x}} = \left|t = \sqrt[6]{x}, \, x > 0, \, t > 0, \, dt = \dfrac{dx}{6\sqrt[6]{x^5}}\right| = \dint \dfrac{6t^5dt}{t^3 + t^2}
+	$$
+	$$
+		6t^5 \divby t^3 + t^2 \Rightarrow 6t^5 - 6t^2(t^3 + t^2) = -6t^4 - (-6t)(t^3 + t^2) = 6t^3 - 6(t^3 + t^2) = -6t^2 \Rightarrow
+	$$
+	$$
+		\Rightarrow \dfrac{6t^5}{t^3 + t^2} = 6\left(t^2 - t + 1 - \dfrac{t^2}{t^2(t + 1)} \right) = 6\left(t^2 - t + 1 - \dfrac{1}{t + 1}\right) \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{6t^5dt}{t^3 + t^2} = 2t^3 -3t^2 + 6t - 6 \dint\dfrac{dt}{1 + t} = 2\sqrt{x} - 3\sqrt[3]{x} + 6\sqrt[6]{x} - 6\ln(1 + \sqrt[6]{x}) + C  
+	$$
+\end{proof}
+
+
+
+
+\begin{problem}(\textbf{Д2137})
+	$$
+		\dint \dfrac{1 + \sqrt{1 - x^2}}{1 - \sqrt{1 - x^2}}dx 
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{1 + \sqrt{1 - x^2}}{1 - \sqrt{1 - x^2}}dx = \dint \dfrac{1 + 2\sqrt{1 - x^2} + 1 - x^2}{1 -1 + x^2}dx = \dint\dfrac{2}{x^2}dx - x + \dint\dfrac{2\sqrt{1-x^2}}{x^2}dx = 
+	$$
+	$$
+		= -x - \dfrac{2}{x} - \dfrac{2\sqrt{1 - x^2}}{x} + \dint \dfrac{-2x}{x\sqrt{1 - x^2}}dx = -x - \dfrac{2}{x} - \dfrac{2\sqrt{1 - x^2}}{x} -2\arcsin{x} + C 
+	$$
+	При $|x| < 1$.
+\end{proof}
+
+\begin{problem}(\textbf{Д2140})
+	$$
+		\dint (2x + 3)\arccos(2x -3)dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint (2x + 3)\arccos(2x -3)dx = (x^2 + 3x)\arccos(2x - 3) + \dint \dfrac{x^2 + 3x}{\sqrt{1 - (2x - 3)^2}}dx
+	$$
+	$$
+		\dint \dfrac{x^2 + 3x}{\sqrt{1 - (2x - 3)^2}}dx = \dint\dfrac{x^2 + 3x}{\sqrt{1-4x^2 +12x -9}}dx = \dint \dfrac{x^2 + 3x}{\sqrt{4(3x - x^2 -2)}}dx =
+	$$
+	$$
+		=	\dfrac{1}{2}\dint\dfrac{x^2 + 6x - 3x + 2 - 2}{\sqrt{-x^2 + 3x -2}}dx = \dfrac{1}{2}\dint\sqrt{-x^2 + 3x -2}dx + \dint\dfrac{3x + 2}{\sqrt{-x^2 + 3x -2}}dx
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2141})
+	$$
+		\dint x\ln(4 + x^4)dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint x\ln(4 + x^4)dx = \dfrac{1}{2}x^2\ln( 4 + x^4) - 2\dint \dfrac{x^5}{4 + x^4}dx
+	$$
+	$$
+		x^5 \divby 4 + x^4 \Rightarrow x^5 - x^5 - 4x = 4x \Rightarrow \dfrac{x^5}{4 +x^4} = -x + \dfrac{4x}{4 + x^4} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{x^5}{4 + x^4}dx = -\dfrac{x^2}{2} + 2\dint \dfrac{d(x^2)}{x^4 + 4} = -\dfrac{x^2}{2} + \arctg\left(\dfrac{x^2}{2}\right) + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint x\ln(4 + x^4)dx = \dfrac{1}{2}x^2\ln( 4 + x^4) -x^2 + 2\arctg\left(\dfrac{x^2}{2}\right) + C 
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2142})
+	$$
+		\dint \dfrac{\arcsin{x}}{x^2}{\cdot}\dfrac{1 + x^2}{\sqrt{1 -x^2}}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{\arcsin{x}}{x^2}{\cdot}\dfrac{1 + x^2}{\sqrt{1 -x^2}}dx =\dint 
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2158})
+	$$
+		\dint \sqrt{1-x^2}\arcsin{x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \sqrt{1-x^2}\arcsin{x}dx = x\sqrt{1-x^2}\arcsin{x} - \dint x\left(1 - \dfrac{x\arcsin{x}}{\sqrt{1-x^2}}\right)dx = 
+	$$
+	$$
+		= x\sqrt{1-x^2}\arcsin{x} - \dfrac{x^2}{2} - \dint \sqrt{1-x^2}\arcsin{x}dx + \dint \dfrac{\arcsin{x}}{\sqrt{1-x^2}}dx = 
+	$$
+	$$
+		= x\sqrt{1-x^2}\arcsin{x} - \dfrac{x^2}{2} +\dfrac{1}{2}\arcsin^2{x} - \dint \sqrt{1-x^2}\arcsin{x}dx \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \sqrt{1-x^2}\arcsin{x}dx = \dfrac{x}{2}\sqrt{1-x^2}\arcsin{x} - \dfrac{x^2}{4} +\dfrac{1}{4}\arcsin^2{x} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2161})
+	$$
+		\dint \dfrac{\arcsin(e^x)}{e^x}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{\arcsin(e^x)}{e^x}dx = -e^{-x}\arcsin(e^x) + \dint \dfrac{e^xdx}{e^x\sqrt{1 - e^{2x}}}
+	$$
+	$$
+		\dint \dfrac{dx}{\sqrt{1 - e^{2x}}} = |t = e^x, \, dt = e^xdx| = \dint \dfrac{dt}{t\sqrt{1 - t^2}} =\dint \dfrac{dt}{t^2\sqrt{\tfrac{1}{t^2} - 1}} = 
+	$$
+	$$
+		= \left|u = \tfrac{1}{t}, du = -\tfrac{1}{t^2}dt\right|=-\dint \dfrac{du}{\sqrt{u^2 - 1}} =-\ln\left|\dfrac{1}{t} + \sqrt{\dfrac{1}{t^2} - 1} \right| + C = -\ln(e^{-x} + \sqrt{e^{-2x} - 1}) + C
+	$$
+	$$
+		\dint \dfrac{\arcsin(e^x)}{e^x}dx = -e^{-x}\arcsin(e^x) -\ln\left(e^{-x}{\cdot}(1 + \sqrt{1 - e^{2x}}\right) + C = x -e^{-x}\arcsin(e^x) -\ln(1 + \sqrt{1 - e^{2x}}) + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2165})
+	$$
+		\dint \dfrac{1 + \sin{x}}{1 + \cos{x}}e^xdx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dint \dfrac{1 + \sin{x}}{1 + \cos{x}}e^xdx = \dint \dfrac{1 + 2\sin\tfrac{x}{2}\cos\tfrac{x}{2}}{2\cos^2\tfrac{x}{2}}e^xdx = \dint \dfrac{e^x}{2\cos^2\tfrac{x}{2}} + e^x\tg\tfrac{x}{2}dx =
+	$$
+	$$
+		=	e^x\tg\tfrac{x}{2} - \dint e^x \tg\tfrac{x}{2}dx  + \dint e^x \tg \tfrac{x}{2}dx = 	e^x\tg\tfrac{x}{2} +C
+	$$
+\end{proof}
+
+\end{document}

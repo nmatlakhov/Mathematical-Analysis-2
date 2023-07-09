@@ -1,0 +1,356 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 8: ДЗ}
+
+\section*{Определенный интеграл}
+
+\textbf{ДЗ}: $2182$ б), $2189$ с подсказкой, $2192^*$ - необязательная и трудная, $2193.2$ (картинкой решается легко), $2200$, $2205$, $2207$, $2209$, $2216$ в).
+
+\begin{problem}(\textbf{Д2182} б))
+	Найти нижнюю и верхнюю интегральные суммы на соответствующих сегментах, деля их на $n$ равных частей:
+	$$
+		f(x) = \sqrt{x}, \, 0 \leq x \leq 1
+	$$
+\end{problem}
+
+\begin{proof}
+	Делим отрезок на $n$ равных частей длины $\tfrac{1 - 0}{n} = \tfrac{1}{n}$, выберем отмеченные точки слева, тогда:
+	$$
+		x_0 = 0, x_1 = 0 + \dfrac{1}{n}, \dotsc, x_j = 0 + \dfrac{j}{n}, \dotsc, x_n = 1 \Rightarrow \lambda(\MTB) = \dfrac{1}{n}
+	$$
+	Посчитаем суммы Дарбу:
+	$$
+		S(f,\MTB) = f(x_1)\dfrac{1}{n} + f(x_2)\dfrac{1}{n} + \dotsc + f(x_n)\dfrac{1}{n}		
+	$$
+	$$
+		s(f,\MTB) = f(x_0)\dfrac{1}{n} + f(x_1)\dfrac{1}{n} + \dotsc + f(x_{n-1})\dfrac{1}{n}		
+	$$
+	$$
+		\Omega(\MTB) = S(f,\MTB) - s(f,\MTB) = (f(x_n) - f(x_0)){\cdot}\dfrac{1}{n} = (f(1) - f(0))\dfrac{1}{n} = \dfrac{1}{n} \to 0
+	$$
+	$$
+		s(f,\MTB) = \dfrac{1}{n}{\cdot}\left(\sqrt{0} + \sqrt{\dfrac{1}{n}} + \sqrt{\dfrac{2}{n}} + \dotsc + \sqrt{\dfrac{n-1}{n}}\right)
+	$$
+	$$
+		S(f,\MTB) = \dfrac{1}{n}{\cdot}\left(\sqrt{\dfrac{1}{n}} + \sqrt{\dfrac{2}{n}} + \dotsc + \sqrt{\dfrac{n-1}{n}} + 1\right)
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2189})
+	Вычислить определенные интегралы, рассматривая их как пределы соответствующих интегральных сумм и производя разбиение промежутка интеграции надлежащим образом:
+	$$
+		\ddint{a}{b}\dfrac{dx}{x^2}, \, 0 < a < b
+	$$
+	Положить $\xi_i = \sqrt{x_i x_{i+1}}, \, i = 0,1, \dotsc, n-1$.
+\end{problem}
+\begin{proof}
+	Делим отрезок на $n$ равных частей длины $\tfrac{b - a}{n}$, тогда:
+	$$
+		a = x_0 < x_1 < \dotsc < x_n = b
+	$$
+	$$
+		\xi_i = \sqrt{x_i x_{i+1}}, \, i = 0, 1 , \dotsc, n, \, \xi_i \in (x_i, x_{i+1})
+	$$
+	Посчитаем интегральную сумму:
+	$$
+		\sigma(f,\MTB, \xi) = \ddsum{i = 0}{n-1}f(\xi_i){\cdot}(x_{i + 1} - x_{i}) = \ddsum{i = 0}{n-1}\dfrac{1}{x_i x_{i+1}}(x_{i+1} - x_i) = \ddsum{i = 0}{n-1}\left(\dfrac{1}{x_i} - \dfrac{1}{x_{i+1}}\right) = \dfrac{1}{x_0} - \dfrac{1}{x_{n}} = \dfrac{b - a}{ab}
+	$$
+\end{proof}
+\newpage
+
+\begin{problem}(\textbf{Д2192})
+	Вычислить интеграл Пуассона:
+	$$
+		\ddint{0}{\pi}\ln(1 - 2\alpha \cos(x) + \alpha^2)dx
+	$$
+	При а) $|\alpha| <1$; б) $|\alpha| > 1$;
+\end{problem}
+\begin{proof}
+	Делим отрезок на $n$ равных частей длины $\tfrac{\pi - 0}{n} = \tfrac{\pi}{n}$, тогда:
+	$$
+		0 = x_0, x_1 = 0 + \dfrac{\pi}{n}, x_2 = \dfrac{\pi}{n} + \dfrac{\pi}{n}, \dotsc, x_j = j{\cdot}\dfrac{\pi}{n}, \dotsc, x_n = \pi \Rightarrow \lambda(\MTB) = \dfrac{\pi}{n}
+	$$
+	Используем формулу Эйлера:
+	$$
+		z = e^{ix} = \cos{x} + i\sin{x}, \, \ovl{z} = \cos{x} - i \sin{x} \Rightarrow 
+	$$
+	$$	
+		\Rightarrow (\alpha - z)(\alpha - \ovl{z}) = \alpha^2 - \alpha(z + \ovl{z}) + z\ovl{z} = \alpha^2 - 2\alpha\cos{x} + 1
+	$$
+	Выберем отмеченные точки слева, тогда интегральная сумма будет равна:
+	$$
+		\sigma(f,\MTB,\xi) = \ddsum{j = 0}{n-1}\ln\left(\alpha - e^{\tfrac{i\pi }{n}j} \right){\cdot}\left(\alpha - e^{\tfrac{-i\pi }{n}j} \right){\cdot}\dfrac{\pi}{n} = \dfrac{\pi}{n}{\cdot}\ln\prod\limits_{j = 0}^{n-1}\left(\alpha - e^{\tfrac{i\pi }{n}j} \right){\cdot}\left(\alpha - e^{\tfrac{-i\pi }{n}j} \right)
+	$$
+	Заметим, что в произведении находятся единичные корни уравнения $\alpha^{2n} - 1 =0$, два корня $1$ и отсутствует корень $-1$, тогда:
+	$$
+		\sigma(f,\MTB,\xi) =\dfrac{\pi}{n}{\cdot}\ln\prod\limits_{j = 0}^{n-1}\left(\alpha - e^{\tfrac{i\pi }{n}j} \right){\cdot}\left(\alpha - e^{\tfrac{-i\pi }{n}j} \right) = \dfrac{\pi}{n}{\cdot}\ln\dfrac{(\alpha - 1)(\alpha^{2n} - 1)}{\alpha + 1}  
+	$$
+	Тогда, если $|\alpha|<1$, то $\alpha^{2n} \to 0$ при $n\to \infty$:
+	$$
+		\dfrac{(\alpha - 1)(\alpha^{2n} - 1)}{\alpha + 1}  \xrightarrow[n \to \infty]{} \dfrac{1 - \alpha}{1 + \alpha} > 0 \Rightarrow \sigma(f,\MTB,\xi) \to 0
+	$$
+	Если $|\alpha| > 1$, то тогда:
+	$$
+		\dfrac{\pi}{n}{\cdot}\ln\dfrac{(\alpha - 1)(\alpha^{2n} - 1)}{\alpha + 1}  = \dfrac{\pi}{n}{\cdot}\left(2n\ln(\alpha) + \ln\dfrac{(\alpha -1)(1 - \alpha^{-2n})}{\alpha + 1}\right) \xrightarrow[n \to \infty]{} 2\pi\ln(\alpha)
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2193.2})
+	Пусть функция $f(x)$ выпукла сверху на сегменте $[a,b]$. Доказать, что:
+	$$
+		(b-a)\dfrac{f(a) + f(b)}{2} \leq \ddint{a}{b}f(x)dx \leq (b-a)f\left(\dfrac{a+b}{2}\right)
+	$$
+\end{problem}
+\begin{proof}
+	Функция $f(x)$ выпукла сверху на $[a,b]$ означает:
+	$$
+		\forall \lambda \in [0,1], \, \forall x_1,x_2 \in [a,b], \, f(\lambda x_1 + (1-\lambda)x_2) \geq \lambda f(x_1) + (1-\lambda)f(x_2)
+	$$
+	Покажем, что $f(x)$ - непрерывна на $(a,b)$. Пусть $x_0 \in (a,b)$ и $0 < h < h_0$ и $x_1 = x_0, \, x_2 = x_0 + h_0$, тогда:
+	$$
+		x = x_0 + h = \lambda x_1 + (1-\lambda)x_2 \Rightarrow \lambda = \dfrac{x_2 - x}{x_2 - x_1} = \dfrac{h_0 - h}{h_0} \in (0,1) \Rightarrow
+	$$
+	$$
+		\Rightarrow f(x_0 + h) \geq \lambda f(x_1) + (1-\lambda)f(x_2) = \dfrac{h_0 - h}{h_0}f(x_0) + \dfrac{h}{h_0}f(x_0 + h_0) \Rightarrow 
+	$$
+	$$
+		\Rightarrow f(x_0 + h) - f(x_0) \geq h\dfrac{f(x_0 + h_0) - f(x_0)}{h_0}
+	$$
+	Функция выпукла сверху на сегменте $[a,b]$, тогда верно:
+	$$
+		f\left(\dfrac{a + b}{2}\right) \geq \dfrac{f(a) + f(b)}{2}
+	$$
+\end{proof}
+
+
+\begin{problem}(\textbf{Д2209})
+	$$
+		\ddint{-1/2}{1/2}\dfrac{dx}{\sqrt{1-x^2}}
+	$$
+\end{problem}
+\begin{proof}
+	Функция непрерывна на всем интервале $\left[-\tfrac{1}{2},\tfrac{1}{2}\right]$, воспользуемся формулой Ньютона-Лейбница:
+	$$
+		\ddint{-1/2}{1/2}\dfrac{dx}{\sqrt{1-x^2}} = \arcsin\left(\tfrac{1}{2}\right) - \arcsin\left(-\tfrac{1}{2}\right) =\dfrac{\pi}{6} + \dfrac{\pi}{6} = \dfrac{\pi}{3}
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д2216} в))
+	Объяснить, почему формальное применение формулы Ньютона-Лейбница приводит к неверным результатам, если:
+	$$
+		\ddint{-1}{1}\dfrac{d}{dx}\left(\arctg\dfrac{1}{x}\right)dx
+	$$
+\end{problem}
+\begin{proof}
+	Функция $F(x) = \arctg\dfrac{1}{x}$
+\end{proof}
+
+\end{document}

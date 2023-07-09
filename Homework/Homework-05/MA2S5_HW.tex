@@ -1,0 +1,537 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1\times #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 5: ДЗ}
+
+\textbf{ДЗ}: $1927$, $1928$, $1935$ (см. указания), $1943$, $1947$, $1949$.
+
+\section*{Интегрирование некоторых иррациональных функций}
+
+\begin{problem}(\textbf{Д1927})
+	$$
+		\dint \dfrac{dx}{x\left(1 + 2\sqrt{x} + \sqrt[3]{x} \right)}
+	$$
+\end{problem}
+\begin{proof}
+	Приведем подинтегральную функцию к рациональной:
+	$$
+		t =  \sqrt[6]{x} \Rightarrow t^6 = x, \, dx = 6t^5 dt \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{x\left(1 + 2\sqrt{x} + \sqrt[3]{x} \right)} = \dint \dfrac{6t^5 dt}{t^6\left(1 + 2 t^3 + t^2 \right)} = 6\dint \dfrac{dt}{t(1 + 2t^3 + t^2)}
+	$$
+	$$
+		2t^3 + t^2 + 1 = 0 \Rightarrow t = -1 \Rightarrow 2{\cdot}(-1) + 1 + 1 = 0 \Rightarrow 2t^3 + t^2 + 1 \div (t + 1) \Rightarrow 
+	$$
+	$$
+		\Rightarrow 2t^3 + t^2+1 - 2t^2{\cdot}(t+1) \Rightarrow -t^2 + 1 - (-t){\cdot}(t+1) \Rightarrow t +1 - 1{\cdot}(t+1) \Rightarrow
+	$$
+	$$
+		\Rightarrow 2t^3 + t^2 + 1 = (t+1){\cdot}(2t^2 -t  +1)
+	$$
+	$$
+		6\dint \dfrac{dt}{t(1 + 2t^3 + t^2)} = 6 \dint \dfrac{dt}{t(t+1)(2t^2 - t+1)} = 6 \dint\dfrac{A}{t} + \dfrac{B}{t+1} + \dfrac{Ct + D}{2t^2 -t +1} dt
+	$$
+	$$
+		A(t+1)(2t^2 - t + 1) + Bt(2t^2 -t+1) + (Ct+D)(t + 1)t = 1
+	$$
+	$$
+		2At^3 -At^2 + At + 2At^2 - At + A + 2Bt^3 -Bt^2  + Bt + Ct^3 + Ct^2 +Dt^2 + Dt = 1
+	$$
+	$$
+		\begin{cases}
+			1, & A = 1 \\
+			t, & A - A + B + D = 0\\
+			t^2, & 2A - A - B + D + C = 0\\
+			t^3, & 2A + 2B + C = 0
+		\end{cases} \Rightarrow
+		\begin{cases}
+			A = 1\\
+			B = -D \\
+			2C = -3\\
+			2B = -C - 2A
+		\end{cases} \Rightarrow
+		\begin{cases}
+			A = 1\\
+			C = -\tfrac{3}{2}\\
+			B = \tfrac{3}{4} - 1= -\tfrac{1}{4}\\
+			D = \tfrac{1}{4}
+		\end{cases}
+	$$
+	$$
+		6 \dint\dfrac{A}{t} + \dfrac{B}{t+1} + \dfrac{Ct + D}{2t^2 -t +1} dt = 6\dint\dfrac{1}{t}dt - 6\dint\dfrac{1}{4(t + 1)}dt - 6\dint\dfrac{6t - 1}{4(2t^2 - t + 1)}dt =
+	$$
+	$$
+		= 6 \ln{|t|} - \dfrac{3}{2}\ln{|t + 1|} - 6 \dint\dfrac{6t - 1}{4(2t^2 - t + 1)}dt
+	$$
+	$$
+		\dfrac{1}{4}\dint\dfrac{6t - 1}{2t^2 - t + 1}dt = \dfrac{3}{8}\dint\dfrac{4t - 1}{2t^2 - t + 1}dt + \dfrac{1}{4}\dint\dfrac{\tfrac{1}{2}}{2t^2 - t + 1}dt = \dfrac{3}{8}\dint\dfrac{d(2t^2 - t + 1)}{2t^2 - t + 1} + \dfrac{1}{16}\dint \dfrac{dt}{t^2 -\tfrac{t}{2} + \tfrac{1}{2}} = 
+	$$	
+	$$
+		=	\dfrac{3}{8}\ln{|2t^2 - t + 1|} + \dfrac{1}{16}\dint\dfrac{d\left(t - \tfrac{3}{8}\right)}{\left(t - \tfrac{1}{4}\right)^2 + \tfrac{7}{16}} = \dfrac{1}{4}\ln{|2t^2 - t + 1|} + \dfrac{1}{4\sqrt{7}}\arctg{\left(\dfrac{4t - 1}{\sqrt{7}}\right)} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{x\left(1 + 2\sqrt{x} + \sqrt[3]{x} \right)} = 6\ln{\sqrt[6]{x}} - \dfrac{3}{2}\ln{(\sqrt[6]{x} + 1)} - \dfrac{9}{4}\ln{(2\sqrt[3]{x} - \sqrt[6]{x} + 1)} - \dfrac{3}{2\sqrt{7}}\arctg{\left(\dfrac{4\sqrt[6]{x} - 1}{\sqrt{7}}\right)} + C =
+	$$
+	$$
+		= \dfrac{3}{4}{\cdot}\ln{\left(\dfrac{x{\cdot}\sqrt[3]{x}}{\left(1 + \sqrt[6]{x}\right)^2\left(2 \sqrt[3]{x} - \sqrt[6]{x} + 1\right)^3}\right)} - \dfrac{3}{2\sqrt{7}}\arctg{\left(\dfrac{4\sqrt[6]{x} - 1}{\sqrt{7}}\right)} + C
+	$$	
+\end{proof}
+\newpage
+
+\begin{problem}(\textbf{Д1928})
+	$$
+		\dint \dfrac{x\sqrt[3]{2+x}}{x + \sqrt[3]{2 +x}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Приведем подинтегральную функцию к рациональной:
+	$$
+		t =  \sqrt[3]{2+x} \Rightarrow x = t^3 - 2, \, dx = 3t^2dt \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{x\sqrt[3]{2+x}}{x + \sqrt[3]{2 +x}}dx = \dint \dfrac{(t^3 - 2)3t^3dt}{t^3 - 2 + t} = 3 \dint \dfrac{t^6 - 2t^3}{t^3 + t -2}dt
+	$$
+	$$
+		t^6 - 2t^3 \div t^3 + t -2 \Rightarrow t^6 - 2t^3 - (t^3)(t^3 + t - 2) \Rightarrow -2t^3 -t^4 + 2t^3  - (-t)(t^3 + t - 2) = t^2 -2t \Rightarrow
+	$$
+	$$
+		\Rightarrow 3 \dint \dfrac{t^6 - 2t^3}{t^3 + t -2}dt = 3 \dint t^3 -t + \dfrac{t^2 -2t}{t^3 + t - 2}dt = \dfrac{3}{4}t^4 - \dfrac{3}{2}t^2 + 3 \dint \dfrac{t(t-2)}{t^3 + t - 2}dt
+	$$
+	$$
+		(1)^3 + 1 - 2 = 0 \Rightarrow t^3 + t - 2 \div (t-1) \Rightarrow
+	$$
+	$$
+		\Rightarrow t^3 + t - 2 - t^2(t-1) = t^2 + t - 2 \Rightarrow t^2 + t - 2 -t(t-1) = 2t - 2 = 2(t-1) \Rightarrow 
+	$$
+	$$
+		t^3 + t - 2 = (t-1)(t^2 + t + 2) \Rightarrow \dfrac{t(t-2)}{(t-1)(t^2 + t + 2)} = \dfrac{A}{t-1} + \dfrac{Bt +C}{t^2 + t + 2} \Rightarrow
+	$$
+	$$
+		\Rightarrow At^2 + At + 2A + Bt^2 + Ct - Bt - C = t^2 -2 t \Rightarrow 
+	$$
+	$$
+		\Rightarrow
+		\begin{cases}
+			C = 2A\\
+			A + B = 1\\
+			A + C - B = -2
+		\end{cases} \Rightarrow
+		\begin{cases}
+			C = 2A\\
+			B = 1 - A\\
+			2A + C= - 1
+		\end{cases} \Rightarrow
+		\begin{cases}
+			A = -\tfrac{1}{4}\\
+			B = \tfrac{5}{4} \\
+			C= - \tfrac{1}{2}
+		\end{cases}
+	$$
+	$$
+		3 \dint \dfrac{t(t-2)}{t^3 + t - 2}dt = -3\dint \dfrac{1}{4(t-1)}dt + 3 \dint\dfrac{\tfrac{5}{4}t - \tfrac{1}{2}}{t^2 + t+ 2} dt = -\dfrac{3}{4}\ln{|t-1|} +  \dfrac{3}{4} \dint\dfrac{5t - 2}{t^2 + t+ 2} dt 
+	$$
+	$$
+		 \dint\dfrac{5t - 2}{t^2 + t+ 2} dt = \dfrac{5}{2}\dint \dfrac{2t + 1}{t^2 + t + 2}dt - \dfrac{9}{2}\dint \dfrac{dt}{\left(t + \tfrac{1}{2}\right)^2 + \tfrac{7}{4}} = \dfrac{5}{2}\ln{|t^2 + t +2|}  -\dfrac{9}{2}{\cdot}\dfrac{2}{\sqrt{7}}\arctg{\left(\dfrac{2t + 1}{\sqrt{7}}\right)} + C =
+	$$
+	$$
+		= \dfrac{5}{2}\ln{(t^2 + t +2)}  -\dfrac{9}{\sqrt{7}}\arctg{\left(\dfrac{2t + 1}{\sqrt{7}}\right)} + C \Rightarrow
+	$$ 
+	$$
+		\Rightarrow 3 \dint \dfrac{t(t-2)}{t^3 + t - 2}dt = -\dfrac{3}{4}\ln{|t-1|} +\dfrac{15}{8}\ln{(t^2 + t +2)}  -\dfrac{27}{4\sqrt{7}}\arctg{\left(\dfrac{2t + 1}{\sqrt{7}}\right)} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{x\sqrt[3]{2+x}}{x + \sqrt[3]{2 +x}}dx = \dfrac{3}{4}t^4 - \dfrac{3}{2}t^2 -\dfrac{3}{4}\ln{|t-1|} +\dfrac{15}{8}\ln{(t^2 + t +2)}  -\dfrac{27}{4\sqrt{7}}\arctg{\left(\dfrac{2t + 1}{\sqrt{7}}\right)} + C, \, t =\sqrt[3]{2 + x}
+	$$
+\end{proof}
+\newpage
+\begin{problem}(\textbf{Д1935})
+	$$
+		\dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}}
+	$$
+\end{problem}
+\begin{proof}
+	Предложим следующую замену (пусть $u > 0$):
+	$$
+		x = \left(\dfrac{u^2 - 1}{2u}\right)^2 \Rightarrow \sqrt{x} = \dfrac{u^2 - 1}{2u}, \, \sqrt{x+1} = \sqrt{\dfrac{u^4 - 2u^2 + 1}{4u^2} + 1 } = \sqrt{\dfrac{(u^2 + 1)^2}{4u^2}} = \dfrac{u^2 + 1}{2u} \Rightarrow
+	$$
+	$$
+		dx = 2{\cdot}\dfrac{u^2 -1}{2u}{\cdot}\dfrac{2u2u - 2(u^2 -1)}{4u^2}du= \left(\dfrac{u^2 -1}{u}\right){\cdot}\dfrac{2u^2 +2}{4u^2}du = \dfrac{u^4 -1}{2u^3}du \Rightarrow
+	$$
+	$$
+		\dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}} = \dint \dfrac{u^4 -1 }{2u^3}{\cdot}\dfrac{2u}{2u + u^2 -1  + u^2 + 1}du = \dint \dfrac{u^4 - 1}{2u^3{\cdot}(u + 1)}du = \dint \dfrac{(u-1)(u^2 +1)}{2u^3}du =
+	$$
+	$$
+		=  \dint\dfrac{u^3 - u^2 + u -1}{2u^3}du = \dint \dfrac{1}{2} - \dfrac{1}{2u} + \dfrac{1}{2u^2} - \dfrac{1}{2u^3}du = \dfrac{1}{2}{\cdot}\left(u - \ln{u} - \dfrac{1}{u} + \dfrac{1}{2u^2}\right) + C
+	$$
+	Найдем выражение $u$ через $x$:
+	$$
+		u^2 - 2\sqrt{x}u - 1 = 0 \Rightarrow D = 4x + 4 =4(x+ 1),\, u_{1,2} = \dfrac{2\sqrt{x} \pm 2\sqrt{x + 1}}{2}
+	$$
+	$$
+		u > 0 \Rightarrow u = \sqrt{x} + \sqrt{x+ 1} \Rightarrow \dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}}  = -\dfrac{1}{2}\ln{( \sqrt{x} + \sqrt{x+ 1})} +
+	$$
+	$$
+		+ \dfrac{ \sqrt{x} + \sqrt{x+ 1}}{2} - \dfrac{1}{2 \sqrt{x} + 2\sqrt{x+ 1}} + \dfrac{1}{4\left( \sqrt{x} + \sqrt{x+ 1}\right)^2} + C
+	$$
+	$$
+		- \dfrac{1}{2 \sqrt{x} + 2\sqrt{x+ 1}}= - \dfrac{\sqrt{x} - \sqrt{x + 1}}{2(x - x - 1)} = \dfrac{\sqrt{x} - \sqrt{x+1}}{2}
+	$$
+	$$
+		\dfrac{1}{4\left( \sqrt{x} + \sqrt{x+ 1}\right)^2}  = \dfrac{(\sqrt{x} - \sqrt{x+1})^2}{4} = \dfrac{x -2\sqrt{x(1 +x)} + 1 + x}{4} = \dfrac{x}{2} - \dfrac{\sqrt{x(1+x)}}{2} + \dfrac{1}{2} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{1 + \sqrt{x} + \sqrt{x+1}} = -\dfrac{1}{2}\ln{( \sqrt{x} + \sqrt{x+ 1})}  + \dfrac{x}{2} - \dfrac{\sqrt{x(1+x)}}{2} + \sqrt{x} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д1943})
+	$$
+		\dint \dfrac{x^3}{\sqrt{1 + 2x - x^2}}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		y  = \sqrt{1 + 2x - x^2}, \, P_3(x) = x^3, \, \deg{P_3} = 3
+	$$
+	Тогда воспользуемся модифицированной формулой Остроградского:
+	$$
+		\dint \dfrac{P_n(x)}{y}dx = Q_{n-1}(x){\cdot}y + \lambda{\cdot}\dint\dfrac{dx}{y}, \quad \deg{P_n} = n, \, \deg{Q_{n-1}} \leq n-1, \, \lambda \in \MR
+	$$
+	$$
+		\dint \dfrac{x^3}{y}dx = (Ax^2 + Bx + C){\cdot}y + \lambda{\cdot}\dint\dfrac{\dx}{y} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dfrac{x^3}{y} = (2Ax + B){\cdot}y + (Ax^2 + Bx + C){\cdot}\dfrac{1}{2}{\cdot}\dfrac{-2x + 2}{\sqrt{1 + 2x - x^2}} + \dfrac{\lambda}{y} \Rightarrow
+	$$
+	$$
+		\Rightarrow x^3 = (2Ax + B)(1 + 2x - x^2) + (Ax^2 + Bx + C){\cdot}(1-x) + \lambda
+	$$
+	$$
+		\left\{
+			\begin{matrix}
+				x^3, & 1 &=& -2A -A \\
+				x^2, & 0 &=& 4A -B + A - B\\ 
+				x, & 0 &=& 2A + 2B + B- C\\
+				1, & 0 &=& B + C + \lambda
+			\end{matrix} \Rightarrow
+		\right.
+		\left\{
+			\begin{matrix}
+				A &=& -\tfrac{1}{3}\\[6pt]
+				B &=& \tfrac{5}{2}A = -\tfrac{5}{6}\\[6pt]
+				C &=& 2A + 3B = -\tfrac{2}{3} - \tfrac{15}{6} = -\tfrac{19}{6}\\[6pt]
+				\lambda &=& - B - C = \tfrac{5}{6} + \tfrac{19}{6} = 4
+			\end{matrix} \Rightarrow
+		\right.
+	$$
+	$$
+		\Rightarrow \dint \dfrac{x^3}{y}dx = -\dfrac{1}{6}{\cdot}\left(2x^2 + 5x + 19\right){\cdot}y + 4{\cdot}\dint\dfrac{\dx}{y}
+	$$
+	$$
+		\dint\dfrac{1}{\sqrt{1 + 2x - x^2}}dx = \dint \dfrac{dx}{\sqrt{2-(x^2 - 2x + 1)}} = \dint \dfrac{dx}{\sqrt{2 - (x - 1)^2}} = \arcsin{\left(\dfrac{x-1}{\sqrt{2}}\right)} + C
+	$$
+	$$
+		\dint \dfrac{x^3}{\sqrt{1 + 2x - x^2}}dx = -\dfrac{1}{6}{\cdot}\left(2x^2 + 5x + 19\right){\cdot}\sqrt{1 + 2x - x^2} + 4\arcsin{\left(\dfrac{x-1}{\sqrt{2}}\right)} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д1947})
+	$$
+		\dint \dfrac{dx}{x^3\sqrt{x^2 +1}}
+	$$
+\end{problem}
+\begin{proof}
+	Пусть $t = \tfrac{1}{x} > 0$, тогда:
+	$$
+		x = \dfrac{1}{t}, \, \sqrt{x^2 + 1} = \dfrac{\sqrt{t^2 + 1}}{t}, \, dx = - \dfrac{1}{t^2}dt \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{x^3\sqrt{x^2 +1}} = \dint t^3{\cdot}\dfrac{t}{\sqrt{t^2 + 1}}{\cdot}\left(-\dfrac{1}{t^2}\right)dt =-\dint \dfrac{t^2}{\sqrt{t^2 + 1}}dt \Rightarrow
+	$$
+	$$
+		\Rightarrow y = \sqrt{t^2 + 1}, \, P_2(t) = t^2,\, \deg{P_2} = 2 \Rightarrow 
+	$$
+	$$
+		\dint \dfrac{t^2}{y}dt = (At + B){\cdot}y + \lambda{\cdot}\dint\dfrac{dx}{y} \Rightarrow \dfrac{t^2}{y} = A{\cdot}y + (At + B){\cdot}\dfrac{2t}{2{\cdot}y} + \dfrac{\lambda}{y} \Rightarrow
+	$$
+	$$
+		\Rightarrow t^2 = A(t^2 + 1) + (At + B)t + \lambda \Rightarrow 1 = 2A, \, 0 = B, \, 0 = A + \lambda \Rightarrow A = \dfrac{1}{2}, \, B = 0,\, \lambda = -\dfrac{1}{2} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{\sqrt{t^2 + 1}} = \ln{\left|t + \sqrt{t^2 + 1} \right|} + C = \ln{\left|\dfrac{1}{x} + \sqrt{\dfrac{1 + x^2}{x^2}} \right|} + C = \ln{\dfrac{1 + \sqrt{1 + x^2}}{|x|}} + C \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{dx}{x^3\sqrt{x^2 +1}} = -\dfrac{\sqrt{1 + x^2}}{2x^2} +\dfrac{1}{2}\ln{\dfrac{1 + \sqrt{1 + x^2}}{|x|}} + C 
+	$$
+\end{proof}
+
+\newpage
+\begin{problem}(\textbf{Д1949})
+	$$
+		\dint \dfrac{1}{(x-1)^3\sqrt{x^2 + 3x + 1}}dx
+	$$
+\end{problem}
+\begin{proof}
+	Воспользуемся модификацией метода Остроградского и сделаем замену:
+	$$
+		x - 1 = \dfrac{1}{t}, \, x = \dfrac{t + 1}{t}, \, dx = \dfrac{t - t - 1}{t^2}dt = -\dfrac{1}{t^2}dt, \, (x-1)^3 = \dfrac{1}{t^3}
+	$$
+	$$
+		x^2 + 3x + 1 = \dfrac{t^2 + 2t + 1}{t^2} + 3\dfrac{t+1}{t} + 1 = \dfrac{t^2 + 2t + 1 + 3t^2 + 3t + t^2}{t^2} = \dfrac{5t^2 + 5t + 1}{t^2}
+	$$
+	$$
+		\dint \dfrac{1}{(x-1)^3\sqrt{x^2 + 3x + 1}}dx = \dint \dfrac{t^3{\cdot}t}{\sqrt{5t^2 + 5t + 1}}{\cdot}\left(-\dfrac{1}{t^2}\right)dt = -\dint \dfrac{t^2}{\sqrt{5t^2 + 5t + 1}}dt 	
+	$$
+	$$
+		y = \sqrt{5t^2 + 5t + 1}, \, \dint \dfrac{P_2(t)}{y}dt = Q_{1}(t){\cdot}y + \lambda{\cdot}\dint\dfrac{dt}{y} 
+	$$
+	$$	
+		\deg{P_2} = 2,\, \deg{Q_{1}} \leq 1, \, \lambda \in \MR \Rightarrow Q_1(t) = At +B
+	$$
+	$$
+		-\dint \dfrac{t^2}{\sqrt{5t^2 + 5t + 1}}dt 	= (At + B)\sqrt{5t^2 + 5t + 1} + \lambda \dint\dfrac{dt}{\sqrt{5t^2 + 5t + 1}}
+	$$
+	Продифференцируем и умножим на $y$:
+	$$
+		-t^2 = A(5t^2 + 5t + 1) + (At + B){\cdot}\left(5t + \dfrac{5}{2}\right) + \lambda
+	$$
+	$$
+		\left\{
+		\begin{matrix}
+			t^2, & -1 &=& 5A + 5A \\[10pt]
+			t, & 0 & = & 5A + \dfrac{5}{2}A + 5B \\[10pt]
+			1, & 0 & = & A+ \dfrac{5}{2}B + \lambda
+		\end{matrix}
+		\right. \Rightarrow
+		\left\{
+		\begin{matrix}
+			A &=& -\dfrac{1}{10}&\\[10pt]
+			B& = & \dfrac{3}{20} &\\[10pt]
+			\lambda & = & \dfrac{1}{10} & - \dfrac{15}{40} = -\dfrac{11}{40}
+		\end{matrix}
+		\right.
+	$$
+	$$
+		\dint\dfrac{dt}{\sqrt{5t^2 + 5t + 1}} = \dint \dfrac{dt}{\sqrt{5\left(t + \tfrac{1}{2}\right)^2 - \tfrac{1}{4}}} \Rightarrow 5\left(t + \dfrac{1}{2}\right)^2 - \dfrac{1}{4}= \dfrac{1}{4}{\cdot}\left(20\left(t + \dfrac{1}{2}\right)^2 - 1\right)
+	$$
+	$$
+		2\sqrt{5}\left(t + \dfrac{1}{2}\right) = \ch{u} \Rightarrow 20\left(t + \dfrac{1}{2}\right)^2 - 1 = \sh^2{u}, \, dt  = \dfrac{1}{2\sqrt{5}}\sh{u}du
+	$$
+	$$
+		\dint \dfrac{dt}{\sqrt{5\left(t + \tfrac{1}{2}\right)^2 - \tfrac{3}{2}}} = \dint \dfrac{1}{2\sqrt{5}}\dfrac{\sh{u}du}{\tfrac{1}{2}\sh{u}} = \dfrac{1}{\sqrt{5}}u + C = \dfrac{1}{\sqrt{5}}\ln{\left(2\sqrt{5}\left(t + \dfrac{1}{2}\right) + \sqrt{20\left(t + \dfrac{1}{2}\right)^2 - 1}\right)}
+	$$
+	$$
+		2\sqrt{5}\left(t + \dfrac{1}{2}\right) + \sqrt{20\left(t + \dfrac{1}{2}\right)^2 - 1} = 2\sqrt{5}\dfrac{x +1}{2(x-1)} + \sqrt{\dfrac{5(x^2 + 2x + 1)}{(x-1)^2} - 1} = 
+	$$
+	$$
+		= \sqrt{5}\dfrac{x +1}{x-1} + \sqrt{\dfrac{5(x^2 + 2x + 1) - x^2 + 2x -1}{(x-1)^2}} = \sqrt{5}\dfrac{x + 1}{x-1} + \dfrac{2}{x-1}\sqrt{x^2 + 3x + 1}
+	$$
+	$$
+		\sqrt{5t^2 + 5t + 1} =\dfrac{\sqrt{x^2 + 3x + 1}}{(x-1)} \Rightarrow (At + B)\sqrt{5t^2 + 5t + 1} =  \left(-\dfrac{1}{10(x-1)} + \dfrac{3}{20}\right){\cdot} \dfrac{\sqrt{x^2 + 3x + 1}}{(x-1)} = 
+	$$
+	$$
+		=	\dfrac{3x - 3 - 2}{20(x-1)^2}{\cdot}\sqrt{x^2 + 3x + 1} = \dfrac{3x - 5}{20(x-1)^2}{\cdot}\sqrt{x^2 + 3x + 1}
+	$$
+	Следовательно:
+	$$
+		\dint \dfrac{1}{(x-1)^3\sqrt{x^2 + 3x + 1}}dx = \dfrac{3x - 5}{20(x-1)^2}{\cdot}\sqrt{x^2 + 3x + 1} - \dfrac{11}{40\sqrt{5}}\ln{\left| \dfrac{\sqrt{5}(x+ 1) + 2\sqrt{x^2 + 3x +1}}{x-1}\right|} + C
+	$$
+\end{proof}
+
+\end{document}

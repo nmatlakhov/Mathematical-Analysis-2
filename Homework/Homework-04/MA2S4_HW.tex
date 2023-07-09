@@ -1,0 +1,508 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%% Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1\times #2}}
+
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\begin{document}
+\lhead{Математический анализ - \RN{2}}
+\chead{Косухин О.Н.}
+\rhead{Семинар - 4: ДЗ}
+\section*{Метод Остроградского}
+\textbf{ДЗ}: решить методом Остроградского: $1873, 1892, 1894, 1898$ (только нужно алгебраическую часть); без метода Остроградского: $1883$.
+
+\begin{problem}(\textbf{Д1873})
+	$$
+		\dint \dfrac{x^2 }{(x^2 - 3x + 2)^2}dx
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		P(x) = x^2, \, Q(x) = (x- 1)^2(x-2)^2, \, Q_1(x) = (x-1)(x-2) = Q_2(x)
+	$$
+	$$
+		Q_2'(x) = x - 2 + x - 1 = 2x - 3
+	$$
+	$$
+		\dint \dfrac{x^2 }{(x^2 - 3x + 2)^2}dx = \dfrac{Ax + B}{(x-1)(x-2)} + \dint \dfrac{Cx + D}{(x-1)(x - 2)}dx
+	$$
+	$$
+		x^2(x-1)(x-2) = A(x-1)^2(x-2)^2 - (Ax + B)(2x - 3)(x-1)(x-2) + (Cx+ D)(x-1)^2(x-2)^2
+	$$
+	$$
+		x^2 = A(x-1)(x-2) - (Ax + B)(2x-3) + (Cx + D)(x- 1)(x  -2)
+	$$
+	$$
+		\left\{
+			\begin{matrix}
+				x^3 \colon &C &=&0 &&&&&&\\[5pt]
+				x^2 \colon &1 &=& A &-& 2A &+& D &&\\[5pt] 
+				x \colon   &0 &=& -3A &+& 3A &-& 2B &-& 3D\\[5pt]
+				1 \colon   &0 &=& 2A &+& 3B &+& 2D &&
+			\end{matrix}
+		\right. \Rightarrow 
+		\left\{
+			\begin{matrix}
+				C &=& 0 &&&& \\[5pt]
+				D &=& 1 &+& A &&\\[5pt]
+				B &=& -\tfrac{3}{2}D &&&& \\[5pt] 
+				0 &=& 2A &-& \tfrac{9}{2}D &+& 2D
+			\end{matrix}
+		\right. \Rightarrow 
+		\left\{
+			\begin{matrix}
+				A &=& -5\\
+				B &=& 6\\
+				C &=& 0 \\
+				D &=& -4
+			\end{matrix}
+		\right.
+	$$
+	$$
+		\dint \dfrac{x^2 }{(x^2 - 3x + 2)^2}dx = \dfrac{-5x  + 6}{(x-1)(x-2)} -4 \dint \dfrac{ 1}{(x-1)(x - 2)}dx
+	$$
+	$$
+		\dfrac{1}{(x-1)(x-2)} = \dfrac{1}{x-2} - \dfrac{1}{x-1} \Rightarrow 
+	$$
+	$$
+		\Rightarrow \dint \dfrac{x^2 }{(x^2 - 3x + 2)^2}dx = \dfrac{-5x  + 6}{(x-1)(x-2)}  - 4\ln{|x-2|} + 4\ln{|x-1|} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д1892})
+	$$
+		\dint \dfrac{dx}{(x^3+1)^2}
+	$$
+\end{problem}
+
+\begin{proof}
+	$$
+		P(x) = 1, \, Q(x) = (x^3 + 1)^2
+	$$
+	Заметим, что у $x^3 + 1$ нет кратных корней, это обычно можно понять так:
+	$$
+		G(x) = (x- x_1)^k\dotsc \Rightarrow G'(x) = n(x - x_1)^{k-1}\dotsc
+	$$
+	то есть надо посмотреть, есть ли у многочлена и его производной общие корни, поскольку кратные корни понижаются в степени, но остаются. В нашем случае:
+	$$
+		G(x) = x^3 + 1 = 0, \, G'(x) = 3x^2 = 0
+	$$
+	То есть система не имеет решений $\Rightarrow$ кратных корней нет. Тогда:
+	$$
+		Q_1(x) = x^3 + 1, \, Q_2(x) = x^3 + 1
+	$$
+	$$
+		\dint \dfrac{dx}{(x^3 + 1)^2 } = \dfrac{Ax^2 + Bx + C}{x^3 +1} + \dint\dfrac{Dx^2 + Ex + F}{x^3 + 1}dx
+	$$
+	$$
+		1(x^3 + 1) = (2Ax + B)(x^3 + 1)^2 - (Ax^2 + Bx + C)3x^2(x^3 + 1) + (Dx^2 + Ex + F)(x^3 +1)^2 \Rightarrow
+	$$
+	$$
+		\Rightarrow 1 = (2Ax + B) (x^3+1) - (Ax^2 + Bx +C)3x^2 +(Dx^2 + Ex +F)(x^3 +1)
+	$$
+	Как можно быстро получить коэффициенты в левой и правой частях? Рассмотрим ещё один метод:
+	$$
+		z \in \MC \colon z^3 + 1 = 0 \Rightarrow z_1 = -1, \, z_2 = e^{\frac{\pi i}{3}}, \, z_3 = e^{-\frac{\pi i}{3}} \Rightarrow
+	$$
+	$$
+		\Rightarrow 1 = -(Az^2 + Bz + C)3z^2 = 3Az + 3B - 3Cz^2 = 0
+	$$
+	Многочлен степени не выше $2$ в трёх точках равен $1 \Rightarrow$ этот многочлен $\equiv 1$, тогда:
+	$$
+		A = 0, \, C = 0, \, B = \dfrac{1}{3} 
+	$$
+	Таким образом, мы посчитали алгебраическую часть не считая трансцендентную. Можем досчитать остальные коэффициенты и найти исходный интеграл.
+	$$
+		1 = \dfrac{1}{3}(x^3 + 1) - x^3 + (Dx^2 + Ex + F)(x^3 + 1)
+	$$
+	$$
+		\left\{
+			\begin{matrix}
+				x^5 \colon & D &=& 0 &&&& \\
+				x^4 \colon & E &=& 0 &&&& \\
+				x^3 \colon & 0 &=& \dfrac{1}{3} &-& 1 &+& F
+			\end{matrix}
+		\right. \Rightarrow F = \dfrac{2}{3} 
+	$$
+	$$
+		\dint \dfrac{dx}{(x^3 + 1)^2 } = \dfrac{1}{3}\dfrac{ x }{x^3 +1} +\dfrac{2}{3} \dint\dfrac{1}{x^3 + 1}dx
+	$$
+	$$
+		\dfrac{1}{x^3 + 1} = \dfrac{1}{(x + 1)(x^2 - x + 1)} = \dfrac{G}{x + 1} + \dfrac{Hx + I}{x^2 - x + 1} = \dfrac{Gx^2 -Gx + G + Hx^2 + Hx + Ix + I}{x^3 + 1}
+	$$
+	$$
+		G + H = 0, \, -G + H + I = 0, \, G + I = 1 \Rightarrow G = -H,\, 2H + I = 0, \, -H + I = 1 \Rightarrow 
+	$$
+	$$
+		\Rightarrow I = \dfrac{2}{3}, \, H = -\dfrac{1}{3}, \, G = \dfrac{1}{3} \Rightarrow
+	$$
+	$$
+		\dfrac{2}{3} \dint\dfrac{1}{x^3 + 1}dx = \dfrac{2}{9}\dint\dfrac{1}{x+ 1} dx + \dfrac{2}{9}\dint\dfrac{-x + 2}{x^2 - x + 1}dx = \dfrac{1}{9}\ln{(x+1)^2} - \dfrac{1}{9}\dint \dfrac{d(x^2 - x + 1)}{x^2 - x + 1} + 
+	$$
+	$$
+		+ \dfrac{1}{3}\dint \dfrac{1}{\left(x - \frac{1}{2}\right)^2  + \frac{3}{4}}dx = \dfrac{1}{9}\ln{(x+1)^2} - \dfrac{1}{9}\ln{(x^2 - x + 1)} + \dfrac{1}{3}\dfrac{2}{\sqrt{3}}\arctg{\left(\dfrac{x - \frac{1}{2}}{\frac{\sqrt{3}}{2}}\right)} + C \Rightarrow 
+	$$
+	$$
+		\Rightarrow	\dint \dfrac{dx}{(x^3 + 1)^2 } = \dfrac{1}{3}\dfrac{ x }{x^3 +1} + \dfrac{1}{9}\ln{\left(\dfrac{(x + 1)^2}{x^2 - x + 1}\right)} + \dfrac{2}{3\sqrt{3}}\arctg{\left(\dfrac{2x - 1}{\sqrt{3}}\right)} + C
+	$$
+\end{proof}
+
+\newpage
+\begin{problem}(\textbf{Д1894})
+	$$
+		\dint \dfrac{x^2}{(x^2 + 2x + 2)^2}dx
+	$$
+\end{problem}
+
+\begin{proof}
+	$$
+		P(x) = x^2, \, Q(x) = (x^2 + 2x + 2)^2
+	$$
+	Проверим кратность корней у квадратного трехчлена:
+	$$
+		G(x) = x^2 + 2x + 2 = 0, \, G'(x) = 2x + 2 = 0 \Rightarrow x = -1 \Rightarrow 1 - 2 + 2 \neq 0
+	$$
+	Следовательно кратных корней нет. Тогда:
+	$$
+		Q_1(x) = x^2 + 2x + 2 = Q_2(x), \, Q'_2(x) = 2x + 2
+	$$
+	$$
+		\dint \dfrac{x^2}{(x^2 + 2x + 2)^2}dx = \dfrac{Ax + B}{x^2 + 2x + 2} + \dint \dfrac{Cx + D}{x^2 + 2x + 2}dx
+	$$
+	$$
+		x^2 (x^2 + 2x + 2) = A(x^2 + 2x + 2)^2  - (Ax + B)(2x + 2)(x^2 + 2x + 2) + (Cx + D)(x^2 + 2x + 2)^2 \Rightarrow
+	$$
+	$$
+		\Rightarrow x^2 = A(x^2 + 2x + 2) - (Ax +  B)(2x + 2) + (Cx + D)(x^2 + 2x + 2)
+	$$
+	$$
+		\left\{
+			\begin{array}{ccccc}
+				x^3 \colon &  0 & = & C\\
+				x^2 \colon & 1 & = & A -2A +D \\
+				x \colon & 0 & = & 2A - 2A - 2B + 2D\\
+				1 \colon & 0 &=& A -2B +2D
+			\end{array}
+		\right. \Rightarrow
+		\left\{
+			\begin{array}{ccc}
+				0 & = & C \\
+				1 & = & D - A \\
+				B & = & D \\
+				A & = & 0
+			\end{array}
+		\right. \Rightarrow 
+		\left\{
+			\begin{array}{ccc}
+				A & = & 0 \\
+				B & = & 1 \\
+				C & = & 0 \\
+				D & = & 1
+			\end{array}
+		\right. \Rightarrow
+	$$
+	$$
+		\Rightarrow \dint \dfrac{x^2}{(x^2 + 2x + 2)^2}dx = \dfrac{1}{x^2 + 2x + 2} + \dint \dfrac{1}{(x + 1)^2 + 1}dx = \dfrac{1}{x^2 + 2x + 2} + \arctg{\left( x + 1\right)} + C
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д1898})
+	Выделить алгебраическую часть интеграла:
+	$$
+		\dint \dfrac{x^2 + 1}{(x^4 + x^2 + 1)^2}dx
+	$$
+\end{problem}
+
+\begin{proof}
+	$$
+		P(x) = x^2 + 1, \, Q(x) = (x^4 + x^2 + 1)^2
+	$$
+	Проверим кратность корней у квадратного трехчлена:
+	$$
+		G(x) = x^4 + x^2 + 1 = 0, \, G'(x) = 4x^3 + 2x = 0 \Rightarrow x(4x^2 + 2) = 0 \Rightarrow x = 0, x = \pm \sqrt{-\tfrac{1}{2}} = \pm i\sqrt{\tfrac{1}{2}}
+	$$
+	$$
+		G(0) = 1 \neq 0, \, G\left(\pm i\sqrt{\tfrac{1}{2}}\right) = \dfrac{1}{4} - \dfrac{1}{2} + 1 = \dfrac{3}{4} \neq 0
+	$$
+	Следовательно кратных корней нет. Тогда:
+	$$
+		Q_1(x) = Q_2(x) = x^4 + x^2 + 1, \, P_2(x) = Ax^3 + Bx^2 + Cx + D
+	$$
+	$$
+		(x^2 + 1)Q_2(x) = (3Ax^2 + 2Bx + C)Q_2^2(x) - (Ax^3 + Bx^2 + Cx + D)(4x^3 + 2x)Q_2(x) + P_1(x)Q_2^2(x) \Rightarrow
+	$$
+	$$
+		\Rightarrow x^2 + 1 = (3Ax^2 + 2Bx + C)Q_2(x) - (Ax^3 + Bx^2 + Cx + D)(4x^3 + 2x) + P_1(x)Q_2(x)
+	$$
+	$$
+		z \in \MC \colon z^4 + z^2 +  1 = 0 \Rightarrow Q_2(z) = 0 \Rightarrow z^2 + 1 = -(Az^3 + Bz^2 + Cz + D)(4z^3  + 2z) \Rightarrow
+	$$
+	Поскольку у нас возникают слагаемые степени выше $3$, то избавимся от них:
+	$$
+		z^4 = -z^2 - 1 \Rightarrow z^5 = -z^3- z, \, z^6 = -z^4 - z^2 = 1
+	$$
+	Следовательно мы получим систему уравнений:
+	$$
+		- z^2 - 1 = 2Az^4 + 2Bz^3 + 2Cz^2 +2Dz + 4Az^6 + 4Bz^5 + 4Cz^4+ 4Dz^3 = 
+	$$
+	$$
+		=(2A + 4C)z^4 + (2B + 4D -4B)z^3 + 2Cz^2 + (2D - 4B)z + 4A = 
+	$$
+	$$
+		= (4D - 2B)z^3 + (2C - 2A - 4C)z^2 + (2D - 4B)z + (4A -2A - 4C)
+	$$
+	$$
+		\left\{
+			\begin{array}{ccccc}
+				z^3 \colon& 0 & = &  4D - 2B\\
+				z^2 \colon& -1 & = & -2C - 2A\\
+				z \colon& 0 & = & 2D - 4B\\
+				1 \colon & -1 &=& 2A - 4C
+			\end{array}
+		\right. \Rightarrow
+		\left\{
+			\begin{array}{ccc}
+				A & = & \tfrac{1}{2} - C\\ [8pt]
+				B & = & 2D  = 0\\[8pt]
+				D & = & 2B  = 0\\[8pt]
+				A & = & 2C - \tfrac{1}{2}
+			\end{array} \Rightarrow
+		\right. 		
+		\left\{
+			\begin{array}{ccc}
+				A & = & \tfrac{1}{6} \\[8pt]
+				B & = & 0 \\[8pt]
+				C & = & \tfrac{1}{3} \\[8pt]
+				D & = & 0
+			\end{array}
+		\right. 
+	$$
+	Следовательно, алгебраическая часть будет иметь вид:
+	$$
+		\dfrac{P_2(x)}{Q_2(x)} = \dfrac{1}{6}{\cdot}\dfrac{ x^3 + 2x }{x^4 + x^2 + 1}
+	$$
+\end{proof}
+
+\begin{problem}(\textbf{Д1883})
+	$$
+		\dint \dfrac{dx}{x^4 -1 }
+	$$
+\end{problem}
+\begin{proof}
+	$$
+		\dfrac{1}{x^4 -1 } = \dfrac{1}{(x^2 - 1)(x^2 + 1)} = \dfrac{1}{(x- 1)(x+ 1)(x^2 +1)} = \dfrac{A}{x-1} + \dfrac{B}{x+ 1} + \dfrac{Cx + D}{x^2 + 1} \Rightarrow
+	$$
+	$$
+		\Rightarrow \dfrac{(Ax + A)(x^2 + 1) + (Bx - B)(x^2 + 1) + (Cx +D)(x^2 - 1)}{x^4 - 1} = \dfrac{1}{x^4 - 1}
+	$$
+	$$
+		\left\{
+			\begin{array}{ccccc}
+				x^3 \colon& 0 & = &  A + B+C \\
+				x^2 \colon& 0 & = & A -B +D\\
+				x \colon& 0 & = & A + B - C\\
+				1 \colon & 1 &=& A - B  - D 
+			\end{array}
+		\right. \Rightarrow 
+		\left\{
+			\begin{array}{ccc}
+				A & = & -B \\[5pt]
+				C & = & 0 \\[5pt]
+				D & = & -2A \\[5pt]
+				D & = & 2A - 1
+			\end{array} 
+		\right.\Rightarrow 
+		\left\{
+			\begin{array}{ccc}
+				A & = & \tfrac{1}{4} \\[5pt]
+				B & = & -\tfrac{1}{4} \\[5pt]
+				C & = & 0 \\[5pt]
+				D & = & -\tfrac{1}{2}
+			\end{array} 
+		\right.
+	$$
+	$$
+		\dint \dfrac{dx}{x^4-1} = \dfrac{1}{4}\ln{|x-1|} - \dfrac{1}{4}\ln{|x + 1|} - \dfrac{1}{2}\arctg{x} + C = \dfrac{1}{4}\ln{\left|\dfrac{x-1}{x+1}\right|} - \dfrac{1}{2}\arctg{x} + C 
+	$$
+\end{proof}
+
+\end{document}
